@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>درس البوصلة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+.page { width: min(1100px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 40px; }
+.hero { background: rgba(255, 255, 255, 0.92); border-radius: 28px; box-shadow: 0 14px 34px rgba(17, 82, 127, 0.14); padding: 28px; text-align: center; }
+.hero-badge { display: inline-block; background: #eaf8ee; color: #22884f; border-radius: 999px; padding: 8px 14px; font-weight: bold; margin-bottom: 14px; }
+.hero h1 { color: #ff6b6b; font-size: clamp(2rem, 5vw, 3rem); margin: 0; }
+.hero p { font-size: 1.1rem; line-height: 1.9; max-width: 760px; margin: 14px auto 0; }
+.emoji-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.emoji-row span { background: #fff; border-radius: 999px; padding: 10px 16px; box-shadow: 0 10px 24px rgba(17, 82, 127, 0.12); font-size: 2rem; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 22px; }
+.gallery a { display: block; text-decoration: none; background: #fff; border-radius: 22px; overflow: hidden; box-shadow: 0 14px 28px rgba(17, 82, 127, 0.14); transition: transform 180ms ease, box-shadow 180ms ease; }
+.gallery a:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: 0 18px 34px rgba(17, 82, 127, 0.18); }
+.gallery img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: #eef8ff; }
+.gallery span { display: block; padding: 10px 12px 14px; font-weight: 800; color: #015e94; font-family: "Baloo 2", cursive; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 22px; }
+.card, .wide-card { background: rgba(255, 255, 255, 0.94); border-radius: 22px; box-shadow: 0 12px 30px rgba(17, 82, 127, 0.14); padding: 22px; }
+.card h2, .wide-card h2 { margin-top: 0; color: #17344f; font-size: 1.6rem; }
+.direction-card { border-top: 8px solid #47c98b; }
+.use-card { border-top: 8px solid #ff8c6a; }
+.wide-card { margin-top: 22px; }
+.wide-card p, .card p { line-height: 1.9; font-size: 1.05rem; }
+ul { margin: 14px 0 0; padding-inline-start: 20px; line-height: 2; }
+.mini-grid, .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 16px; }
+.mini-box { border-radius: 18px; padding: 16px; background: #fffaf0; }
+.mini-box h3 { margin-top: 0; margin-bottom: 8px; color: #ff6b6b; }
+.compare-item { background: #ffffff; border: 2px dashed #b9ddff; border-radius: 18px; padding: 16px; }
+.footer-note { text-align: center; margin-top: 22px; font-size: 1.05rem; font-weight: bold; color: #4a4a7a; }
+</style>
+</head>
+<body data-title-key="title.coursePage">
+<header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+        <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+        <a href="index.html" data-i18n="nav.courses">Courses</a>
+        <a href="../games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select">
+        <span data-i18n="lang.label">اللغة</span>
+        <select id="lang-select" aria-label="Language selector">
+            <option value="en" data-i18n="lang.en">English</option>
+            <option value="fr" data-i18n="lang.fr">Francais</option>
+            <option value="ar" data-i18n="lang.ar">العربية</option>
+        </select>
+    </label>
+</header>
+<div class="page">
+    <section class="hero">
+        <div class="hero-badge" data-i18n="heroBadge">درس مبسط للأطفال</div>
+        <h1 data-i18n="heroTitle">درس البوصلة</h1>
+        <p data-i18n="heroText">في هذا الدرس سنتعرّف إلى معنى البوصلة، وكيف تساعدنا على معرفة الاتجاهات الأربعة وتحديد المكان الصحيح.</p>
+        <div class="emoji-row" aria-hidden="true"><span>🧭</span><span>🗺️</span><span>⭐</span><span>🧒</span><span>🌍</span></div>
+        <div class="gallery" aria-label="Fun compass pictures">
+            <a href="https://api.dicebear.com/9.x/thumbs/svg?seed=CompassKid" target="_blank" rel="noreferrer">
+                <img src="https://api.dicebear.com/9.x/thumbs/svg?seed=CompassKid" alt="Cartoon kid learning with a compass">
+                <span data-i18n="gallery1">Compass Friend</span>
+            </a>
+            <a href="https://api.dicebear.com/9.x/thumbs/svg?seed=MapBuddy" target="_blank" rel="noreferrer">
+                <img src="https://api.dicebear.com/9.x/thumbs/svg?seed=MapBuddy" alt="Cartoon map buddy">
+                <span data-i18n="gallery2">Map Buddy</span>
+            </a>
+            <a href="https://api.dicebear.com/9.x/thumbs/svg?seed=NorthStar" target="_blank" rel="noreferrer">
+                <img src="https://api.dicebear.com/9.x/thumbs/svg?seed=NorthStar" alt="Cartoon star guide">
+                <span data-i18n="gallery3">North Star</span>
+            </a>
+        </div>
+    </section>
+    <section class="grid">
+        <article class="card direction-card">
+            <h2 data-i18n="directionTitle">ما هي البوصلة؟</h2>
+            <p data-i18n="directionText">البوصلة أداة تساعدنا على معرفة الاتجاهات. فيها إبرة تشير دائماً إلى الشمال، ومن خلالها نعرف بقية الجهات.</p>
+            <ul>
+                <li data-i18n="direction1">تساعدنا على معرفة الشمال والجنوب والشرق والغرب.</li>
+                <li data-i18n="direction2">توجد فيها إبرة تتحرك حتى تشير إلى الشمال.</li>
+                <li data-i18n="direction3">تُستعمل في السفر والرحلات وقراءة الخرائط.</li>
+                <li data-i18n="direction4">البوصلة تجعل تحديد الطريق أسهل وأدق.</li>
+            </ul>
+        </article>
+        <article class="card use-card">
+            <h2 data-i18n="useTitle">كيف نستخدم البوصلة؟</h2>
+            <p data-i18n="useText">لاستعمال البوصلة بشكل صحيح نحملها بشكل مستقيم وننتظر حتى تتوقف الإبرة، ثم نقرأ الاتجاه الذي تشير إليه.</p>
+            <ul>
+                <li data-i18n="use1">نحمل البوصلة على سطح مستوٍ.</li>
+                <li data-i18n="use2">نبتعد عن الأشياء المعدنية القوية.</li>
+                <li data-i18n="use3">ننتظر حتى تتوقف الإبرة عن الحركة.</li>
+                <li data-i18n="use4">نحدد الشمال ثم نعرف بقية الاتجاهات.</li>
+            </ul>
+        </article>
+    </section>
+    <section class="wide-card">
+        <h2 data-i18n="workTitle">لماذا البوصلة مهمة؟</h2>
+        <div class="compare">
+            <div class="compare-item"><strong data-i18n="work1Title">في الرحلات</strong><p data-i18n="work1Text">تساعد البوصلة الناس على معرفة الطريق أثناء المشي أو السفر.</p></div>
+            <div class="compare-item"><strong data-i18n="work2Title">مع الخريطة</strong><p data-i18n="work2Text">عندما نستخدم البوصلة مع الخريطة يصبح فهم المكان أسهل.</p></div>
+            <div class="compare-item"><strong data-i18n="work3Title">في التعلم</strong><p data-i18n="work3Text">تعلّم البوصلة يساعد الطفل على فهم الاتجاهات ومكان الأشياء.</p></div>
+            <div class="compare-item"><strong data-i18n="work4Title">في السلامة</strong><p data-i18n="work4Text">معرفة الاتجاه الصحيح تساعد على تجنب الضياع.</p></div>
+        </div>
+    </section>
+    <section class="wide-card">
+        <h2 data-i18n="examplesTitle">أمثلة تساعد على الفهم</h2>
+        <div class="mini-grid">
+            <div class="mini-box"><h3 data-i18n="example1Title">مثال 1</h3><p data-i18n="example1Text">إذا أشارت الإبرة إلى الشمال، فإن الجنوب يكون في الجهة المقابلة.</p></div>
+            <div class="mini-box"><h3 data-i18n="example2Title">مثال 2</h3><p data-i18n="example2Text">إذا كان الباب في جهة الشرق، فنحن نعرف أن الغرب في الجهة الأخرى.</p></div>
+            <div class="mini-box"><h3 data-i18n="example3Title">مثال 3</h3><p data-i18n="example3Text">في رحلة قصيرة يمكن أن نستعمل البوصلة لمعرفة جهة العودة.</p></div>
+        </div>
+    </section>
+    <section class="wide-card">
+        <h2 data-i18n="importanceTitle">ماذا نتذكر عن البوصلة؟</h2>
+        <ul>
+            <li data-i18n="importance1">البوصلة أداة لمعرفة الاتجاهات.</li>
+            <li data-i18n="importance2">إبرة البوصلة تشير إلى الشمال.</li>
+            <li data-i18n="importance3">يمكن استعمالها مع الخريطة أو أثناء الرحلات.</li>
+            <li data-i18n="importance4">معرفة الاتجاهات تساعدنا على فهم المكان وعدم الضياع.</li>
+        </ul>
+    </section>
+    <p class="footer-note" data-i18n="footer">عندما نفهم البوصلة يصبح تحديد الاتجاهات أسهل وأكثر متعة.</p>
+</div>
+<script>
+const STORAGE_KEY='petWildLang'; const SUPPORTED_LANGS=['en','fr','ar'];
+const TRANSLATIONS={en:{title:'Compass Lesson',brand:'Future Adventurers','nav.welcome':'Welcome','nav.about':'About Us','nav.courses':'Courses','nav.games':'Games','lang.label':'Language','lang.en':'English','lang.fr':'French','lang.ar':'Arabic',heroBadge:'Simple lesson for kids',heroTitle:'Compass Lesson',heroText:'In this lesson we learn what a compass is and how it helps us know the four directions and find the correct place.',gallery1:'Compass Friend',gallery2:'Map Buddy',gallery3:'North Star',directionTitle:'What Is a Compass?',directionText:'A compass is a tool that helps us know directions. It has a needle that points north, and from it we can know the other directions.',direction1:'It helps us know north, south, east, and west.',direction2:'It has a needle that moves until it points north.',direction3:'It is used in travel, trips, and reading maps.',direction4:'A compass makes finding the way easier and more accurate.',useTitle:'How Do We Use a Compass?',useText:'To use a compass correctly, we hold it flat and wait until the needle stops moving, then we read the direction it shows.',use1:'Hold the compass on a flat surface.',use2:'Stay away from strong metal objects.',use3:'Wait until the needle stops moving.',use4:'Find north first, then know the other directions.',workTitle:'Why Is the Compass Important?',work1Title:'On trips',work1Text:'It helps people know the way while walking or traveling.',work2Title:'With a map',work2Text:'When we use a compass with a map, understanding the place becomes easier.',work3Title:'In learning',work3Text:'Learning about the compass helps children understand directions and location.',work4Title:'For safety',work4Text:'Knowing the right direction helps us avoid getting lost.',examplesTitle:'Examples That Help Us Understand',example1Title:'Example 1',example1Text:'If the needle points north, south is in the opposite direction.',example2Title:'Example 2',example2Text:'If the door is on the east side, west is on the other side.',example3Title:'Example 3',example3Text:'On a short trip we can use a compass to know the direction back.',importanceTitle:'What Do We Remember About the Compass?',importance1:'A compass is a tool for knowing directions.',importance2:'Its needle points north.',importance3:'It can be used with a map or during trips.',importance4:'Knowing directions helps us understand places and not get lost.',footer:'When we understand the compass, finding directions becomes easier and more fun.'},fr:{title:'Lecon sur la boussole',brand:'Aventuriers du Futur','nav.welcome':'Accueil','nav.about':'A propos','nav.courses':'Cours','nav.games':'Jeux','lang.label':'Langue','lang.en':'Anglais','lang.fr':'Francais','lang.ar':'Arabe',heroBadge:'Lecon simple pour enfants',heroTitle:'Lecon sur la boussole',heroText:'Dans cette lecon, nous apprenons ce qu est une boussole et comment elle aide a connaitre les quatre directions et a trouver le bon chemin.',gallery1:'Ami boussole',gallery2:'Copain carte',gallery3:'Etoile du nord',directionTitle:'Qu est-ce qu une boussole ?',directionText:'La boussole est un outil qui aide a connaitre les directions. Elle contient une aiguille qui montre le nord, et grace a elle on trouve les autres directions.',direction1:'Elle aide a connaitre le nord, le sud, l est et l ouest.',direction2:'Elle contient une aiguille qui bouge jusqu a montrer le nord.',direction3:'Elle est utilisee dans les voyages, les sorties et la lecture des cartes.',direction4:'La boussole rend l orientation plus facile et plus precise.',useTitle:'Comment utiliser la boussole ?',useText:'Pour bien utiliser la boussole, on la tient a plat et on attend que l aiguille s arrete, puis on lit la direction indiquee.',use1:'Tenir la boussole sur une surface plate.',use2:'Rester loin des objets metalliques puissants.',use3:'Attendre que l aiguille s arrete.',use4:'Trouver d abord le nord, puis les autres directions.',workTitle:'Pourquoi la boussole est-elle importante ?',work1Title:'Pendant les sorties',work1Text:'Elle aide les personnes a trouver leur chemin pendant la marche ou le voyage.',work2Title:'Avec une carte',work2Text:'Quand on utilise la boussole avec une carte, comprendre le lieu devient plus facile.',work3Title:'Pour apprendre',work3Text:'La boussole aide l enfant a comprendre les directions et la position des choses.',work4Title:'Pour la securite',work4Text:'Connaitre la bonne direction aide a ne pas se perdre.',examplesTitle:'Des exemples pour mieux comprendre',example1Title:'Exemple 1',example1Text:'Si l aiguille montre le nord, le sud est dans la direction opposee.',example2Title:'Exemple 2',example2Text:'Si la porte est a l est, alors l ouest est de l autre cote.',example3Title:'Exemple 3',example3Text:'Pendant une petite sortie, on peut utiliser la boussole pour connaitre le chemin du retour.',importanceTitle:'Que devons-nous retenir sur la boussole ?',importance1:'La boussole est un outil pour connaitre les directions.',importance2:'Son aiguille montre le nord.',importance3:'On peut l utiliser avec une carte ou pendant les sorties.',importance4:'Connaitre les directions aide a comprendre les lieux et a ne pas se perdre.',footer:'Quand nous comprenons la boussole, trouver les directions devient plus facile et plus amusant.'},ar:{title:'درس البوصلة',brand:'مغامرو المستقبل','nav.welcome':'الصفحة الرئيسية','nav.about':'من نحن','nav.courses':'الدروس','nav.games':'الألعاب','lang.label':'اللغة','lang.en':'الإنجليزية','lang.fr':'الفرنسية','lang.ar':'العربية',heroBadge:'درس مبسط للأطفال',heroTitle:'درس البوصلة',heroText:'في هذا الدرس سنتعرّف إلى معنى البوصلة، وكيف تساعدنا على معرفة الاتجاهات الأربعة وتحديد المكان الصحيح.',gallery1:'صديق البوصلة',gallery2:'صديق الخريطة',gallery3:'نجمة الشمال',directionTitle:'ما هي البوصلة؟',directionText:'البوصلة أداة تساعدنا على معرفة الاتجاهات. فيها إبرة تشير دائماً إلى الشمال، ومن خلالها نعرف بقية الجهات.',direction1:'تساعدنا على معرفة الشمال والجنوب والشرق والغرب.',direction2:'توجد فيها إبرة تتحرك حتى تشير إلى الشمال.',direction3:'تُستعمل في السفر والرحلات وقراءة الخرائط.',direction4:'البوصلة تجعل تحديد الطريق أسهل وأدق.',useTitle:'كيف نستخدم البوصلة؟',useText:'لاستعمال البوصلة بشكل صحيح نحملها بشكل مستقيم وننتظر حتى تتوقف الإبرة، ثم نقرأ الاتجاه الذي تشير إليه.',use1:'نحمل البوصلة على سطح مستوٍ.',use2:'نبتعد عن الأشياء المعدنية القوية.',use3:'ننتظر حتى تتوقف الإبرة عن الحركة.',use4:'نحدد الشمال ثم نعرف بقية الاتجاهات.',workTitle:'لماذا البوصلة مهمة؟',work1Title:'في الرحلات',work1Text:'تساعد البوصلة الناس على معرفة الطريق أثناء المشي أو السفر.',work2Title:'مع الخريطة',work2Text:'عندما نستخدم البوصلة مع الخريطة يصبح فهم المكان أسهل.',work3Title:'في التعلم',work3Text:'تعلّم البوصلة يساعد الطفل على فهم الاتجاهات ومكان الأشياء.',work4Title:'في السلامة',work4Text:'معرفة الاتجاه الصحيح تساعد على تجنب الضياع.',examplesTitle:'أمثلة تساعد على الفهم',example1Title:'مثال 1',example1Text:'إذا أشارت الإبرة إلى الشمال، فإن الجنوب يكون في الجهة المقابلة.',example2Title:'مثال 2',example2Text:'إذا كان الباب في جهة الشرق، فنحن نعرف أن الغرب في الجهة الأخرى.',example3Title:'مثال 3',example3Text:'في رحلة قصيرة يمكن أن نستعمل البوصلة لمعرفة جهة العودة.',importanceTitle:'ماذا نتذكر عن البوصلة؟',importance1:'البوصلة أداة لمعرفة الاتجاهات.',importance2:'إبرة البوصلة تشير إلى الشمال.',importance3:'يمكن استعمالها مع الخريطة أو أثناء الرحلات.',importance4:'معرفة الاتجاهات تساعدنا على فهم المكان وعدم الضياع.',footer:'عندما نفهم البوصلة يصبح تحديد الاتجاهات أسهل وأكثر متعة.'}};
+function normalizeLanguage(v){return SUPPORTED_LANGS.includes(v)?v:null;} function getInitialLanguage(){const u=normalizeLanguage(new URLSearchParams(window.location.search).get('lang')); const s=normalizeLanguage(localStorage.getItem(STORAGE_KEY)); const selected=u||s||'ar'; localStorage.setItem(STORAGE_KEY,selected); return selected;} let currentLang=getInitialLanguage(); function t(k){return (TRANSLATIONS[currentLang]||TRANSLATIONS.en)[k]||TRANSLATIONS.en[k]||k;} function syncLinks(){document.querySelectorAll('a[href]').forEach((a)=>{const raw=a.getAttribute('href'); if(!raw||raw.startsWith('#')) return; const url=new URL(raw,window.location.href); if(url.origin!==window.location.origin) return; if(!url.pathname.endsWith('.html')) return; url.searchParams.set('lang',currentLang); a.href=`${url.toString()}`;});} function applyTranslations(){document.querySelectorAll('[data-i18n]').forEach((n)=>{n.textContent=t(n.dataset.i18n);}); document.documentElement.lang=currentLang; document.documentElement.dir=currentLang==='ar'?'rtl':'ltr'; document.title=t('title'); const langSelect=document.getElementById('lang-select'); langSelect.value=currentLang; const optionLabels={en:{en:'English',fr:'French',ar:'Arabic'},fr:{en:'Anglais',fr:'Francais',ar:'Arabe'},ar:{en:'الإنجليزية',fr:'الفرنسية',ar:'العربية'}}; [...langSelect.options].forEach((option)=>{option.textContent=optionLabels[currentLang][option.value]||option.textContent;}); syncLinks();} document.getElementById('lang-select').addEventListener('change',(e)=>{const next=e.target.value; if(!SUPPORTED_LANGS.includes(next)) return; currentLang=next; localStorage.setItem(STORAGE_KEY,next); applyTranslations();}); applyTranslations();
+</script>
+</body>
+</html>

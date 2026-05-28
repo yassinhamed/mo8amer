@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لعبة الذاكرة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(180deg, #fff7b8 0%, #ffd6e7 45%, #cdefff 100%);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+
+.page {
+    width: min(960px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 24px 0 40px;
+    text-align: center;
+}
+
+h1 {
+    color: #ff6b6b;
+    font-size: 42px;
+    margin-top: 20px;
+}
+
+p {
+    color: #4a4a7a;
+    font-size: 20px;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    line-height: 1.7;
+}
+
+.score-bar {
+    width: fit-content;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #ff9f68, #ff6fb5);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 10px 24px rgba(255, 111, 181, 0.28);
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6b6b;
+    min-height: 32px;
+}
+
+.game {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #6ecbff, #6a8cff);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
+    color: transparent;
+    transition: 0.3s;
+    box-shadow: 0 10px 22px rgba(106, 140, 255, 0.25);
+    border: 4px solid rgba(255, 255, 255, 0.7);
+}
+
+.card.flipped {
+    background: #fffaf0;
+    color: #333;
+}
+
+.card.matched {
+    background: linear-gradient(135deg, #7ee081, #47c98b);
+    color: white;
+}
+
+@media (max-width: 560px) {
+    .game {
+        grid-template-columns: repeat(2, 100px);
+    }
+}
+</style>
+</head>
+<body data-page="memory">
+<header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+        <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+        <a href="../cources/index.html" data-i18n="nav.courses">Courses</a>
+        <a href="../games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select">
+        <span data-i18n="lang.label">اللغة</span>
+        <select id="lang-select" aria-label="Language selector">
+            <option value="en" data-i18n="lang.en">English</option>
+            <option value="fr" data-i18n="lang.fr">Francais</option>
+            <option value="ar" data-i18n="lang.ar">العربية</option>
+        </select>
+    </label>
+</header>
+
+<main class="page">
+    <h1 id="page-title" data-i18n="pageTitle">لعبة الذاكرة</h1>
+    <p id="page-subtitle" data-i18n="subtitle">اقلب البطاقات بطاقةً تلو الأخرى، ثم حاول العثور على البطاقتين المتطابقتين لتكوين كل زوج.</p>
+    <div class="score-bar"><span data-i18n="scoreLabel">النتيجة:</span> <span id="score">0</span></div>
+    <div class="game" id="game"></div>
+    <div class="message" id="message"></div>
+</main>
+
+<script src="../standalone.js"></script>
+<script>
+const emojis = ['🐶', '🐶', '🦁', '🦁', '👁️', '👁️', '👂', '👂'];
+const game = document.getElementById('game');
+const message = document.getElementById('message');
+const scoreEl = document.getElementById('score');
+let shuffled = [];
+let first = null;
+let second = null;
+let lock = false;
+let score = 0;
+
+function playTone(frequency, duration) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    const audio = new AudioContextClass();
+    const oscillator = audio.createOscillator();
+    const gainNode = audio.createGain();
+
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+    gainNode.gain.value = 0.08;
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audio.destination);
+    oscillator.start();
+
+    setTimeout(() => {
+        oscillator.stop();
+        audio.close();
+    }, duration);
+}
+
+function playWinSound() {
+    playTone(523, 180);
+    setTimeout(() => playTone(659, 180), 180);
+    setTimeout(() => playTone(784, 260), 360);
+}
+
+function updateScore(points) {
+    score = Math.max(0, score + points);
+    scoreEl.textContent = score;
+}
+
+function resetTurn() {
+    first = null;
+    second = null;
+    lock = false;
+}
+
+function checkWin() {
+    const matchedCards = document.querySelectorAll('.card.matched').length;
+    if (matchedCards === shuffled.length) {
+        message.textContent = standaloneI18n.tf('win', { score });
+        playWinSound();
+    }
+}
+
+function renderGame() {
+    game.innerHTML = '';
+    shuffled.forEach((emoji) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.emoji = emoji;
+        card.textContent = emoji;
+
+        card.addEventListener('click', () => {
+            if (lock || card.classList.contains('flipped')) return;
+
+            card.classList.add('flipped');
+
+            if (!first) {
+                first = card;
+                return;
+            }
+
+            second = card;
+            lock = true;
+
+            if (first.dataset.emoji === second.dataset.emoji) {
+                first.classList.add('matched');
+                second.classList.add('matched');
+                updateScore(3);
+                playTone(700, 180);
+                resetTurn();
+                checkWin();
+            } else {
+                updateScore(-1);
+                playTone(220, 260);
+                setTimeout(() => {
+                    first.classList.remove('flipped');
+                    second.classList.remove('flipped');
+                    resetTurn();
+                }, 800);
+            }
+        });
+
+        game.appendChild(card);
+    });
+}
+
+function startMemoryGame() {
+    shuffled = [...emojis].sort(() => 0.5 - Math.random());
+    first = null;
+    second = null;
+    lock = false;
+    score = 0;
+    scoreEl.textContent = '0';
+    message.textContent = '';
+    renderGame();
+}
+
+standaloneI18n.apply();
+standaloneI18n.setup(() => {
+    document.getElementById('page-title').textContent = standaloneI18n.t('pageTitle');
+    document.getElementById('page-subtitle').textContent = standaloneI18n.t('subtitle');
+    startMemoryGame();
+});
+startMemoryGame();
+</script>
+</body>
+</html>

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>مغامرة الحيوانات - كيف تتحرك؟</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --sky-100: #f0fbff;
+    --sky-400: #67c7ff;
+    --sky-600: #1893e1;
+    --sun-300: #ffe187;
+    --sun-500: #ffb62e;
+    --leaf-400: #52c57d;
+    --leaf-600: #22884f;
+    --coral-500: #ff7059;
+    --ink: #17344f;
+    --card: #ffffff;
+    --stroke: #d4ebfb;
+    --shadow: 0 12px 30px rgba(17, 82, 127, 0.14);
+  }
+
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.4) 0 10%, transparent 11%),
+      radial-gradient(circle at 88% 14%, rgba(255, 255, 255, 0.38) 0 8%, transparent 9%),
+      radial-gradient(circle at 90% 78%, rgba(255, 255, 255, 0.28) 0 11%, transparent 12%),
+      linear-gradient(180deg, #fff7b8 0%, #ffd6e7 45%, #cdefff 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  /* ===== SCREENS ===== */
+  .screen { display: none; width: 100%; max-width: 680px; }
+  .screen.active { display: block; }
+
+  /* ===== CARD WRAPPER ===== */
+  .card {
+    background: var(--card);
+    border-radius: 32px;
+    padding: 36px 32px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(212, 235, 251, 0.7);
+  }
+
+  /* ===== MASCOT ===== */
+  .mascot {
+    font-size: 56px;
+    display: block;
+    margin-bottom: 8px;
+    animation: mascotBounce 2s ease-in-out infinite;
+  }
+  @keyframes mascotBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* ===== START SCREEN ===== */
+  #start-screen .title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2.6rem;
+    color: var(--sky-600);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  #start-screen .subtitle {
+    font-size: 1.1rem;
+    color: var(--leaf-600);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .story-box {
+    background: linear-gradient(135deg, #fff6bf, #ffd9eb);
+    border-radius: 18px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    font-size: 1rem;
+    color: #7a4f00;
+    font-weight: 700;
+    line-height: 1.6;
+    border: 2px dashed #ffd36b;
+  }
+  .story-box .story-icon { font-size: 2rem; display: block; margin-bottom: 6px; }
+
+  /* ===== BUTTONS ===== */
+  .btn-start {
+    background: linear-gradient(135deg, var(--coral-500), #ff9671);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 18px 52px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255,112,89,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+    margin-top: 10px;
+  }
+  .btn-start:hover { transform: scale(1.06); box-shadow: 0 8px 28px rgba(238,90,36,0.5); }
+  .btn-start:active { transform: scale(0.97); }
+
+  /* ===== GAME SCREEN ===== */
+  /* HUD */
+  .hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .score-badge {
+    background: linear-gradient(135deg, var(--sky-600), var(--sky-400));
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.1rem;
+  }
+  .timer-badge {
+    background: linear-gradient(135deg, var(--leaf-600), var(--leaf-400));
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.1rem;
+    min-width: 80px;
+  }
+  .timer-badge.urgent { background: linear-gradient(135deg, #fd79a8, #e84393); animation: pulse 0.6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+
+  /* Progress bar */
+  .progress-bar-wrap {
+    background: #f0f0f0;
+    border-radius: 50px;
+    height: 14px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 2px solid #e0e0e0;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--sun-500), var(--sky-400));
+    border-radius: 50px;
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #888;
+    margin-bottom: 6px;
+    text-align: right;
+  }
+
+  /* Animal display */
+  .animal-card {
+    background: linear-gradient(135deg, #eefaff, #dff5ff);
+    border-radius: 24px;
+    padding: 24px 16px 16px;
+    margin-bottom: 18px;
+    position: relative;
+    border: 3px solid var(--stroke);
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .animal-img-wrap {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+    margin-bottom: 12px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .animal-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  .animal-name {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.6rem;
+    color: var(--sky-600);
+    margin-bottom: 4px;
+  }
+  .animal-habitat {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--leaf-600);
+    background: rgba(255,255,255,0.6);
+    padding: 3px 12px;
+    border-radius: 20px;
+  }
+
+  /* Question */
+  .question-text {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 18px;
+    line-height: 1.4;
+  }
+
+  /* Answer buttons */
+  .answers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .btn-answer {
+    background: #fff;
+    border: 3px solid #e0e0e0;
+    border-radius: 18px;
+    padding: 16px 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s, background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 68px;
+    line-height: 1.2;
+  }
+  .btn-answer:hover:not(:disabled) { transform: scale(1.04); border-color: #6c5ce7; background: #f3f0ff; }
+  .btn-answer.correct { background: #d4edda; border-color: #28a745; color: #155724; animation: correctPop 0.4s ease; }
+  .btn-answer.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; animation: shake 0.4s ease; }
+  .btn-answer:disabled { cursor: not-allowed; }
+  .btn-answer .answer-icon { font-size: 1.4rem; }
+
+  @keyframes correctPop { 0% { transform: scale(1); } 50% { transform: scale(1.12); } 100% { transform: scale(1); } }
+  @keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-6px); } 40%,80% { transform: translateX(6px); } }
+
+  /* Feedback message */
+  .feedback-msg {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.4rem;
+    padding: 12px 20px;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .feedback-msg.show { opacity: 1; }
+  .feedback-msg.correct-fb { background: #d4edda; color: #155724; }
+  .feedback-msg.wrong-fb { background: #fff3cd; color: #856404; }
+
+  /* Fun fact */
+  .fun-fact {
+    background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+    border-radius: 14px;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #5a3200;
+    margin-bottom: 14px;
+    display: none;
+    line-height: 1.5;
+  }
+  .fun-fact.show { display: block; }
+  .fun-fact strong { color: #c0392b; }
+
+  /* Next button */
+  .btn-next {
+    background: linear-gradient(135deg, var(--sky-600), var(--sky-400));
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 40px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(108,92,231,0.4);
+    transition: transform 0.15s;
+    display: none;
+  }
+  .btn-next.show { display: inline-block; }
+  .btn-next:hover { transform: scale(1.05); }
+
+  /* ===== END SCREEN ===== */
+  #end-screen .big-score {
+    font-family: 'Baloo 2', cursive;
+    font-size: 5rem;
+    color: var(--sky-600);
+    line-height: 1;
+    margin: 12px 0;
+  }
+  #end-screen .result-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+  #end-screen .result-msg {
+    font-size: 1rem;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .stars-row { font-size: 2.5rem; margin: 12px 0; letter-spacing: 6px; }
+
+  /* Animal summary grid */
+  .summary-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .summary-chip {
+    background: #f8f9fa;
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333;
+    border: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .summary-chip.correct-chip { border-color: #28a745; background: #d4edda; color: #155724; }
+  .summary-chip.wrong-chip { border-color: #dc3545; background: #f8d7da; color: #721c24; }
+
+  .btn-replay {
+    background: linear-gradient(135deg, var(--leaf-600), var(--leaf-400));
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 48px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,184,148,0.4);
+    transition: transform 0.15s;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .btn-replay:hover { transform: scale(1.06); }
+
+  /* ===== DECORATIVE BACKGROUND BLOBS ===== */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.10;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob-1 { width: 200px; height: 200px; background: var(--sky-600); top: -60px; left: -60px; }
+  .blob-2 { width: 150px; height: 150px; background: var(--sun-500); bottom: -40px; right: -40px; }
+
+  /* ===== CONFETTI ===== */
+  .confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    animation: confettiFall linear forwards;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ===== ANIMAL ANIM ===== */
+  .flying { animation: flyAnim 1s ease-in-out infinite alternate; }
+  .swimming { animation: swimAnim 1.2s ease-in-out infinite alternate; }
+  .jumping { animation: jumpAnim 0.8s ease-in-out infinite; }
+  .crawling { animation: crawlAnim 1.4s ease-in-out infinite alternate; }
+
+  @keyframes flyAnim { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-14px) rotate(3deg); } }
+  @keyframes swimAnim { from { transform: translateX(0) rotate(-2deg); } to { transform: translateX(12px) rotate(2deg); } }
+  @keyframes jumpAnim { 0%,100% { transform: translateY(0); } 40% { transform: translateY(-20px); } }
+  @keyframes crawlAnim { from { transform: translateX(0) scaleX(1); } to { transform: translateX(10px) scaleX(1.03); } }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 480px) {
+    .card { padding: 24px 18px; }
+    #start-screen .title { font-size: 2rem; }
+    .animal-img-wrap { width: 120px; height: 120px; }
+    .answers-grid { grid-template-columns: 1fr; }
+    .btn-answer { min-height: 54px; }
+    #end-screen .big-score { font-size: 3.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== START SCREEN ==================== -->
+<div id="start-screen" class="screen active">
+  <div class="card">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <span class="mascot">🦉</span>
+    <h1 class="title">مغامرة الحيوانات!</h1>
+    <p class="subtitle">كيف تتحرك الحيوانات؟</p>
+
+    <div class="story-box">
+      <span class="story-icon">🌍</span>
+      يا للمفاجأة! عاصفة كبيرة جعلت الحيوانات تتيه عن بيوتها!<br>
+      ساعد كل حيوان <strong>في العودة إلى منزله</strong> عبر اختيار طريقة حركته.<br>
+      هل تستطيع إنقاذها كلها؟ 🐾
+    </div>
+
+    <p style="font-size:1rem; color:#5f7082; font-weight:700; margin-bottom:18px;">
+      🎯 4 حيوانات &nbsp;|&nbsp; ⏱ 15 ثانية لكل سؤال &nbsp;|&nbsp; ⭐ اجمع النجوم!
+    </p>
+
+    <button class="btn-start" onclick="startGame()">🚀 هيا نبدأ!</button>
+  </div>
+</div>
+
+<!-- ==================== GAME SCREEN ==================== -->
+<div id="game-screen" class="screen">
+  <div class="card">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- HUD -->
+    <div class="hud">
+      <div class="score-badge">⭐ النقاط: <span id="score-display">0</span></div>
+      <div style="font-family:'Baloo 2',cursive; font-size:1rem; color:#5f7082;" id="question-counter">السؤال 1 / 4</div>
+      <div class="timer-badge" id="timer-badge">⏱ <span id="timer-display">15</span>s</div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-label" id="progress-label">الحيوان 1 من 4</div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-bar" style="width:0%"></div>
+    </div>
+
+    <!-- Animal card -->
+    <div class="animal-card" id="animal-card">
+      <div class="animal-img-wrap">
+        <img id="animal-img" src="" alt="حيوان" />
+      </div>
+      <div class="animal-name" id="animal-name"></div>
+      <div class="animal-habitat" id="animal-habitat"></div>
+    </div>
+
+    <!-- Mascot guide text -->
+    <p style="font-size:0.9rem; font-weight:700; color:#5f7082; margin-bottom:6px;">
+      🦉 أولي يقول: "<span id="ollie-hint">فكر في المكان الذي يعيش فيه هذا الحيوان!</span>"
+    </p>
+
+    <!-- Question -->
+    <div class="question-text" id="question-text">كيف يتحرك هذا الحيوان؟</div>
+
+    <!-- Answers -->
+    <div class="answers-grid" id="answers-grid"></div>
+
+    <!-- Feedback -->
+    <div class="feedback-msg" id="feedback-msg"></div>
+
+    <!-- Fun fact -->
+    <div class="fun-fact" id="fun-fact"></div>
+
+    <!-- Next button -->
+    <button class="btn-next" id="btn-next" onclick="nextQuestion()">الحيوان التالي ➡️</button>
+  </div>
+</div>
+
+<!-- ==================== END SCREEN ==================== -->
+<div id="end-screen" class="screen">
+  <div class="card">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <span class="mascot">🦉</span>
+    <div class="stars-row" id="stars-row">⭐⭐⭐</div>
+    <div class="result-title" id="result-title">رائع!</div>
+    <div class="big-score" id="final-score">0</div>
+    <p style="font-family:'Baloo 2',cursive; font-size:1rem; color:#5f7082; margin-bottom:4px;">نقطة تم جمعها</p>
+    <p class="result-msg" id="result-msg">لقد ساعدت الحيوانات على العودة إلى بيوتها!</p>
+
+    <div class="summary-grid" id="summary-grid"></div>
+
+    <div>
+      <button class="btn-replay" onclick="startGame()">🔄 العب مرة أخرى</button>
+      <button class="btn-start" style="background:linear-gradient(135deg,#fd79a8,#e84393)" onclick="showStart()">🏠 الرئيسية</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ======================================================
+//  ANIMAL DATA
+//  Easy to add more animals — just push to this array!
+// ======================================================
+const ANIMALS = [
+  {
+    name: "النسر",
+    habitat: "السماء والجبال",
+    moveType: "flying",
+    correctAnswer: "flying",
+    image: "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=400&h=400&fit=crop&crop=face",
+    fallbackEmoji: "🦅",
+    hint: "انظر إلى السماء! هذا الحيوان يستعمل جناحيه.",
+    fact: "يستطيع النسر الطيران بسرعة تصل إلى <strong>160 كم/س</strong> عند الانقضاض على فريسته! 🏎️",
+    funEmoji: "🦅",
+    choices: [
+      { label: "🦅 يطير",  value: "flying" },
+      { label: "🐸 يقفز", value: "jumping" },
+      { label: "🐟 يسبح", value: "swimming" },
+      { label: "🐛 يزحف", value: "crawling" }
+    ]
+  },
+  {
+    name: "سمكة المهرج",
+    habitat: "الشعاب المرجانية",
+    moveType: "swimming",
+    correctAnswer: "swimming",
+    image: "https://images.unsplash.com/photo-1551244072-5d12893278bc?w=400&h=400&fit=crop",
+    fallbackEmoji: "🐠",
+    hint: "هذا الحيوان يعيش تحت الماء ويستعمل زعانفه!",
+    fact: "تستعمل سمكة المهرج زعانفها مثل المجاديف الصغيرة لتسبح بين <strong>الشعاب المرجانية</strong>! 🪸",
+    funEmoji: "🐠",
+    choices: [
+      { label: "🐟 يسبح", value: "swimming" },
+      { label: "🦅 يطير",   value: "flying" },
+      { label: "🐸 يقفز",  value: "jumping" },
+      { label: "🐛 يزحف", value: "crawling" }
+    ]
+  },
+  {
+    name: "الكنغر",
+    habitat: "البراري الأسترالية",
+    moveType: "jumping",
+    correctAnswer: "jumping",
+    image: "https://images.unsplash.com/photo-1504173010664-32509aeebb62?w=400&h=400&fit=crop",
+    fallbackEmoji: "🦘",
+    hint: "لهذا الحيوان رجلان خلفيتان قويتان وذيل طويل للتوازن!",
+    fact: "يستطيع الكنغر <strong>القفز 9 أمتار</strong> في قفزة واحدة! 🚌",
+    funEmoji: "🦘",
+    choices: [
+      { label: "🦅 يطير",   value: "flying" },
+      { label: "🐸 يقفز",  value: "jumping" },
+      { label: "🐟 يسبح", value: "swimming" },
+      { label: "🐛 يزحف", value: "crawling" }
+    ]
+  },
+  {
+    name: "الثعبان",
+    habitat: "الغابة المطيرة",
+    moveType: "crawling",
+    correctAnswer: "crawling",
+    image: "https://images.unsplash.com/photo-1531386151447-fd76ad50012f?w=400&h=400&fit=crop",
+    fallbackEmoji: "🐍",
+    hint: "هذا الحيوان ليس له أرجل! يتحرك باستعمال بطنه.",
+    fact: "للثعابين مئات من <strong>حراشف البطن</strong> التي تساعدها على التمسك بالأرض والتحرك! 🐍",
+    funEmoji: "🐍",
+    choices: [
+      { label: "🐛 يزحف", value: "crawling" },
+      { label: "🦅 يطير",   value: "flying" },
+      { label: "🐸 يقفز",  value: "jumping" },
+      { label: "🐟 يسبح", value: "swimming" }
+    ]
+  }
+];
+
+// ======================================================
+//  GAME STATE
+// ======================================================
+let currentQ   = 0;
+let score      = 0;
+let timer      = null;
+let timeLeft   = 15;
+let answered   = false;
+let results    = [];   // track per-question results
+
+// Shuffle helper
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+// ======================================================
+//  SCREEN NAVIGATION
+// ======================================================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showStart() { showScreen('start-screen'); }
+
+// ======================================================
+//  START / RESTART GAME
+// ======================================================
+function startGame() {
+  currentQ = 0;
+  score    = 0;
+  results  = [];
+  showScreen('game-screen');
+  loadQuestion();
+}
+
+// ======================================================
+//  LOAD QUESTION
+// ======================================================
+function loadQuestion() {
+  answered = false;
+  timeLeft = 15;
+
+  const animal = ANIMALS[currentQ];
+  clearTimeout(timer);
+
+  // Update HUD
+  document.getElementById('score-display').textContent = score;
+  document.getElementById('question-counter').textContent = `السؤال ${currentQ + 1} / ${ANIMALS.length}`;
+  document.getElementById('progress-label').textContent  = `الحيوان ${currentQ + 1} من ${ANIMALS.length}`;
+  document.getElementById('progress-bar').style.width   = `${(currentQ / ANIMALS.length) * 100}%`;
+
+  // Timer badge reset
+  const timerBadge = document.getElementById('timer-badge');
+  timerBadge.classList.remove('urgent');
+  document.getElementById('timer-display').textContent = timeLeft;
+
+  // Animal display
+  document.getElementById('animal-name').textContent    = animal.name;
+  document.getElementById('animal-habitat').textContent = `🏡 يعيش في: ${animal.habitat}`;
+  document.getElementById('ollie-hint').textContent     = animal.hint;
+
+  // Image with fallback
+  const img = document.getElementById('animal-img');
+  img.src = animal.image;
+  img.alt = animal.name;
+  img.onerror = () => {
+    img.style.display = 'none';
+    img.parentElement.innerHTML = `<span style="font-size:5rem">${animal.fallbackEmoji}</span>`;
+  };
+
+  // Animate animal card
+  const animalCard = document.getElementById('animal-card');
+  animalCard.className = 'animal-card ' + animal.moveType;
+
+  // Choices (shuffled per game but keep correct label visible)
+  const grid = document.getElementById('answers-grid');
+  grid.innerHTML = '';
+  shuffle(animal.choices).forEach(choice => {
+    const btn = document.createElement('button');
+    btn.className = 'btn-answer';
+    btn.innerHTML = `<span class="answer-icon">${choice.label.split(' ')[0]}</span> ${choice.label.split(' ').slice(1).join(' ')}`;
+    btn.dataset.value = choice.value;
+    btn.onclick = () => checkAnswer(choice.value);
+    grid.appendChild(btn);
+  });
+
+  // Reset feedback
+  const fb = document.getElementById('feedback-msg');
+  fb.className = 'feedback-msg';
+  fb.textContent = '';
+
+  const ff = document.getElementById('fun-fact');
+  ff.className = 'fun-fact';
+
+  const btnNext = document.getElementById('btn-next');
+  btnNext.className = 'btn-next';
+
+  // Start countdown
+  startTimer();
+}
+
+// ======================================================
+//  TIMER
+// ======================================================
+function startTimer() {
+  clearInterval(timer);
+  timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById('timer-display').textContent = timeLeft;
+    if (timeLeft <= 5) document.getElementById('timer-badge').classList.add('urgent');
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      timeOut();
+    }
+  }, 1000);
+}
+
+function timeOut() {
+  if (answered) return;
+  answered = true;
+  results.push({ name: ANIMALS[currentQ].name, correct: false, emoji: ANIMALS[currentQ].funEmoji });
+  showFeedback(false, true);
+  highlightCorrect();
+}
+
+// ======================================================
+//  CHECK ANSWER
+// ======================================================
+function checkAnswer(value) {
+  if (answered) return;
+  answered = true;
+  clearInterval(timer);
+
+  const animal   = ANIMALS[currentQ];
+  const isRight  = (value === animal.correctAnswer);
+
+  // Mark chosen button
+  document.querySelectorAll('.btn-answer').forEach(btn => {
+    btn.disabled = true;
+    if (btn.dataset.value === value) {
+      btn.classList.add(isRight ? 'correct' : 'wrong');
+    }
+  });
+
+  if (isRight) {
+    score += 25 + Math.max(0, timeLeft * 2); // bonus for speed
+    document.getElementById('score-display').textContent = score;
+    playSound('correct');
+    launchConfetti();
+  } else {
+    playSound('wrong');
+    highlightCorrect();
+  }
+
+  results.push({ name: animal.name, correct: isRight, emoji: animal.funEmoji });
+  showFeedback(isRight, false);
+}
+
+function highlightCorrect() {
+  const correct = ANIMALS[currentQ].correctAnswer;
+  document.querySelectorAll('.btn-answer').forEach(btn => {
+    btn.disabled = true;
+    if (btn.dataset.value === correct) btn.classList.add('correct');
+  });
+}
+
+// ======================================================
+//  FEEDBACK
+// ======================================================
+function showFeedback(isRight, timedOut) {
+  const fb     = document.getElementById('feedback-msg');
+  const ff     = document.getElementById('fun-fact');
+  const btnNext = document.getElementById('btn-next');
+  const animal = ANIMALS[currentQ];
+
+  if (timedOut) {
+    fb.className = 'feedback-msg wrong-fb show';
+    const correctChoice = animal.choices.find(choice => choice.value === animal.correctAnswer);
+    fb.textContent = "⏰ انتهى الوقت! الإجابة الصحيحة هي: " + (correctChoice ? correctChoice.label : animal.correctAnswer);
+  } else if (isRight) {
+    fb.className = 'feedback-msg correct-fb show';
+    fb.textContent = "🎉 أحسنت! إجابة رائعة!";
+  } else {
+    fb.className = 'feedback-msg wrong-fb show';
+    fb.textContent = "🙈 لا بأس، أنت تتعلم خطوة بخطوة!";
+  }
+
+  // Fun fact always shown
+  ff.className = 'fun-fact show';
+  ff.innerHTML = `🧠 <strong>معلومة ممتعة:</strong> ${animal.fact}`;
+
+  // Show next button
+  btnNext.className = 'btn-next show';
+}
+
+// ======================================================
+//  NEXT QUESTION
+// ======================================================
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= ANIMALS.length) {
+    endGame();
+  } else {
+    loadQuestion();
+  }
+}
+
+// ======================================================
+//  END GAME
+// ======================================================
+function endGame() {
+  document.getElementById('progress-bar').style.width = '100%';
+  const total   = ANIMALS.length;
+  const correct = results.filter(r => r.correct).length;
+  const pct     = correct / total;
+
+  // Stars
+  let stars = '⭐';
+  let title = 'واصل التدريب!';
+  let msg   = 'كل مستكشف يبدأ بالتعلّم. حاول مرة أخرى لإنقاذ حيوانات أكثر! 🐾';
+  if (pct >= 0.5) { stars = '⭐⭐'; title = 'عمل جيد!'; msg = 'لقد ساعدت بعض الحيوانات. هل تستطيع إنقاذها كلها في المرة القادمة؟ 🦁'; }
+  if (pct >= 0.75) { stars = '⭐⭐⭐'; title = 'مستكشف رائع!'; msg = 'ممتاز! لقد ساعدت معظم الحيوانات على العودة إلى بيوتها! 🎉'; }
+  if (pct === 1)  { stars = '⭐⭐⭐⭐'; title = 'بطل خارق! 🦸'; msg = 'نتيجة كاملة! كل الحيوانات عادت بأمان بفضلك! 🏆'; launchConfetti(); launchConfetti(); }
+
+  document.getElementById('stars-row').textContent   = stars;
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('final-score').textContent  = score;
+  document.getElementById('result-msg').textContent   = msg;
+
+  // Summary chips
+  const grid = document.getElementById('summary-grid');
+  grid.innerHTML = '';
+  results.forEach(r => {
+    const chip = document.createElement('div');
+    chip.className = 'summary-chip ' + (r.correct ? 'correct-chip' : 'wrong-chip');
+    chip.textContent = (r.correct ? '✅ ' : '❌ ') + r.emoji + ' ' + r.name;
+    grid.appendChild(chip);
+  });
+
+  showScreen('end-screen');
+}
+
+// ======================================================
+//  SOUND EFFECTS (Web Audio API — no external files)
+// ======================================================
+function playSound(type) {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    if (type === 'correct') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523, ctx.currentTime);
+      osc.frequency.setValueAtTime(659, ctx.currentTime + 0.12);
+      osc.frequency.setValueAtTime(784, ctx.currentTime + 0.24);
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.6);
+    } else {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(200, ctx.currentTime);
+      osc.frequency.setValueAtTime(160, ctx.currentTime + 0.15);
+      gain.gain.setValueAtTime(0.25, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.4);
+    }
+  } catch(e) { /* Audio not supported — silent fallback */ }
+}
+
+// ======================================================
+//  CONFETTI
+// ======================================================
+function launchConfetti() {
+  const colors = ['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#ff922b','#cc5de8','#20c997'];
+  for (let i = 0; i < 55; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      top: -10px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      width: ${6 + Math.random() * 10}px;
+      height: ${6 + Math.random() * 10}px;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+      animation-duration: ${1.5 + Math.random() * 2}s;
+      animation-delay: ${Math.random() * 0.5}s;
+    `;
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 3500);
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>درس السلسلة الغذائية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(180deg, #fff7b8 0%, #ffd6e7 45%, #cdefff 100%);
+    color: #17344f;
+    margin: 0;
+    min-height: 100vh;
+}
+
+
+.page {
+    width: min(1100px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 24px 0 40px;
+}
+
+.hero {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 28px;
+    box-shadow: 0 14px 34px rgba(17, 82, 127, 0.14);
+    padding: 28px;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: #eaf8ee;
+    color: #22884f;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.hero h1 {
+    color: #ff6b6b;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    max-width: 760px;
+    margin: 14px auto 0;
+}
+
+.emoji-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.emoji-row span {
+    background: #fff;
+    border-radius: 999px;
+    padding: 10px 16px;
+    box-shadow: 0 10px 24px rgba(17, 82, 127, 0.12);
+    font-size: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.card,
+.wide-card {
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 22px;
+    box-shadow: 0 12px 30px rgba(17, 82, 127, 0.14);
+    padding: 22px;
+}
+
+.card h2,
+.wide-card h2 {
+    margin-top: 0;
+    color: #17344f;
+    font-size: 1.6rem;
+}
+
+.producer-card {
+    border-top: 8px solid #47c98b;
+}
+
+.consumer-card {
+    border-top: 8px solid #ff8c6a;
+}
+
+.wide-card {
+    margin-top: 22px;
+}
+
+.wide-card p,
+.card p {
+    line-height: 1.9;
+    font-size: 1.05rem;
+}
+
+ul {
+    margin: 14px 0 0;
+    padding-inline-start: 20px;
+    line-height: 2;
+}
+
+.mini-grid,
+.compare {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.mini-box {
+    border-radius: 18px;
+    padding: 16px;
+    background: #fffaf0;
+}
+
+.mini-box h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #ff6b6b;
+}
+
+.compare-item {
+    background: #ffffff;
+    border: 2px dashed #b9ddff;
+    border-radius: 18px;
+    padding: 16px;
+}
+
+.footer-note {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #4a4a7a;
+}
+
+@media (max-width: 720px) {}
+</style>
+</head>
+<body data-title-key="title.coursePage">
+<header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+        <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+        <a href="index.html" data-i18n="nav.courses">Courses</a>
+        <a href="../games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select">
+        <span data-i18n="lang.label">اللغة</span>
+        <select id="lang-select" aria-label="Language selector">
+            <option value="en" data-i18n="lang.en">English</option>
+            <option value="fr" data-i18n="lang.fr">Francais</option>
+            <option value="ar" data-i18n="lang.ar">العربية</option>
+        </select>
+    </label>
+</header>
+
+<div class="page">
+    <section class="hero">
+        <div class="hero-badge" data-i18n="heroBadge">درس مبسط للأطفال</div>
+        <h1 data-i18n="heroTitle">درس السلسلة الغذائية</h1>
+        <p data-i18n="heroText">في هذا الدرس سنتعرّف إلى معنى السلسلة الغذائية وكيف ينتقل الغذاء والطاقة من كائن حي إلى آخر في الطبيعة.</p>
+        <div class="emoji-row" aria-hidden="true">
+            <span>🌞</span>
+            <span>🌿</span>
+            <span>🐛</span>
+            <span>🐸</span>
+            <span>🦅</span>
+        </div>
+    </section>
+
+    <section class="grid">
+        <article class="card producer-card">
+            <h2 data-i18n="producerTitle">ما هو المنتج في السلسلة الغذائية؟</h2>
+            <p data-i18n="producerText">المنتج هو الكائن الحي الذي يصنع غذاءه بنفسه، مثل النباتات الخضراء التي تستعمل ضوء الشمس والماء والهواء لتصنع غذاءها.</p>
+            <ul>
+                <li data-i18n="producer1">النبات هو بداية كثير من السلاسل الغذائية.</li>
+                <li data-i18n="producer2">يحتاج النبات إلى الشمس والماء والهواء.</li>
+                <li data-i18n="producer3">يعطي النبات الغذاء والطاقة لكائنات أخرى.</li>
+                <li data-i18n="producer4">من أمثلة المنتجين: العشب، الشجرة، والأوراق الخضراء.</li>
+            </ul>
+        </article>
+
+        <article class="card consumer-card">
+            <h2 data-i18n="consumerTitle">ما هو المستهلك؟</h2>
+            <p data-i18n="consumerText">المستهلك هو الكائن الحي الذي لا يصنع غذاءه بنفسه، بل يحصل عليه من النبات أو من حيوانات أخرى.</p>
+            <ul>
+                <li data-i18n="consumer1">بعض الحيوانات تأكل النباتات فقط.</li>
+                <li data-i18n="consumer2">بعض الحيوانات تأكل حيوانات أخرى.</li>
+                <li data-i18n="consumer3">كل مستهلك يحصل على الطاقة من كائن سبقه في السلسلة.</li>
+                <li data-i18n="consumer4">من أمثلة المستهلكين: الجرادة، الأرنب، الثعلب، والنسر.</li>
+            </ul>
+        </article>
+    </section>
+
+    <section class="wide-card">
+        <h2 data-i18n="chainTitle">كيف تعمل السلسلة الغذائية؟</h2>
+        <div class="compare">
+            <div class="compare-item">
+                <strong data-i18n="chain1Title">بداية السلسلة</strong>
+                <p data-i18n="chain1Text">تبدأ السلسلة غالباً بالشمس، ثم النبات الذي يصنع الغذاء.</p>
+            </div>
+            <div class="compare-item">
+                <strong data-i18n="chain2Title">الحيوان العاشب</strong>
+                <p data-i18n="chain2Text">بعد النبات يأتي حيوان يأكل النبات مثل الجرادة أو الأرنب.</p>
+            </div>
+            <div class="compare-item">
+                <strong data-i18n="chain3Title">الحيوان اللاحم</strong>
+                <p data-i18n="chain3Text">قد يأتي بعد ذلك حيوان آخر يأكل الحيوان العاشب مثل الضفدع أو الثعلب.</p>
+            </div>
+            <div class="compare-item">
+                <strong data-i18n="chain4Title">انتقال الطاقة</strong>
+                <p data-i18n="chain4Text">تنتقل الطاقة من الشمس إلى النبات، ثم إلى الحيوانات التي تأكل النبات أو تأكل حيوانات أخرى.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="wide-card">
+        <h2 data-i18n="examplesTitle">أمثلة على السلسلة الغذائية</h2>
+        <div class="mini-grid">
+            <div class="mini-box">
+                <h3 data-i18n="example1Title">مثال 1</h3>
+                <p data-i18n="example1Text">شمس ← عشب ← جرادة ← ضفدع ← أفعى</p>
+            </div>
+            <div class="mini-box">
+                <h3 data-i18n="example2Title">مثال 2</h3>
+                <p data-i18n="example2Text">شمس ← نبات ← أرنب ← ثعلب</p>
+            </div>
+            <div class="mini-box">
+                <h3 data-i18n="example3Title">مثال 3</h3>
+                <p data-i18n="example3Text">شمس ← بذور ← طائر صغير ← نسر</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="wide-card">
+        <h2 data-i18n="importanceTitle">لماذا نتعلّم السلسلة الغذائية؟</h2>
+        <ul>
+            <li data-i18n="importance1">لأنها تساعدنا على فهم علاقة الكائنات الحية ببعضها.</li>
+            <li data-i18n="importance2">لأنها تبيّن لنا كيف تنتقل الطاقة في الطبيعة.</li>
+            <li data-i18n="importance3">لأن اختفاء كائن واحد قد يؤثر في بقية السلسلة الغذائية.</li>
+            <li data-i18n="importance4">لأنها تعلمنا أهمية حماية النباتات والحيوانات وبيئاتها.</li>
+        </ul>
+    </section>
+
+    <p class="footer-note" data-i18n="footer">عندما نفهم السلسلة الغذائية نفهم كيف تبقى الطبيعة متوازنة وجميلة.</p>
+</div>
+
+<script>
+const STORAGE_KEY = 'petWildLang';
+const SUPPORTED_LANGS = ['en', 'fr', 'ar'];
+
+const TRANSLATIONS = {
+    en: {
+        brand: 'Future Adventurers',
+        'nav.welcome': 'Welcome',
+        'nav.about': 'About Us',
+        'nav.courses': 'Courses',
+        'nav.games': 'Games',
+        'lang.label': 'Language',
+        'lang.en': 'English',
+        'lang.fr': 'French',
+        'lang.ar': 'Arabic',
+        title: 'Food Chain Lesson',
+        navHome: 'Welcome',
+        navCourses: 'Courses',
+        navGames: 'Games',
+        langLabel: 'Language',
+        heroBadge: 'Simple lesson for kids',
+        heroTitle: 'Food Chain Lesson',
+        heroText: 'In this lesson we learn what a food chain is and how food and energy move from one living thing to another in nature.',
+        producerTitle: 'What Is a Producer?',
+        producerText: 'A producer is a living thing that makes its own food, like green plants that use sunlight, water, and air.',
+        producer1: 'Plants are the start of many food chains.',
+        producer2: 'A plant needs sunlight, water, and air.',
+        producer3: 'Plants give food and energy to other living things.',
+        producer4: 'Examples of producers: grass, trees, and green leaves.',
+        consumerTitle: 'What Is a Consumer?',
+        consumerText: 'A consumer is a living thing that cannot make its own food. It gets food from plants or other animals.',
+        consumer1: 'Some animals eat only plants.',
+        consumer2: 'Some animals eat other animals.',
+        consumer3: 'Each consumer gets energy from a living thing before it in the chain.',
+        consumer4: 'Examples of consumers: grasshopper, rabbit, fox, and eagle.',
+        chainTitle: 'How Does the Food Chain Work?',
+        chain1Title: 'Start of the chain',
+        chain1Text: 'The chain often begins with the sun, then the plant that makes food.',
+        chain2Title: 'Plant-eating animal',
+        chain2Text: 'After the plant comes an animal that eats plants, like a grasshopper or rabbit.',
+        chain3Title: 'Meat-eating animal',
+        chain3Text: 'Then another animal may eat the plant-eating animal, like a frog or fox.',
+        chain4Title: 'Energy transfer',
+        chain4Text: 'Energy moves from the sun to the plant, then to the animals that eat plants or other animals.',
+        examplesTitle: 'Examples of Food Chains',
+        example1Title: 'Example 1',
+        example1Text: 'Sun ← Grass ← Grasshopper ← Frog ← Snake',
+        example2Title: 'Example 2',
+        example2Text: 'Sun ← Plant ← Rabbit ← Fox',
+        example3Title: 'Example 3',
+        example3Text: 'Sun ← Seeds ← Small Bird ← Eagle',
+        importanceTitle: 'Why Do We Learn the Food Chain?',
+        importance1: 'It helps us understand the relationship between living things.',
+        importance2: 'It shows us how energy moves in nature.',
+        importance3: 'If one living thing disappears, the rest of the food chain can be affected.',
+        importance4: 'It teaches us why plants, animals, and habitats should be protected.',
+        footer: 'When we understand the food chain, we understand how nature stays balanced and beautiful.'
+    },
+    fr: {
+        brand: 'Aventuriers du Futur',
+        'nav.welcome': 'Accueil',
+        'nav.about': 'A propos',
+        'nav.courses': 'Cours',
+        'nav.games': 'Jeux',
+        'lang.label': 'Langue',
+        'lang.en': 'Anglais',
+        'lang.fr': 'Francais',
+        'lang.ar': 'Arabe',
+        title: 'Lecon sur la chaine alimentaire',
+        navHome: 'Accueil',
+        navCourses: 'Cours',
+        navGames: 'Jeux',
+        langLabel: 'Langue',
+        heroBadge: 'Lecon simple pour enfants',
+        heroTitle: 'Lecon sur la chaine alimentaire',
+        heroText: 'Dans cette lecon, nous apprenons ce qu est une chaine alimentaire et comment la nourriture et l energie passent d un etre vivant a un autre dans la nature.',
+        producerTitle: 'Qu est-ce qu un producteur ?',
+        producerText: 'Un producteur est un etre vivant qui fabrique sa propre nourriture, comme les plantes vertes qui utilisent la lumiere du soleil, l eau et l air.',
+        producer1: 'Les plantes sont le debut de nombreuses chaines alimentaires.',
+        producer2: 'La plante a besoin du soleil, de l eau et de l air.',
+        producer3: 'Les plantes donnent nourriture et energie a d autres etres vivants.',
+        producer4: 'Exemples de producteurs : l herbe, les arbres et les feuilles vertes.',
+        consumerTitle: 'Qu est-ce qu un consommateur ?',
+        consumerText: 'Un consommateur est un etre vivant qui ne peut pas fabriquer sa propre nourriture. Il obtient sa nourriture a partir des plantes ou d autres animaux.',
+        consumer1: 'Certains animaux mangent seulement des plantes.',
+        consumer2: 'Certains animaux mangent d autres animaux.',
+        consumer3: 'Chaque consommateur recoit l energie d un etre vivant place avant lui dans la chaine.',
+        consumer4: 'Exemples de consommateurs : sauterelle, lapin, renard et aigle.',
+        chainTitle: 'Comment fonctionne la chaine alimentaire ?',
+        chain1Title: 'Debut de la chaine',
+        chain1Text: 'La chaine commence souvent par le soleil, puis la plante qui fabrique la nourriture.',
+        chain2Title: 'Animal herbivore',
+        chain2Text: 'Apres la plante vient un animal qui mange les plantes, comme la sauterelle ou le lapin.',
+        chain3Title: 'Animal carnivore',
+        chain3Text: 'Ensuite un autre animal peut manger l animal herbivore, comme la grenouille ou le renard.',
+        chain4Title: 'Passage de l energie',
+        chain4Text: 'L energie passe du soleil a la plante, puis aux animaux qui mangent les plantes ou d autres animaux.',
+        examplesTitle: 'Exemples de chaines alimentaires',
+        example1Title: 'Exemple 1',
+        example1Text: 'Soleil ← Herbe ← Sauterelle ← Grenouille ← Serpent',
+        example2Title: 'Exemple 2',
+        example2Text: 'Soleil ← Plante ← Lapin ← Renard',
+        example3Title: 'Exemple 3',
+        example3Text: 'Soleil ← Graines ← Petit oiseau ← Aigle',
+        importanceTitle: 'Pourquoi apprenons-nous la chaine alimentaire ?',
+        importance1: 'Elle nous aide a comprendre la relation entre les etres vivants.',
+        importance2: 'Elle nous montre comment l energie circule dans la nature.',
+        importance3: 'Si un etre vivant disparait, le reste de la chaine alimentaire peut etre touche.',
+        importance4: 'Elle nous apprend pourquoi il faut proteger les plantes, les animaux et leurs habitats.',
+        footer: 'Quand nous comprenons la chaine alimentaire, nous comprenons comment la nature reste equilibree et belle.'
+    },
+    ar: {
+        brand: 'مغامرو المستقبل',
+        'nav.welcome': 'الصفحة الرئيسية',
+        'nav.about': 'من نحن',
+        'nav.courses': 'الدروس',
+        'nav.games': 'الألعاب',
+        'lang.label': 'اللغة',
+        'lang.en': 'الإنجليزية',
+        'lang.fr': 'الفرنسية',
+        'lang.ar': 'العربية',
+        title: 'درس السلسلة الغذائية',
+        navHome: 'الصفحة الرئيسية',
+        navCourses: 'الدروس',
+        navGames: 'الألعاب',
+        langLabel: 'اللغة',
+        heroBadge: 'درس مبسط للأطفال',
+        heroTitle: 'درس السلسلة الغذائية',
+        heroText: 'في هذا الدرس سنتعرّف إلى معنى السلسلة الغذائية وكيف ينتقل الغذاء والطاقة من كائن حي إلى آخر في الطبيعة.',
+        producerTitle: 'ما هو المنتج في السلسلة الغذائية؟',
+        producerText: 'المنتج هو الكائن الحي الذي يصنع غذاءه بنفسه، مثل النباتات الخضراء التي تستعمل ضوء الشمس والماء والهواء لتصنع غذاءها.',
+        producer1: 'النبات هو بداية كثير من السلاسل الغذائية.',
+        producer2: 'يحتاج النبات إلى الشمس والماء والهواء.',
+        producer3: 'يعطي النبات الغذاء والطاقة لكائنات أخرى.',
+        producer4: 'من أمثلة المنتجين: العشب، الشجرة، والأوراق الخضراء.',
+        consumerTitle: 'ما هو المستهلك؟',
+        consumerText: 'المستهلك هو الكائن الحي الذي لا يصنع غذاءه بنفسه، بل يحصل عليه من النبات أو من حيوانات أخرى.',
+        consumer1: 'بعض الحيوانات تأكل النباتات فقط.',
+        consumer2: 'بعض الحيوانات تأكل حيوانات أخرى.',
+        consumer3: 'كل مستهلك يحصل على الطاقة من كائن سبقه في السلسلة.',
+        consumer4: 'من أمثلة المستهلكين: الجرادة، الأرنب، الثعلب، والنسر.',
+        chainTitle: 'كيف تعمل السلسلة الغذائية؟',
+        chain1Title: 'بداية السلسلة',
+        chain1Text: 'تبدأ السلسلة غالباً بالشمس، ثم النبات الذي يصنع الغذاء.',
+        chain2Title: 'الحيوان العاشب',
+        chain2Text: 'بعد النبات يأتي حيوان يأكل النبات مثل الجرادة أو الأرنب.',
+        chain3Title: 'الحيوان اللاحم',
+        chain3Text: 'قد يأتي بعد ذلك حيوان آخر يأكل الحيوان العاشب مثل الضفدع أو الثعلب.',
+        chain4Title: 'انتقال الطاقة',
+        chain4Text: 'تنتقل الطاقة من الشمس إلى النبات، ثم إلى الحيوانات التي تأكل النبات أو تأكل حيوانات أخرى.',
+        examplesTitle: 'أمثلة على السلسلة الغذائية',
+        example1Title: 'مثال 1',
+        example1Text: 'شمس ← عشب ← جرادة ← ضفدع ← أفعى',
+        example2Title: 'مثال 2',
+        example2Text: 'شمس ← نبات ← أرنب ← ثعلب',
+        example3Title: 'مثال 3',
+        example3Text: 'شمس ← بذور ← طائر صغير ← نسر',
+        importanceTitle: 'لماذا نتعلّم السلسلة الغذائية؟',
+        importance1: 'لأنها تساعدنا على فهم علاقة الكائنات الحية ببعضها.',
+        importance2: 'لأنها تبيّن لنا كيف تنتقل الطاقة في الطبيعة.',
+        importance3: 'لأن اختفاء كائن واحد قد يؤثر في بقية السلسلة الغذائية.',
+        importance4: 'لأنها تعلمنا أهمية حماية النباتات والحيوانات وبيئاتها.',
+        footer: 'عندما نفهم السلسلة الغذائية نفهم كيف تبقى الطبيعة متوازنة وجميلة.'
+    }
+};
+
+function normalizeLanguage(value) {
+    return SUPPORTED_LANGS.includes(value) ? value : null;
+}
+
+function getInitialLanguage() {
+    const fromUrl = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+    const fromStorage = normalizeLanguage(localStorage.getItem(STORAGE_KEY));
+    const selected = fromUrl || fromStorage || 'ar';
+    localStorage.setItem(STORAGE_KEY, selected);
+    return selected;
+}
+
+let currentLang = getInitialLanguage();
+
+function t(key) {
+    return (TRANSLATIONS[currentLang] || TRANSLATIONS.en)[key] || TRANSLATIONS.en[key] || key;
+}
+
+function syncLinks() {
+    document.querySelectorAll('a[href]').forEach((anchor) => {
+        const rawHref = anchor.getAttribute('href');
+        if (!rawHref || rawHref.startsWith('#')) return;
+        const url = new URL(rawHref, window.location.href);
+        if (url.origin !== window.location.origin) return;
+        if (!url.pathname.endsWith('.html')) return;
+        url.searchParams.set('lang', currentLang);
+        anchor.href = `${url.toString()}`;
+    });
+}
+
+function applyTranslations() {
+    document.querySelectorAll('[data-i18n]').forEach((node) => {
+        node.textContent = t(node.dataset.i18n);
+    });
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+    document.title = t('title');
+    document.getElementById('lang-select').value = currentLang;
+    syncLinks();
+}
+
+function setupLanguageSwitcher() {
+    const select = document.getElementById('lang-select');
+    select.addEventListener('change', (event) => {
+        const next = event.target.value;
+        if (!SUPPORTED_LANGS.includes(next)) return;
+        currentLang = next;
+        localStorage.setItem(STORAGE_KEY, next);
+        applyTranslations();
+    });
+}
+
+applyTranslations();
+setupLanguageSwitcher();
+</script>
+</body>
+</html>

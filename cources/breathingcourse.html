@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>درس التنفس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+body { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #fff7b8 0%, #ffd6e7 45%, #cdefff 100%); color: #17344f; margin: 0; min-height: 100vh; }
+.page { width: min(1100px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 40px; }
+.hero { background: rgba(255, 255, 255, 0.92); border-radius: 28px; box-shadow: 0 14px 34px rgba(17, 82, 127, 0.14); padding: 28px; text-align: center; }
+.hero-badge { display: inline-block; background: #eaf8ee; color: #22884f; border-radius: 999px; padding: 8px 14px; font-weight: bold; margin-bottom: 14px; }
+.hero h1 { color: #ff6b6b; font-size: clamp(2rem, 5vw, 3rem); margin: 0; }
+.hero p { font-size: 1.1rem; line-height: 1.9; max-width: 760px; margin: 14px auto 0; }
+.emoji-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.emoji-row span { background: #fff; border-radius: 999px; padding: 10px 16px; box-shadow: 0 10px 24px rgba(17, 82, 127, 0.12); font-size: 2rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 22px; }
+.summary-grid { grid-template-columns: 1fr; }
+.card, .wide-card { background: rgba(255, 255, 255, 0.94); border-radius: 22px; box-shadow: 0 12px 30px rgba(17, 82, 127, 0.14); padding: 22px; }
+.summary-card { display: flex; flex-direction: column; height: 100%; }
+.card h2, .wide-card h2 { margin-top: 0; color: #17344f; font-size: 1.6rem; }
+.definition-card { border-top: 8px solid #47c98b; }
+.phases-card { border-top: 8px solid #ff8c6a; }
+.organs-card { border-top: 8px solid #f2bf4b; }
+.rate-card { border-top: 8px solid #5a8dee; }
+.wide-card { margin-top: 22px; }
+.wide-card p, .card p { line-height: 1.9; font-size: 1.05rem; }
+ul { margin: 14px 0 0; padding-inline-start: 20px; line-height: 2; }
+.card-image-box { min-height: 150px; border: 2px dashed #b9ddff; border-radius: 18px; background: linear-gradient(180deg, rgba(244, 250, 255, 0.95), rgba(234, 247, 255, 0.9)); display: flex; align-items: center; justify-content: center; text-align: center; padding: 0; color: #5c7591; font-weight: 700; margin-bottom: 16px; overflow: hidden; }
+.card-image-box img { width: 100%; min-height: 150px; height: 100%; object-fit: cover; display: block; }
+.card-summary { margin: 0; color: #35516b; font-weight: 700; }
+.summary-list { margin-top: 12px; }
+.mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 16px; }
+.mini-box { border-radius: 18px; padding: 16px; background: #fffaf0; }
+.mini-box h3 { margin-top: 0; margin-bottom: 8px; color: #ff6b6b; }
+.breathing-feature { background: linear-gradient(135deg, rgba(255, 250, 240, 0.96), rgba(232, 247, 255, 0.94)); border-top: 8px solid #47c98b; }
+.breathing-feature-grid { display: grid; gap: 18px; align-items: center; }
+.feature-media { border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, #d8f0ff 0%, #fff8c9 100%); box-shadow: inset 0 0 0 2px rgba(185, 221, 255, 0.7); }
+.feature-media img { width: 100%; height: 100%; min-height: 240px; object-fit: cover; display: block; }
+.feature-points { display: grid; gap: 12px; margin-top: 16px; }
+.feature-pill { background: rgba(255, 255, 255, 0.9); border: 2px dashed #b9ddff; border-radius: 16px; padding: 12px 14px; font-weight: 700; color: #35516b; }
+.footer-note { text-align: center; margin-top: 22px; font-size: 1.05rem; font-weight: bold; color: #4a4a7a; }
+@media (min-width: 780px) { .breathing-feature-grid { grid-template-columns: minmax(240px, 320px) 1fr; } }
+@media (min-width: 780px) { .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.breathing-feature-grid { display: grid; gap: 18px; align-items: center; }
+.breathing-coach-card { }
+.breathing-avatar-wrap { position: relative; }
+.breathing-avatar { width: 100%; border-radius: 16px; }
+.breathing-bubble { position: absolute; top: -10px; right: -10px; background: #fff; border: 3px solid #47c98b; border-radius: 16px; padding: 8px 12px; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.course-avatar-qa { margin-top: 16px; }
+.course-avatar-qa-copy { margin-bottom: 12px; }
+.avatar-qa-form { display: flex; gap: 8px; }
+.avatar-qa-input { flex: 1; padding: 8px 12px; border: 2px solid #b9ddff; border-radius: 8px; }
+.avatar-qa-button { background: #47c98b; color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; }
+.avatar-qa-reply { margin-top: 8px; font-weight: bold; }
+.breathing-video-card { }
+.breathing-video { width: 100%; border-radius: 16px; }
+.breathing-video-caption { margin-top: 8px; }
+.breathing-lungs-card { margin-top: 18px; }
+.breathing-lungs-head { text-align: center; }
+.breathing-animation { }
+.breathing-stars { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+.breath-star { opacity: 0.3; transition: opacity 0.3s; }
+.breathing-game-status { text-align: center; margin-top: 12px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+        <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+        <a href="index.html" data-i18n="nav.courses">Courses</a>
+        <a href="../games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select"><span data-i18n="lang.label">اللغة</span><select id="lang-select" aria-label="Language selector"><option value="en" data-i18n="lang.en">English</option><option value="fr" data-i18n="lang.fr">Francais</option><option value="ar" data-i18n="lang.ar">العربية</option></select></label>
+</header>
+<div class="page">
+<section class="hero">
+  <div class="hero-badge">درس مبسط للأطفال</div>
+  <h1>حركات القفص الصدري</h1>
+  <p>في هذا الدرس سنتعرّف إلى عملية التنفس وأهميتها للجسم، وكيف تعمل الرئتين والأعضاء الأخرى في الجهاز التنفسي.</p>
+  <div class="emoji-row" aria-hidden="true"><span>🫁</span><span>💨</span><span>🌬️</span><span>🫂</span></div>
+</section>
+
+<section class="grid summary-grid">
+  <article class="card summary-card definition-card">
+    <div class="card-image-box"><img src="../assests/photo/breathing1.png" alt="صورة عن التنفس"></div>
+    <h2>🔹 تعريف التنفس</h2>
+    <p class="card-summary">التنفس هو إحدى العمليات الحيوية التي يحتاجها جسم الإنسان.</p>
+    <ul class="summary-list">
+      <li>يعمل على إدخال الأوكسجين وإخراج ثاني أكسيد الكربون.</li>
+      <li>يستطيع الإنسان أن يحافظ على حياته لمدة أيام دون طعام أو ماء.</li>
+      <li>إلا أنه لا يبقى على قيد الحياة لأكثر من خمس دقائق دون تنفس.</li>
+    </ul>
+  </article>
+
+  <article class="card summary-card phases-card">
+    <div class="card-image-box"><img src="../assests/photo/breathing1.png" alt="صورة عن طوري التنفس"></div>
+    <h2>🔹 طوري عملية التنفس</h2>
+    <p class="card-summary">تشمل عملية التنفس على طورين رئيسيين.</p>
+    <div class="mini-grid">
+      <div class="mini-box">
+        <h3>1. الشهيق</h3>
+        <p>دخول الهواء المحمّل بالأوكسجين عبر الأنف إلى الرئتين، فيكبر حجم الرئتين ويرتفع القفص الصدري.</p>
+      </div>
+      <div class="mini-box">
+        <h3>2. الزفير</h3>
+        <p>خروج الهواء المحمّل بثاني أكسيد الكربون من الرئتين عبر الأنف والفم، فيصغر حجم الرئتين وينخفض القفص الصدري.</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="card summary-card organs-card">
+    <div class="card-image-box"><img src="../assests/photo/breathingprts.png" alt="صورة عن أعضاء الجهاز التنفسي"></div>
+    <h2>🔹 وظائف أعضاء الجهاز التنفسي</h2>
+    <p class="card-summary">كل عضو في الجهاز التنفسي له وظيفة محددة.</p>
+    <ul class="summary-list">
+      <li><strong>الأنف:</strong> ترطيب الهواء الداخل إلى الرئتين وتنقيته.</li>
+      <li><strong>الحنجرة:</strong> بوابة الجهاز التنفسي، تمنع مرور الطعام إلى القصبة الهوائية.</li>
+      <li><strong>القصبة الهوائية:</strong> تمرير الهواء إلى الرئتين.</li>
+      <li><strong>الرئتين:</strong> الرئة اليمنى والرئة اليسرى، كيسين إسفنجيين يتم فيهما التبادل الغازي.</li>
+    </ul>
+  </article>
+
+  <article class="card summary-card rate-card">
+    <div class="card-image-box"><img src="../assests/photo/sport.png" alt="صورة عن نسق التنفس"></div>
+    <h2>🔹 نسق التنفس مرتبط بالمجهود البدني</h2>
+    <p class="card-summary">سرعة التنفس تتغير حسب النشاط البدني.</p>
+    <div class="mini-grid">
+      <div class="mini-box">
+        <h3>🔸 تنفس سريع:</h3>
+        <ul>
+          <li>الجري</li>
+          <li>لعب الكرة</li>
+          <li>حمل الأثقال</li>
+          <li>المشي لمسافة طويلة</li>
+        </ul>
+      </div>
+      <div class="mini-box">
+        <h3>🔸 تنفس بطيء:</h3>
+        <ul>
+          <li>الجلوس</li>
+          <li>الوقوف</li>
+          <li>فتح الباب</li>
+          <li>الكتابة</li>
+        </ul>
+        <p>تصبح عملية التنفس بطيئة جداً أثناء النوم.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="wide-card breathing-feature">
+  <div class="breathing-feature-grid">
+    <div class="feature-media">
+      <img src="../assests/photo/protect.jpeg" alt="صورة عن التنفس">
+    </div>
+    <div>
+      <h2>أهمية التنفس للجسم</h2>
+      <p>التنفس عملية حيوية ضرورية للحياة، حيث يوفر الأوكسجين للخلايا ويخرج ثاني أكسيد الكربون. بدون تنفس صحي، لا يمكن للجسم أن يعمل بشكل طبيعي.</p>
+      <div class="feature-points">
+        <div class="feature-pill">الأوكسجين: وقود الخلايا</div>
+        <div class="feature-pill">الرئتين: مركز التبادل الغازي</div>
+        <div class="feature-pill">التنفس السليم: صحة جيدة</div>
+        <div class="feature-pill">الرياضة: تحسين القدرة التنفسية</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<article class="course-block breathing-feature">
+  <div class="breathing-feature-grid">
+    <section class="breathing-coach-card">
+      <div class="breathing-avatar-wrap">
+        <img class="breathing-avatar" src="../photo/mo8amer.jpg" alt="Mo8amer avatar" />
+        <div class="breathing-bubble" data-avatar-bubble>مرحباً يا بطل! لنملأ الرئتين ببطء مثل بالونين سعيدين.</div>
+      </div>
+      
+      <div class="course-avatar-qa" data-avatar-ask>
+        <div class="course-avatar-qa-copy">
+          <p class="eyebrow">اسأل مغامر</p>
+          <h3>مغامر جاهز لسؤالك.</h3>
+          <p class="breathing-video-caption">اكتب سؤالك وشاهد الصورة الرمزية وهي ترد وحدها.</p>
+        </div>
+        <form class="avatar-qa-form" data-avatar-ask-form>
+          <input class="avatar-qa-input" type="text" data-avatar-ask-input placeholder="اكتب سؤالك هنا" />
+          <button class="avatar-qa-button" type="submit">اسأل الآن</button>
+        </form>
+        <p class="avatar-qa-reply" data-avatar-ask-reply aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="breathing-video-card">
+      <p class="eyebrow">شاهد كيف يعمل التنفس</p>
+      <video class="breathing-video" controls autoplay loop muted playsinline>
+        <source src="../assests/video/breathing.mp4" type="video/mp4" />
+        متصفحك لا يدعم عرض فيديو التنفس.
+      </video>
+      <p class="breathing-video-caption">شاهد كيف يتحرك الصدر والرئتان عندما يدخل الهواء ويخرج.</p>
+    </section>
+  </div>
+
+ 
+</article>
+
+<p class="footer-note">التنفس هو أساس الحياة، تعلّم كيف تحافظ عليه صحياً.</p>
+</div>
+
+<script src="../script.js"></script>
+<script src="static-courses.js"></script>
+<script>
+function setupAvatarAskInteractions(scope = document) {
+  const widgets = [...scope.querySelectorAll('[data-avatar-ask]')];
+  if (!widgets.length) return;
+
+  const avatarAnswersByCourse = {
+    breathing: ['التنفس يساعد الجسم على الحصول على الأكسجين!', 'الرئتين تكبران عند الشهيق وتصغران عند الزفير.', 'تدرّب على التنفس العميق للشعور بالهدوء.']
+  };
+
+  widgets.forEach((widget) => {
+    if (widget.dataset.avatarAskBound === 'true') return;
+    widget.dataset.avatarAskBound = 'true';
+
+    const form = widget.querySelector('[data-avatar-ask-form]');
+    const input = widget.querySelector('[data-avatar-ask-input]');
+    const reply = widget.querySelector('[data-avatar-ask-reply]');
+    const bubble = scope.querySelector('[data-avatar-bubble]');
+    const answers = avatarAnswersByCourse.breathing;
+    let answerIndex = 0;
+
+    if (!form || !input || !reply) return;
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!input.value.trim()) return;
+
+      const nextAnswer = answers[answerIndex % answers.length];
+      answerIndex += 1;
+      reply.textContent = nextAnswer;
+      input.value = '';
+    });
+  });
+}
+
+setupAvatarAskInteractions();
+</script>
+</body>
+</html>

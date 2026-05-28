@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Motion Party</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sky-decor">
+    <span class="floaty sun">🌞</span>
+    <span class="floaty cloud cloud-a">☁️</span>
+    <span class="floaty cloud cloud-b">☁️</span>
+    <span class="floaty balloon balloon-a">🎈</span>
+    <span class="floaty balloon balloon-b">🎈</span>
+    <span class="floaty sparkle sparkle-a">✨</span>
+    <span class="floaty sparkle sparkle-b">⭐</span>
+    <span class="floaty butterfly">🦋</span>
+    <span class="floaty rainbow">🌈</span>
+  </div>
+
+  <main class="game-shell">
+    <section class="game-container">
+      <div class="top-row">
+        <div class="pill score-pill" id="score">Stars: 0</div>
+        <div class="pill round-pill" id="round">Round 1 / 6</div>
+      </div>
+
+      <header class="hero">
+        <p class="eyebrow">Mini learning game</p>
+        <h1>Animal Motion Party</h1>
+        <p class="subtitle">Pick how each animal moves and help all your little friends get back to the party.</p>
+      </header>
+
+      <section class="story-card" id="story">
+        <div class="story-badge">Story Time</div>
+        <p id="dialogue">Let’s help the animals move in the right way.</p>
+      </section>
+
+      <section class="animal-stage">
+        <div class="stage-rings"></div>
+        <div class="animal-card">
+          <div class="animal-glow"></div>
+          <div class="animal-emoji" id="animal-img" aria-hidden="true"></div>
+          <h2 id="animal-name"></h2>
+          <p class="helper-text">Tap the best move below.</p>
+        </div>
+
+        <div class="mini-icons" aria-hidden="true">
+          <span>🧸</span>
+          <span>🌟</span>
+          <span>🍭</span>
+          <span>🎉</span>
+          <span>🌼</span>
+        </div>
+      </section>
+
+      <section class="choices" id="choices"></section>
+
+      <section class="status-panel">
+        <p id="feedback" aria-live="polite"></p>
+        <button id="next-btn" type="button">Next Friend</button>
+        <button id="restart-btn" type="button" hidden>Play Again</button>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

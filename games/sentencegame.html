@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لعبة تكوين الجملة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(180deg, #fff7b8 0%, #ffd6e7 45%, #cdefff 100%);
+    color: #17344f;
+    margin: 0;
+    min-height: 100vh;
+}
+
+
+.page {
+    width: min(920px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 18px 0 40px;
+    position: relative;
+}
+
+.score-bar {
+    position: sticky;
+    top: 18px;
+    margin-right: auto;
+    width: fit-content;
+    background: linear-gradient(135deg, #ff9f68, #ff6fb5);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 10px 24px rgba(255, 111, 181, 0.28);
+    z-index: 5;
+}
+
+.hero,
+.game-card,
+.info-card {
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 26px;
+    box-shadow: 0 14px 34px rgba(17, 82, 127, 0.14);
+    padding: 24px;
+}
+
+.hero {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: #eaf8ee;
+    color: #22884f;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.hero h1 {
+    color: #ff6b6b;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0;
+}
+
+.hero p,
+.info-card p,
+.instructions li,
+.message {
+    line-height: 1.9;
+    font-size: 1.18rem;
+}
+
+.emoji-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.emoji-row span {
+    background: #fff;
+    border-radius: 999px;
+    padding: 10px 16px;
+    box-shadow: 0 10px 24px rgba(17, 82, 127, 0.12);
+    font-size: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.game-card {
+    border-top: 8px solid #6ecbff;
+}
+
+.info-card {
+    border-top: 8px solid #47c98b;
+}
+
+h2 {
+    margin-top: 0;
+    color: #17344f;
+    font-size: 1.5rem;
+}
+
+.stage-chip {
+    display: inline-block;
+    background: #fff0f5;
+    color: #d94f8a;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.progress {
+    margin-bottom: 16px;
+    color: #4a4a7a;
+    font-weight: bold;
+}
+
+.challenge-box {
+    background: #fffaf0;
+    border-radius: 20px;
+    padding: 18px;
+    margin-top: 12px;
+}
+
+.sentence {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: bold;
+    line-height: 2;
+}
+
+.blank {
+    display: inline-flex;
+    min-width: 110px;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 14px;
+    margin: 0 4px;
+    border-radius: 12px;
+    border: 2px dashed #6ecbff;
+    background: #ffffff;
+    color: #6a8cff;
+}
+
+.options,
+.word-bank,
+.answer-bank,
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.option-btn,
+.word-btn,
+.action-btn,
+.restart-btn {
+    border: none;
+    border-radius: 16px;
+    padding: 14px 22px;
+    font-size: 1.22rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.option-btn,
+.word-btn {
+    background: linear-gradient(135deg, #6ecbff, #6a8cff);
+    color: white;
+    box-shadow: 0 10px 22px rgba(106, 140, 255, 0.25);
+}
+
+.option-btn:hover,
+.word-btn:hover,
+.action-btn:hover,
+.restart-btn:hover {
+    transform: translateY(-2px);
+}
+
+.option-btn:disabled,
+.word-btn:disabled {
+    cursor: default;
+    opacity: 0.65;
+    transform: none;
+}
+
+.action-btn,
+.restart-btn {
+    background: linear-gradient(135deg, #7ee081, #47c98b);
+    color: white;
+    box-shadow: 0 10px 22px rgba(71, 201, 139, 0.24);
+}
+
+.answer-slot {
+    min-height: 76px;
+    background: #ffffff;
+    border: 2px dashed #ffc36a;
+    border-radius: 18px;
+    padding: 12px;
+}
+
+.answer-pill {
+    background: #fff0c7;
+    color: #7a5400;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-weight: bold;
+}
+
+.message {
+    min-height: 36px;
+    margin-top: 18px;
+    font-weight: bold;
+    color: #ff6b6b;
+}
+
+.message.success {
+    color: #22884f;
+}
+
+.message.error {
+    color: #c23c3c;
+}
+
+.instructions {
+    margin: 0;
+    padding-inline-start: 20px;
+}
+
+.footer-note {
+    text-align: center;
+    margin-top: 20px;
+    color: #4a4a7a;
+    font-weight: bold;
+}
+
+@media (max-width: 760px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .score-bar {
+        position: static;
+        margin-bottom: 16px;
+    }
+}
+</style>
+</head>
+<body data-page="sentencegame">
+<header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+        <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+        <a href="../cources/index.html" data-i18n="nav.courses">Courses</a>
+        <a href="../games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select">
+        <span data-i18n="lang.label">اللغة</span>
+        <select id="lang-select" aria-label="Language selector">
+            <option value="en" data-i18n="lang.en">English</option>
+            <option value="fr" data-i18n="lang.fr">Francais</option>
+            <option value="ar" data-i18n="lang.ar">العربية</option>
+        </select>
+    </label>
+</header>
+
+<div class="page">
+    <div class="score-bar"><span data-i18n="scoreLabel">النجوم:</span> <span id="score">0</span></div>
+
+    <section class="hero">
+        <div class="hero-badge" data-i18n="heroBadge">لعبة جديدة للأطفال</div>
+        <h1 data-i18n="heroTitle">لعبة إكمال الجملة وترتيب الكلمات</h1>
+        <p data-i18n="heroText">في هذه اللعبة نمر بمرحلتين ممتعتين.</p>
+        <div class="emoji-row" aria-hidden="true">
+            <span>✏️</span>
+            <span>🧩</span>
+            <span>⭐</span>
+            <span>🐶</span>
+            <span>🦁</span>
+        </div>
+    </section>
+
+    <section class="grid">
+        <section class="game-card">
+            <div id="stage-chip" class="stage-chip"></div>
+            <div id="progress" class="progress"></div>
+            <div id="challenge"></div>
+            <div id="message" class="message" aria-live="polite"></div>
+        </section>
+
+        <aside class="info-card">
+            <h2 data-i18n="howTitle">كيف نلعب؟</h2>
+            <ul class="instructions">
+                <li data-i18n="how1">في المرحلة الأولى اختر الكلمة الصحيحة لإكمال الجملة.</li>
+                <li data-i18n="how2">عندما تنهي كل الجمل بنجاح تنتقل إلى المرحلة الثانية.</li>
+                <li data-i18n="how3">في المرحلة الثانية اضغط على الكلمات بالترتيب لتكوين جملة سليمة.</li>
+                <li data-i18n="how4">إذا أخطأت يمكنك المحاولة مرة أخرى حتى تنجح.</li>
+            </ul>
+            <p class="footer-note" data-i18n="footer">كل إجابة صحيحة تمنحك نجمة جديدة.</p>
+        </aside>
+    </section>
+</div>
+
+<script src="../standalone.js"></script>
+<script>
+const sentenceData = {
+    en: {
+        fillQuestions: [
+            { before: 'The cat is a', answer: 'pet', after: 'animal that can live with people.', options: ['forest', 'pet', 'stone'] },
+            { before: 'The lion lives in the', answer: 'wild', after: 'and not in the house.', options: ['school', 'wild', 'kitchen'] },
+            { before: 'We give a pet', answer: 'water', after: 'and food every day.', options: ['smoke', 'water', 'sand'] }
+        ],
+        sortQuestions: [
+            { words: ['The', 'dog', 'is', 'a', 'pet'] },
+            { words: ['The', 'lion', 'lives', 'in', 'nature'] },
+            { words: ['We', 'care', 'for', 'animals', 'kindly'] }
+        ]
+    },
+    fr: {
+        fillQuestions: [
+            { before: 'Le chat est un animal', answer: 'domestique', after: 'qui peut vivre avec les humains.', options: ['rapide', 'domestique', 'lourd'] },
+            { before: 'Le lion vit dans la', answer: 'nature', after: 'et pas dans la maison.', options: ['trousse', 'nature', 'classe'] },
+            { before: 'Nous donnons de l', answer: 'eau', after: 'et de la nourriture a l animal domestique chaque jour.', options: ['fumee', 'eau', 'pierre'] }
+        ],
+        sortQuestions: [
+            { words: ['Le', 'chien', 'est', 'un', 'animal', 'domestique'] },
+            { words: ['Le', 'lion', 'vit', 'dans', 'la', 'nature'] },
+            { words: ['Nous', 'traitons', 'les', 'animaux', 'avec', 'douceur'] }
+        ]
+    },
+    ar: {
+        fillQuestions: [
+            { before: 'القط حيوان', answer: 'أليف', after: 'يعيش مع الإنسان في البيت.', options: ['بري', 'أليف', 'سريع'] },
+            { before: 'الأسد يعيش في', answer: 'الغابة', after: 'ولا يعيش في المنزل.', options: ['المدرسة', 'الغابة', 'الحقيبة'] },
+            { before: 'نقدّم للحيوان الأليف', answer: 'الماء', after: 'والطعام كل يوم.', options: ['الحجارة', 'الماء', 'الدخان'] }
+        ],
+        sortQuestions: [
+            { words: ['الكلب', 'حيوان', 'أليف'] },
+            { words: ['الأسد', 'يعيش', 'في', 'الطبيعة'] },
+            { words: ['نحن', 'نعتني', 'بالحيوانات', 'بلطف'] }
+        ]
+    }
+};
+
+const scoreEl = document.getElementById('score');
+const progressEl = document.getElementById('progress');
+const challengeEl = document.getElementById('challenge');
+const messageEl = document.getElementById('message');
+const stageChipEl = document.getElementById('stage-chip');
+
+let score = 0;
+let fillIndex = 0;
+let sortIndex = 0;
+let selectedWords = [];
+let currentStage = 1;
+
+function getGameContent() {
+    return sentenceData[standaloneI18n.lang] || sentenceData.en;
+}
+
+function shuffle(array) {
+    return [...array].sort(() => Math.random() - 0.5);
+}
+
+function setMessage(text, type = '') {
+    messageEl.textContent = text;
+    messageEl.className = 'message';
+    if (type) messageEl.classList.add(type);
+}
+
+function updateScore(points) {
+    score += points;
+    scoreEl.textContent = score;
+}
+
+function playTone(frequency, duration) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    const audio = new AudioContextClass();
+    const oscillator = audio.createOscillator();
+    const gainNode = audio.createGain();
+
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+    gainNode.gain.value = 0.08;
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audio.destination);
+    oscillator.start();
+
+    setTimeout(() => {
+        oscillator.stop();
+        audio.close();
+    }, duration);
+}
+
+function playGoodSound() {
+    playTone(660, 160);
+    setTimeout(() => playTone(820, 160), 140);
+}
+
+function playWinSound() {
+    playTone(523, 180);
+    setTimeout(() => playTone(659, 180), 180);
+    setTimeout(() => playTone(784, 260), 360);
+}
+
+function playTryAgainSound() {
+    playTone(240, 220);
+}
+
+function renderFillStage() {
+    const current = getGameContent().fillQuestions[fillIndex];
+    stageChipEl.textContent = standaloneI18n.t('stage1');
+    progressEl.textContent = standaloneI18n.tf('sentenceProgress', { current: fillIndex + 1, total: getGameContent().fillQuestions.length });
+
+    challengeEl.innerHTML = `
+        <div class="challenge-box">
+            <div class="sentence">${current.before} <span class="blank">......</span> ${current.after}</div>
+            <div class="options">
+                ${current.options.map((option) => `<button class="option-btn" type="button">${option}</button>`).join('')}
+            </div>
+        </div>
+    `;
+
+    challengeEl.querySelectorAll('.option-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+            const value = button.textContent;
+            const blankEl = challengeEl.querySelector('.blank');
+
+            if (value === current.answer) {
+                updateScore(1);
+                playGoodSound();
+                blankEl.textContent = current.answer;
+                setMessage(standaloneI18n.t('fillGood'), 'success');
+                challengeEl.querySelectorAll('.option-btn').forEach((btn) => {
+                    btn.disabled = true;
+                });
+
+                setTimeout(() => {
+                    fillIndex += 1;
+                    if (fillIndex < getGameContent().fillQuestions.length) {
+                        renderFillStage();
+                        setMessage('');
+                    } else {
+                        currentStage = 2;
+                        sortIndex = 0;
+                        selectedWords = [];
+                        renderSortStageIntro();
+                    }
+                }, 900);
+            } else {
+                playTryAgainSound();
+                blankEl.textContent = value;
+                setMessage(standaloneI18n.tf('fillWrong', { sentence: `${current.before} ${value} ${current.after}` }), 'error');
+            }
+        });
+    });
+}
+
+function renderSortStageIntro() {
+    stageChipEl.textContent = standaloneI18n.t('stage2');
+    progressEl.textContent = standaloneI18n.t('stage2Intro');
+    challengeEl.innerHTML = `
+        <div class="challenge-box">
+            <p>${standaloneI18n.t('stage2StartText')}</p>
+            <button class="action-btn" type="button" id="start-sort">${standaloneI18n.t('stage2StartBtn')}</button>
+        </div>
+    `;
+    setMessage(standaloneI18n.t('stage2Ready'), 'success');
+    document.getElementById('start-sort').addEventListener('click', () => {
+        setMessage('');
+        renderSortStage();
+    });
+}
+
+function renderSortStage() {
+    const current = getGameContent().sortQuestions[sortIndex];
+    const shuffledWords = shuffle(current.words);
+    selectedWords = [];
+
+    stageChipEl.textContent = standaloneI18n.t('stage2');
+    progressEl.textContent = standaloneI18n.tf('sentenceProgress', { current: sortIndex + 1, total: getGameContent().sortQuestions.length });
+
+    challengeEl.innerHTML = `
+        <div class="challenge-box">
+            <p>${standaloneI18n.t('sortPrompt')}</p>
+            <div class="answer-slot answer-bank" id="answer-bank"></div>
+            <div class="word-bank">
+                ${shuffledWords.map((word) => `<button class="word-btn" type="button">${word}</button>`).join('')}
+            </div>
+            <div class="actions">
+                <button class="action-btn" type="button" id="check-answer">${standaloneI18n.t('checkBtn')}</button>
+                <button class="action-btn" type="button" id="reset-answer">${standaloneI18n.t('resetBtn')}</button>
+            </div>
+        </div>
+    `;
+
+    const answerBank = document.getElementById('answer-bank');
+
+    challengeEl.querySelectorAll('.word-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+            button.disabled = true;
+            selectedWords.push(button.textContent);
+            const pill = document.createElement('span');
+            pill.className = 'answer-pill';
+            pill.textContent = button.textContent;
+            answerBank.appendChild(pill);
+        });
+    });
+
+    document.getElementById('reset-answer').addEventListener('click', () => {
+        renderSortStage();
+        setMessage(standaloneI18n.t('resetMsg'));
+    });
+
+    document.getElementById('check-answer').addEventListener('click', () => {
+        const correctSentence = current.words.join(' ');
+        const playerSentence = selectedWords.join(' ');
+
+        if (selectedWords.length !== current.words.length) {
+            setMessage(standaloneI18n.t('chooseAll'));
+            return;
+        }
+
+        if (playerSentence === correctSentence) {
+            updateScore(1);
+            playGoodSound();
+            setMessage(standaloneI18n.t('sortGood'), 'success');
+            setTimeout(() => {
+                sortIndex += 1;
+                if (sortIndex < getGameContent().sortQuestions.length) {
+                    renderSortStage();
+                    setMessage('');
+                } else {
+                    renderWinState();
+                }
+            }, 900);
+        } else {
+            playTryAgainSound();
+            setMessage(standaloneI18n.t('sortWrong'));
+        }
+    });
+}
+
+function renderWinState() {
+    stageChipEl.textContent = standaloneI18n.t('finished');
+    progressEl.textContent = standaloneI18n.tf('fullScore', { score });
+    challengeEl.innerHTML = `
+        <div class="challenge-box">
+            <div class="sentence">${standaloneI18n.t('winText')} ⭐</div>
+            <p>${standaloneI18n.t('winSubtext')}</p>
+            <button class="restart-btn" type="button" id="restart-game">${standaloneI18n.t('replay')}</button>
+        </div>
+    `;
+    playWinSound();
+    setMessage(standaloneI18n.t('allDone'), 'success');
+    document.getElementById('restart-game').addEventListener('click', restartGame);
+}
+
+function restartGame() {
+    score = 0;
+    fillIndex = 0;
+    sortIndex = 0;
+    currentStage = 1;
+    selectedWords = [];
+    scoreEl.textContent = '0';
+    renderFillStage();
+    setMessage(standaloneI18n.t('fillPrompt'));
+}
+
+function refreshLanguage() {
+    if (currentStage === 1) {
+        renderFillStage();
+        setMessage(standaloneI18n.t('fillPrompt'));
+    } else if (currentStage === 2 && sortIndex >= getGameContent().sortQuestions.length) {
+        renderWinState();
+    } else if (currentStage === 2) {
+        renderSortStageIntro();
+    }
+}
+
+standaloneI18n.apply();
+standaloneI18n.setup(() => {
+    refreshLanguage();
+});
+restartGame();
+</script>
+</body>
+</html>

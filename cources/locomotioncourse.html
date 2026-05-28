@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course</title>
+<link rel="stylesheet" href="static-course-pages.css">
+<style>
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(180deg, #fff7c7 0%, #dff3ff 44%, #eefbd8 100%);
+  color: #17344f;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.lesson-shell {
+  width: min(1100px, calc(100% - 32px));
+  margin: 24px auto 0;
+}
+
+.hero {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 28px;
+  box-shadow: 0 14px 34px rgba(17, 82, 127, 0.14);
+  padding: 28px;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: #eaf8ee;
+  color: #22884f;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  color: #ff6b6b;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  max-width: 820px;
+  margin: 14px auto 0;
+}
+
+.emoji-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.emoji-row span {
+  background: #fff;
+  border-radius: 999px;
+  padding: 10px 16px;
+  box-shadow: 0 10px 24px rgba(17, 82, 127, 0.12);
+  font-size: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.summary-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card,
+.wide-card {
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(17, 82, 127, 0.14);
+  padding: 22px;
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card h2,
+.wide-card h2 {
+  margin-top: 0;
+  color: #17344f;
+  font-size: 1.6rem;
+}
+
+.wide-card {
+  margin-top: 22px;
+}
+
+.page:empty {
+  display: none;
+}
+
+.wide-card p,
+.card p {
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+ul {
+  margin: 14px 0 0;
+  padding-inline-start: 20px;
+  line-height: 2;
+}
+
+.card-image-box {
+  min-height: 160px;
+  border: 2px dashed #b9ddff;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(244, 250, 255, 0.95), rgba(234, 247, 255, 0.9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  color: #5c7591;
+  font-weight: 700;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.card-image-box img {
+  width: 100%;
+  min-height: 160px;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-summary {
+  margin: 0;
+  color: #35516b;
+  font-weight: 700;
+}
+
+.summary-list {
+  margin-top: 12px;
+}
+
+.land-card { border-top: 8px solid #e59650; }
+.water-card { border-top: 8px solid #4ba9ff; }
+.air-card { border-top: 8px solid #66c770; }
+.facts-card { border-top: 8px solid #7d87ff; }
+.facts-card {
+  background: linear-gradient(135deg, rgba(244, 244, 255, 0.96), rgba(255, 252, 241, 0.96));
+}
+
+.mini-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.mini-box {
+  border-radius: 18px;
+  padding: 16px;
+  background: #fffaf0;
+}
+
+.mini-box h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #ff6b6b;
+}
+
+.locomotion-feature {
+  background: linear-gradient(135deg, rgba(255, 250, 240, 0.96), rgba(232, 247, 255, 0.94));
+  border-top: 8px solid #47c98b;
+}
+
+.locomotion-feature-grid {
+  display: grid;
+  gap: 18px;
+  align-items: center;
+}
+
+.feature-media {
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #d8f0ff 0%, #fff8c9 100%);
+  box-shadow: inset 0 0 0 2px rgba(185, 221, 255, 0.7);
+}
+
+.feature-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.feature-points {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.feature-pill {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px dashed #b9ddff;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-weight: 700;
+  color: #35516b;
+}
+
+.footer-note {
+  text-align: center;
+  margin-top: 22px;
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #4a4a7a;
+}
+
+@media (min-width: 780px) {
+  .locomotion-feature-grid {
+    grid-template-columns: minmax(240px, 320px) 1fr;
+  }
+}
+
+/* ===== LOCOMOTION QUIZ GAME STYLES ===== */
+.locomotion-quiz-section {
+  width: min(1100px, calc(100% - 32px));
+  margin: 40px auto 0;
+  padding: 30px;
+  background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+  border-radius: 20px;
+  border: 2px solid #bbdefb;
+  box-sizing: border-box;
+}
+
+.quiz-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #1976d2;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.quiz-description {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.quiz-start-btn {
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #2196f3, #21cbf3);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.quiz-start-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+}
+
+/* Quiz Game Styles */
+.quiz-game-container {
+  display: none;
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.quiz-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.quiz-score, .quiz-timer, .quiz-progress {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: white;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.quiz-timer.urgent {
+  background: linear-gradient(135deg, #f44336, #e57373);
+  animation: urgentPulse 0.6s ease-in-out infinite;
+}
+
+@keyframes urgentPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.quiz-progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e0e0e0;
+  border-radius: 25px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #66bb6a);
+  border-radius: 25px;
+  transition: width 0.4s ease;
+}
+
+.quiz-animal-display {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.quiz-animal-image {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 12px;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(17, 82, 127, 0.12);
+}
+
+.quiz-animal-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1976d2;
+  margin-bottom: 5px;
+
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1976d2;
+  margin-bottom: 5px;
+}
+
+.quiz-question {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.quiz-option-btn {
+  background: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 15px 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  transform: scale(1.02);
+}
+
+.quiz-option-btn.correct {
+  background: #e8f5e8;
+  border-color: #4caf50;
+  color: #2e7d32;
+}
+
+.quiz-option-btn.wrong {
+  background: #ffeaea;
+  border-color: #f44336;
+  color: #c62828;
+}
+
+.quiz-option-btn:disabled {
+  cursor: not-allowed;
+}
+
+.quiz-feedback {
+  text-align: center;
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.quiz-feedback.show {
+  opacity: 1;
+}
+
+.quiz-feedback.correct {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.quiz-feedback.wrong {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.quiz-fun-fact {
+  background: linear-gradient(135deg, #fff3e0, #fce4ec);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px 0;
+  font-size: 0.95rem;
+  color: #5d4037;
+  display: none;
+  line-height: 1.5;
+}
+
+.quiz-fun-fact.show {
+  display: block;
+}
+
+.quiz-next-btn {
+  background: linear-gradient(135deg, #2196f3, #21cbf3);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  margin: 20px auto 0;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+  transition: transform 0.2s;
+}
+
+.quiz-next-btn:hover {
+  transform: scale(1.05);
+}
+
+.quiz-results {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.quiz-results-stars {
+  font-size: 2.5rem;
+  margin: 15px 0;
+}
+
+.quiz-results-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1976d2;
+  margin-bottom: 10px;
+}
+
+.quiz-results-score {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4caf50;
+  margin: 10px 0;
+}
+
+.quiz-results-message {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.quiz-results-summary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.quiz-result-chip {
+  background: #f5f5f5;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: 2px solid #ddd;
+}
+
+.quiz-result-chip.correct {
+  background: #e8f5e8;
+  border-color: #4caf50;
+  color: #2e7d32;
+}
+
+.quiz-result-chip.wrong {
+  background: #ffeaea;
+  border-color: #f44336;
+  color: #c62828;
+}
+
+.quiz-replay-btn {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  transition: transform 0.2s;
+}
+
+.quiz-replay-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Confetti animation */
+.quiz-confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: quizConfettiFall linear forwards;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+@keyframes quizConfettiFall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .quiz-options {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-hud {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+}
+</style>
+</head>
+<body data-course-id="locomotion">
+<header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+        <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+        <a href="index.html" data-i18n="nav.courses">Courses</a>
+        <a href="../games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select">
+        <span data-i18n="lang.label">اللغة</span>
+        <select id="lang-select" aria-label="Language selector">
+            <option value="en" data-i18n="lang.en">English</option>
+            <option value="fr" data-i18n="lang.fr">Francais</option>
+            <option value="ar" data-i18n="lang.ar">العربية</option>
+        </select>
+    </label>
+</header>
+<div class="lesson-shell">
+  <section class="hero">
+    <div class="hero-badge">درس مبسط للأطفال</div>
+    <h1>أنماط التنقل عند الحيوان</h1>
+    <p>
+      تختلف طرق التنقل عند الحيوانات باختلاف الأوساط التي تعيش فيها وحسب طبيعة كل حيوان.
+      فهناك حيوانات تسبح في الماء، وحيوانات تطير في الجو، وحيوانات تتحرك في البر
+      مشياً أو عدواً أو قفزاً أو زحفاً.
+    </p>
+    <div class="emoji-row" aria-hidden="true"><span>🦁</span><span>🐟</span><span>🦅</span><span>🐍</span><span>🦘</span></div>
+  </section>
+
+  <section class="grid summary-grid">
+    <article class="card summary-card land-card">
+      <div class="card-image-box"><img data-random-photo alt="صورة عن التنقل في البر"></div>
+      <h2>التنقل في البر</h2>
+      <p class="card-summary">تتنقل الحيوانات في البر مشياً أو عدواً أو قفزاً أو زحفاً.</p>
+      <ul class="summary-list">
+        <li>تمشي حيوانات مثل الفيل والبقرة لضخامة جسمها وعدم قدرتها على الجري بسرعة.</li>
+        <li>تعدو بعض الحيوانات مثل الأسد والفهد والنمر بفضل قوة عضلاتها وطول قوائمها.</li>
+        <li>تقفز حيوانات مثل الكنغري والأرنب والضفدع بفضل طول القوائم الخلفية مقارنة بالأمامية.</li>
+        <li>تزحف الأفعى والحلزون والديدان لأنها لا تمتلك قوائم ترفع الجسم عن الأرض.</li>
+        <li>السحلية والسلحفاة والتماسيح تتحرك زحفاً أيضاً لأن قوائمها قصيرة جداً.</li>
+      </ul>
+    </article>
+
+    <article class="card summary-card water-card">
+      <div class="card-image-box"><img data-random-photo alt="صورة عن التنقل في الماء"></div>
+      <h2>التنقل في الماء</h2>
+      <p class="card-summary">تنتقل حيوانات كثيرة في الماء سباحة بفضل شكل أجسامها أو أعضائها الخاصة.</p>
+      <ul class="summary-list">
+        <li>تسبح السمكة والدلفين والحوت والقرش والحبار والضفدع والبطة والإوزة والسلحفاة.</li>
+        <li>يساعد شكل السمكة المغزلي وزعانفها على السباحة بسهولة.</li>
+        <li>يساعد ذيل السمكة على تغيير الاتجاه أثناء السباحة.</li>
+        <li>البطة والضفدع والإوزة تمتلك غشاءً رقيقاً أو مطاطياً بين الأصابع يساعدها على السباحة.</li>
+      </ul>
+    </article>
+
+    <article class="card summary-card air-card">
+      <div class="card-image-box"><img data-random-photo alt="صورة عن التنقل في الجو"></div>
+      <h2>التنقل في الجو</h2>
+      <p class="card-summary">تتنقل الطيور وبعض الحيوانات الأخرى في الجو طيراناً.</p>
+      <ul class="summary-list">
+        <li>تطير الطيور بفضل الأجنحة والريش وخفة الوزن وشكل الجسم المغزلي وقوة عضلات الصدر.</li>
+        <li>من الطيور التي تطير: النسر والحمامة والصقر والبلبل والنورس واللقلق والعصفور والغراب.</li>
+        <li>هناك حيوانات لها أجنحة وتطير مثل النحلة والذبابة والبعوضة والخفاش.</li>
+        <li>بعض الطيور لا تطير مثل النعامة والبطريق والديك الرومي بسبب ثقل وزنها أو قصر أجنحتها.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="wide-card locomotion-feature">
+    <div class="locomotion-feature-grid">
+      <div class="feature-media">
+        <img data-random-photo alt="صورة لحيوان متحرك">
+      </div>
+      <div>
+        <h2>كيف تساعد أعضاء الجسم الحيوان على التنقل؟</h2>
+        <p>
+          تتنقل الحيوانات عدواً بفضل عضلاتها القوية وقوائمها الطويلة واتساع قفصها الصدري،
+          وتتنقل مشياً بفضل قوائمها وحوافرها، وتتنقل الحيوانات الزاحفة زحفاً على بطنها
+          أو بقوائمها الصغيرة، كما تساعد الأجنحة والريش على الطيران، وتساعد الزعانف وذيل السمكة
+          والغشاء المطاطي بين أصابع البطة على السباحة.
+        </p>
+        <div class="feature-points">
+          <div class="feature-pill">العدو: عضلات قوية + قوائم طويلة</div>
+          <div class="feature-pill">الزحف: جسم قريب من الأرض أو قوائم قصيرة</div>
+          <div class="feature-pill">الطيران: جناحان + ريش + جسم خفيف</div>
+          <div class="feature-pill">السباحة: زعانف أو غشاء بين الأصابع + ذيل للتوجيه</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="page" id="static-course-page"></div>
+
+<!-- Locomotion Quiz Game Section -->
+
+<div class="lesson-shell">
+  <section class="wide-card facts-card">
+    <h2>خلاصة الدرس</h2>
+    <div class="mini-grid">
+      <div class="mini-box">
+        <h3>في البر</h3>
+        <p>تتحرك الحيوانات في البر بحسب بنيتها، لذلك قد تمشي أو تعدو أو تقفز أو تزحف.</p>
+      </div>
+      <div class="mini-box">
+        <h3>في الماء</h3>
+        <p>تساعد الزعانف والذيل والغشاء بين الأصابع الحيوانات على السباحة وتغيير الاتجاه.</p>
+      </div>
+      <div class="mini-box">
+        <h3>في الجو</h3>
+        <p>يساعد الجناحان والريش وخفة الوزن بعض الحيوانات على الطيران والتحرك في السماء.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="footer-note">لكل حيوان طريقة تنقل تناسب جسمه وبيئته التي يعيش فيها.</p>
+</div>
+
+<script src="static-courses.js"></script>
+<script>
+// ======================================================
+//  LOCOMOTION QUIZ GAME DATA
+// ======================================================
+const LOCOMOTION_QUIZ_DATA = [
+  {
+    name: "النسر",
+    nameEn: "Eagle",
+    emoji: "🦅",
+    image: "https://api.dicebear.com/9.x/thumbs/svg?seed=Eagle",
+    habitat: "السماء والجبال",
+    moveType: "flying",
+    correctAnswer: "flying",
+    funFact: "يستطيع النسر الطيران بسرعة تصل إلى 160 كم/س عند الانقضاض على فريسته!",
+    choices: [
+      { label: "🦅 يطير", value: "flying" },
+      { label: "🐟 يسبح", value: "swimming" },
+      { label: "🐸 يقفز", value: "jumping" },
+      { label: "🐛 يزحف", value: "crawling" }
+    ]
+  },
+  {
+    name: "سمكة المهرج",
+    nameEn: "Clownfish",
+    emoji: "🐠",
+    image: "https://api.dicebear.com/9.x/thumbs/svg?seed=Clownfish",
+    habitat: "الشعاب المرجانية",
+    moveType: "swimming",
+    correctAnswer: "swimming",
+    funFact: "تستعمل سمكة المهرج زعانفها مثل المجاديف الصغيرة لتسبح بين الشعاب المرجانية!",
+    choices: [
+      { label: "🐟 يسبح", value: "swimming" },
+      { label: "🦅 يطير", value: "flying" },
+      { label: "🐸 يقفز", value: "jumping" },
+      { label: "🐛 يزحف", value: "crawling" }
+    ]
+  },
+  {
+    name: "الكنغر",
+    nameEn: "Kangaroo",
+    emoji: "🦘",
+    image: "https://api.dicebear.com/9.x/thumbs/svg?seed=Kangaroo",
+    habitat: "البراري الأسترالية",
+    moveType: "jumping",
+    correctAnswer: "jumping",
+    funFact: "يستطيع الكنغر القفز 9 أمتار في قفزة واحدة!",
+    choices: [
+      { label: "🦅 يطير", value: "flying" },
+      { label: "🐸 يقفز", value: "jumping" },
+      { label: "🐟 يسبح", value: "swimming" },
+      { label: "🐛 يزحف", value: "crawling" }
+    ]
+  },
+  {
+    name: "الثعبان",
+    nameEn: "Snake",
+    emoji: "🐍",
+    image: "https://api.dicebear.com/9.x/thumbs/svg?seed=Snake",
+    habitat: "الغابة المطيرة",
+    moveType: "crawling",
+    correctAnswer: "crawling",
+    funFact: "للثعابين مئات من حراشف البطن التي تساعدها على التمسك بالأرض والتحرك!",
+    choices: [
+      { label: "🐛 يزحف", value: "crawling" },
+      { label: "🦅 يطير", value: "flying" },
+      { label: "🐸 يقفز", value: "jumping" },
+      { label: "🐟 يسبح", value: "swimming" }
+    ]
+  }
+];
+
+// ======================================================
+//  QUIZ GAME STATE
+// ======================================================
+let quizCurrentQ = 0;
+let quizScore = 0;
+let quizTimer = null;
+let quizTimeLeft = 15;
+let quizAnswered = false;
+let quizResults = [];
+
+// ======================================================
+//  QUIZ FUNCTIONS
+// ======================================================
+function startLocomotionQuiz() {
+  quizCurrentQ = 0;
+  quizScore = 0;
+  quizResults = [];
+  document.getElementById('quiz-game-container').style.display = 'block';
+  document.getElementById('quiz-results').style.display = 'none';
+  loadQuizQuestion();
+}
+
+function loadQuizQuestion() {
+  quizAnswered = false;
+  quizTimeLeft = 15;
+
+  const animal = LOCOMOTION_QUIZ_DATA[quizCurrentQ];
+  clearTimeout(quizTimer);
+
+  // Update HUD
+  document.getElementById('quiz-score-display').textContent = quizScore;
+  document.getElementById('quiz-question-counter').textContent = `${quizCurrentQ + 1}`;
+  document.getElementById('quiz-progress-fill').style.width = `${((quizCurrentQ) / LOCOMOTION_QUIZ_DATA.length) * 100}%`;
+
+  // Reset timer
+  const timerBadge = document.getElementById('quiz-timer-badge');
+  timerBadge.classList.remove('urgent');
+  document.getElementById('quiz-timer-display').textContent = quizTimeLeft;
+
+  // Animal display
+  const animalImage = document.getElementById('quiz-animal-image');
+  if (animal.image) {
+    animalImage.src = animal.image;
+    animalImage.alt = animal.name;
+  } else {
+    animalImage.src = `https://api.dicebear.com/9.x/thumbs/svg?seed=${encodeURIComponent(animal.name)}`;
+    animalImage.alt = animal.name;
+  }
+  document.getElementById('quiz-animal-name').textContent = animal.name;
+
+  // Question
+  document.getElementById('quiz-question').textContent = 'كيف يتحرك هذا الحيوان؟';
+
+  // Options
+  const optionsContainer = document.getElementById('quiz-options');
+  optionsContainer.innerHTML = '';
+  animal.choices.forEach(choice => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option-btn';
+    btn.innerHTML = `<span>${choice.label.split(' ')[0]}</span> ${choice.label.split(' ').slice(1).join(' ')}`;
+    btn.dataset.value = choice.value;
+    btn.onclick = () => checkQuizAnswer(choice.value, btn);
+    optionsContainer.appendChild(btn);
+  });
+
+  // Reset feedback
+  const feedback = document.getElementById('quiz-feedback');
+  feedback.className = 'quiz-feedback';
+  feedback.textContent = '';
+
+  const funFact = document.getElementById('quiz-fun-fact');
+  funFact.className = 'quiz-fun-fact';
+
+  const nextBtn = document.getElementById('quiz-next-btn');
+  nextBtn.style.display = 'none';
+
+  // Start timer
+  startQuizTimer();
+}
+
+function startQuizTimer() {
+  clearInterval(quizTimer);
+  quizTimer = setInterval(() => {
+    quizTimeLeft--;
+    document.getElementById('quiz-timer-display').textContent = quizTimeLeft;
+    if (quizTimeLeft <= 5) {
+      document.getElementById('quiz-timer-badge').classList.add('urgent');
+    }
+    if (quizTimeLeft <= 0) {
+      clearInterval(quizTimer);
+      quizTimeOut();
+    }
+  }, 1000);
+}
+
+function quizTimeOut() {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  quizResults.push({ name: LOCOMOTION_QUIZ_DATA[quizCurrentQ].name, correct: false });
+  showQuizFeedback(false, true);
+  highlightQuizCorrect();
+}
+
+function checkQuizAnswer(value, button) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  clearInterval(quizTimer);
+
+  const animal = LOCOMOTION_QUIZ_DATA[quizCurrentQ];
+  const isCorrect = (value === animal.correctAnswer);
+
+  // Mark chosen button
+  document.querySelectorAll('.quiz-option-btn').forEach(btn => {
+    btn.disabled = true;
+    if (btn.dataset.value === value) {
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    }
+  });
+
+  if (isCorrect) {
+    quizScore += 25 + Math.max(0, quizTimeLeft * 2);
+    document.getElementById('quiz-score-display').textContent = quizScore;
+    launchQuizConfetti();
+  }
+
+  quizResults.push({ name: animal.name, correct: isCorrect, emoji: animal.emoji });
+  showQuizFeedback(isCorrect, false);
+}
+
+function highlightQuizCorrect() {
+  const correct = LOCOMOTION_QUIZ_DATA[quizCurrentQ].correctAnswer;
+  document.querySelectorAll('.quiz-option-btn').forEach(btn => {
+    btn.disabled = true;
+    if (btn.dataset.value === correct) btn.classList.add('correct');
+  });
+}
+
+function showQuizFeedback(isCorrect, timedOut) {
+  const feedback = document.getElementById('quiz-feedback');
+  const funFact = document.getElementById('quiz-fun-fact');
+  const nextBtn = document.getElementById('quiz-next-btn');
+
+  if (timedOut) {
+    feedback.className = 'quiz-feedback wrong show';
+    const correctChoice = LOCOMOTION_QUIZ_DATA[quizCurrentQ].choices.find(choice => choice.value === LOCOMOTION_QUIZ_DATA[quizCurrentQ].correctAnswer);
+    feedback.textContent = `⏰ انتهى الوقت! الإجابة الصحيحة هي: ${correctChoice ? correctChoice.label : LOCOMOTION_QUIZ_DATA[quizCurrentQ].correctAnswer}`;
+  } else if (isCorrect) {
+    feedback.className = 'quiz-feedback correct show';
+    feedback.textContent = '🎉 أحسنت! إجابة رائعة!';
+  } else {
+    feedback.className = 'quiz-feedback wrong show';
+    feedback.textContent = '🙈 لا بأس، أنت تتعلم خطوة بخطوة!';
+  }
+
+  // Fun fact
+  funFact.className = 'quiz-fun-fact show';
+  funFact.innerHTML = `🧠 <strong>معلومة ممتعة:</strong> ${LOCOMOTION_QUIZ_DATA[quizCurrentQ].funFact}`;
+
+  // Show next button
+  nextBtn.style.display = 'block';
+}
+
+function nextQuizQuestion() {
+  quizCurrentQ++;
+  if (quizCurrentQ >= LOCOMOTION_QUIZ_DATA.length) {
+    endQuizGame();
+  } else {
+    loadQuizQuestion();
+  }
+}
+
+function endQuizGame() {
+  document.getElementById('quiz-progress-fill').style.width = '100%';
+  const total = LOCOMOTION_QUIZ_DATA.length;
+  const correct = quizResults.filter(r => r.correct).length;
+  const pct = correct / total;
+
+  // Stars
+  let stars = '⭐';
+  let title = 'واصل التدريب!';
+  let msg = 'كل مستكشف يبدأ بالتعلّم. حاول مرة أخرى لإنقاذ حيوانات أكثر!';
+  if (pct >= 0.5) { stars = '⭐⭐'; title = 'عمل جيد!'; msg = 'لقد ساعدت بعض الحيوانات. هل تستطيع إنقاذها كلها في المرة القادمة؟'; }
+  if (pct >= 0.75) { stars = '⭐⭐⭐'; title = 'مستكشف رائع!'; msg = 'ممتاز! لقد ساعدت معظم الحيوانات على العودة إلى بيوتها!'; }
+  if (pct === 1) { stars = '⭐⭐⭐⭐'; title = 'بطل خارق! 🦸'; msg = 'نتيجة كاملة! كل الحيوانات عادت بأمان بفضلك!'; launchQuizConfetti(); launchQuizConfetti(); }
+
+  document.getElementById('quiz-results-stars').textContent = stars;
+  document.getElementById('quiz-results-title').textContent = title;
+  document.getElementById('quiz-results-score').textContent = quizScore;
+  document.getElementById('quiz-results-message').textContent = msg;
+
+  // Summary chips
+  const summary = document.getElementById('quiz-results-summary');
+  summary.innerHTML = '';
+  quizResults.forEach(r => {
+    const chip = document.createElement('div');
+    chip.className = `quiz-result-chip ${r.correct ? 'correct' : 'wrong'}`;
+    chip.textContent = `${r.correct ? '✅' : '❌'} ${r.emoji} ${r.name}`;
+    summary.appendChild(chip);
+  });
+
+  document.getElementById('quiz-game-container').style.display = 'none';
+  document.getElementById('quiz-results').style.display = 'block';
+}
+
+function launchQuizConfetti() {
+  const colors = ['#ff6b6b', '#ffd93d', '#6bcb77', '#4d96ff', '#ff922b', '#cc5de8', '#20c997'];
+  for (let i = 0; i < 35; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'quiz-confetti';
+    piece.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      top: -10px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration: ${1.5 + Math.random() * 2}s;
+      animation-delay: ${Math.random() * 0.5}s;
+    `;
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 3500);
+  }
+}
+
+const locomotionPhotos = {
+  "صورة عن التنقل في البر": "../photo/run.jpeg",
+  "صورة عن التنقل في الماء": "../photo/swim.jpeg",
+  "صورة عن التنقل في الجو": "../photo/fly.jpeg",
+  "صورة لحيوان متحرك": "../photo/movements.png"
+};
+
+document.querySelectorAll('[data-random-photo]').forEach((img) => {
+  const altText = img.getAttribute('alt');
+  if (locomotionPhotos[altText]) {
+    img.src = locomotionPhotos[altText];
+  }
+});
+</script>
+</body>
+</html>

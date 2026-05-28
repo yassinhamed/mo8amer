@@ -1,0 +1,1268 @@
+:root {
+  --sky-100: #f0fbff;
+  --sky-400: #67c7ff;
+  --sky-600: #1893e1;
+  --sun-300: #ffe187;
+  --sun-500: #ffb62e;
+  --leaf-400: #52c57d;
+  --leaf-600: #22884f;
+  --coral-500: #ff7059;
+  --ink: #17344f;
+  --card: #ffffff;
+  --stroke: #d4ebfb;
+  --shadow: 0 12px 30px rgba(17, 82, 127, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.4) 0 10%, transparent 11%),
+    radial-gradient(circle at 88% 14%, rgba(255, 255, 255, 0.38) 0 8%, transparent 9%),
+    radial-gradient(circle at 90% 78%, rgba(255, 255, 255, 0.28) 0 11%, transparent 12%),
+    linear-gradient(180deg, #fff7b8 0%, #ffd6e7 45%, #cdefff 100%);
+}
+
+a {
+  color: inherit;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 2px solid rgba(24, 147, 225, 0.16);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+}
+
+.logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.logo-text {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  font-weight: 800;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+
+.main-nav a:hover {
+  background: #dff3ff;
+}
+
+.lang-switcher {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: 700;
+}
+
+.lang-switcher select {
+  border: 2px solid var(--stroke);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  padding: 7px 10px;
+}
+
+main {
+  padding-bottom: 16px;
+}
+
+.section-wrap {
+  padding: 20px 16px;
+}
+
+.hero {
+  display: grid;
+  gap: 14px;
+  padding: 22px 16px 12px;
+}
+
+.hero-card {
+  background: var(--card);
+  box-shadow: var(--shadow);
+  border-radius: 24px;
+  padding: 24px;
+  animation: floatIn 650ms ease;
+}
+
+.hero-photo-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  animation: drift 4.6s ease-in-out infinite;
+}
+
+.hero-photo {
+  width: min(100%, 420px);
+  aspect-ratio: 4 / 5;
+  border-radius: 34px;
+  object-fit: cover;
+  border: 6px solid #fff;
+  box-shadow: 0 20px 36px rgba(17, 82, 127, 0.2);
+  background: #fff;
+}
+
+.greeting-bubble {
+  position: absolute;
+  top: -18px;
+  right: -6px;
+  max-width: 260px;
+  padding: 14px 18px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #fff6bf, #ffd9eb);
+  color: #7a4f00;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.12rem;
+  font-weight: 800;
+  line-height: 1.25;
+  box-shadow: 0 14px 28px rgba(17, 82, 127, 0.16);
+  animation: bubblePop 3.2s ease-in-out infinite;
+  z-index: 1;
+}
+
+.greeting-bubble::after {
+  content: "";
+  position: absolute;
+  left: 28px;
+  bottom: -16px;
+  width: 24px;
+  height: 24px;
+  background: #ffe7b5;
+  clip-path: polygon(0 0, 100% 0, 35% 100%);
+}
+
+.eyebrow {
+  font-family: 'Baloo 2', cursive;
+  color: var(--leaf-600);
+  font-size: 1.05rem;
+}
+
+.hero h1,
+.page-head h1 {
+  margin-top: 6px;
+  font-family: 'Baloo 2', cursive;
+  font-size: clamp(1.9rem, 5.5vw, 3rem);
+  line-height: 1.06;
+}
+
+.hero p,
+.page-head p {
+  margin-top: 10px;
+  font-size: 1.05rem;
+}
+
+.hero-actions {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.welcome-marquee {
+  overflow: hidden;
+  margin: 8px 16px 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow);
+}
+
+.welcome-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 12px;
+  padding: 12px 0;
+  animation: marqueeMove 20s linear infinite;
+}
+
+.welcome-marquee-track span {
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #dff6ff, #fff7c7);
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  color: #015e94;
+}
+
+.welcome-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 52, 79, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 40;
+}
+
+.welcome-popup.show {
+  display: flex;
+}
+
+.welcome-popup-card {
+  position: relative;
+  width: min(540px, 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #fff7d3 50%, #eef8ff 100%);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(17, 82, 127, 0.2);
+  padding: 24px;
+  text-align: center;
+}
+
+.welcome-popup-card h2 {
+  font-family: 'Baloo 2', cursive;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  line-height: 1.1;
+}
+
+.welcome-popup-card p + .hero-actions {
+  justify-content: center;
+}
+
+.welcome-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 999px;
+  background: #e6f5ff;
+  color: #015e94;
+  font-size: 1.4rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 16px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 180ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn.primary {
+  background: linear-gradient(120deg, var(--sun-300), var(--sun-500));
+  color: #5a3a00;
+}
+
+.btn.ghost {
+  background: #e6f5ff;
+  color: #0066a4;
+}
+
+.feature-grid,
+.course-grid,
+.resume-grid,
+.flip-card-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.flip-card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  margin-top: 14px;
+}
+
+.flip-card {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  display: block;
+  min-height: 520px;
+  transform-style: preserve-3d;
+  transition: transform 400ms ease;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.flip-card-front {
+  background: #fff;
+}
+
+.flip-card-back {
+  background: linear-gradient(135deg, #fff4bf 0%, #eef8ff 100%);
+  color: var(--ink);
+  font-family: 'Baloo 2', cursive;
+  font-size: 2rem;
+  font-weight: 800;
+  text-transform: capitalize;
+  transform: rotateY(180deg);
+}
+
+.flip-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-card,
+.course-card,
+.resume-card,
+.game-panel,
+.page-head {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.feature-card-story {
+  position: relative;
+  overflow: hidden;
+  min-height: 240px;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.feature-card-story:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 34px rgba(17, 82, 127, 0.16);
+}
+
+.feature-card-animals {
+  background: linear-gradient(180deg, #fffdf4 0%, #eefcf2 100%);
+}
+
+.feature-card-courses {
+  background: linear-gradient(180deg, #fff8fb 0%, #eef8ff 100%);
+}
+
+.feature-card-games {
+  background: linear-gradient(180deg, #fef9ef 0%, #eef7ff 100%);
+}
+
+.feature-card-story::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.feature-card h2,
+.course-card h2,
+.resume-card h2,
+.games h2,
+.game-panel h3,
+.page-head h1 {
+  font-family: 'Baloo 2', cursive;
+}
+
+.course-card.pet {
+  border-top: 8px solid var(--leaf-400);
+}
+
+.course-card.wild {
+  border-top: 8px solid var(--coral-500);
+}
+
+.course-link {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 2px dashed transparent;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.course-link:hover {
+  color: #015e94;
+  border-bottom-color: #015e94;
+}
+
+.page-cta {
+  margin-top: 14px;
+}
+
+.course-page-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.course-detail {
+  display: grid;
+  gap: 14px;
+}
+
+.course-hero {
+  background: linear-gradient(135deg, #ffffff 0%, #eef8ff 50%, #eefcf2 100%);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.course-hero h1 {
+  font-family: 'Baloo 2', cursive;
+  font-size: clamp(1.7rem, 5vw, 2.5rem);
+  line-height: 1.08;
+}
+
+.course-subtitle {
+  margin-top: 8px;
+  font-weight: 800;
+  color: #02639c;
+}
+
+.course-intro {
+  margin-top: 10px;
+  font-size: 1.05rem;
+}
+
+.course-block {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.course-block h3 {
+  font-family: 'Baloo 2', cursive;
+}
+
+.breathing-feature {
+  background: linear-gradient(135deg, #fffdf4 0%, #eefbff 54%, #f2fff3 100%);
+  overflow: hidden;
+}
+
+.breathing-feature-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.breathing-coach-card,
+.breathing-video-card,
+.breathing-lungs-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 2px solid rgba(214, 236, 251, 0.9);
+  border-radius: 22px;
+  box-shadow: 0 14px 28px rgba(17, 82, 127, 0.1);
+  padding: 18px;
+}
+
+.breathing-coach-card {
+  display: grid;
+  gap: 16px;
+  align-items: center;
+}
+
+.breathing-avatar-wrap {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  animation: drift 4.8s ease-in-out infinite;
+}
+
+.breathing-avatar {
+  width: min(100%, 240px);
+  aspect-ratio: 4 / 5;
+  border-radius: 28px;
+  object-fit: cover;
+  border: 6px solid #fff;
+  box-shadow: 0 18px 34px rgba(17, 82, 127, 0.16);
+}
+
+.breathing-bubble {
+  position: absolute;
+  inset-inline-end: -12px;
+  top: -18px;
+  width: min(250px, 72vw);
+  padding: 14px 16px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #fff2a8, #ffd4ea);
+  box-shadow: 0 12px 28px rgba(17, 82, 127, 0.14);
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #8a4d00;
+  animation: bubblePop 3.4s ease-in-out infinite;
+}
+
+.breathing-bubble::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 30px;
+  bottom: -14px;
+  width: 24px;
+  height: 24px;
+  background: #ffe3b2;
+  clip-path: polygon(0 0, 100% 0, 30% 100%);
+}
+
+.breathing-coach-copy h3,
+.breathing-lungs-head h3 {
+  font-size: 1.5rem;
+}
+
+.breathing-steps {
+  margin-top: 12px;
+  padding-inline-start: 22px;
+  display: grid;
+  gap: 10px;
+  line-height: 1.7;
+  font-weight: 800;
+}
+
+.breathing-video {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 18px;
+  border: 4px solid #fff;
+  background: #d7f1ff;
+  box-shadow: 0 16px 30px rgba(17, 82, 127, 0.12);
+}
+
+.breathing-video-caption {
+  margin-top: 10px;
+  line-height: 1.7;
+  font-weight: 700;
+}
+
+.course-avatar-qa {
+  margin-top: 18px;
+  display: grid;
+  gap: 14px;
+}
+
+.course-avatar-qa-copy h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.course-avatar-qa-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.avatar-qa-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.avatar-qa-input {
+  flex: 1 1 220px;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 2px solid #d6ecfb;
+  border-radius: 18px;
+  font: inherit;
+  background: #fff;
+  color: #17344f;
+  box-shadow: inset 0 2px 8px rgba(17, 82, 127, 0.06);
+}
+
+.avatar-qa-input:focus {
+  outline: none;
+  border-color: #47c98b;
+  box-shadow: 0 0 0 4px rgba(71, 201, 139, 0.16);
+}
+
+.avatar-qa-button {
+  min-height: 52px;
+  border: none;
+  border-radius: 18px;
+  padding: 0 20px;
+  background: linear-gradient(135deg, #ffb347, #ff7f6b);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(255, 127, 107, 0.24);
+}
+
+.avatar-qa-reply {
+  margin: 0;
+  min-height: 28px;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ff6b6b;
+}
+
+.breathing-lungs-card {
+  margin-top: 16px;
+  background: linear-gradient(180deg, #fffefa 0%, #eef8ff 100%);
+}
+
+.breathing-lungs-head {
+  text-align: center;
+}
+
+.lungs-scene {
+  position: relative;
+  min-height: 360px;
+  margin-top: 12px;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 16% 16%, rgba(255, 255, 255, 0.92) 0 10px, transparent 11px),
+    radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.82) 0 8px, transparent 9px),
+    linear-gradient(180deg, #ccefff 0%, #e5fbff 48%, #fff6ce 100%);
+}
+
+.lungs-scene::before {
+  content: "";
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: -32px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #93dd96 0%, #74ca7a 100%);
+}
+
+.air-puff {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  animation: floatPuff 5.2s linear infinite;
+}
+
+.lungs-scene.is-inhaling .lungs-body {
+  animation-duration: 1.4s;
+  transform: scale(1.1);
+}
+
+.lungs-scene.is-exhaling .lungs-body {
+  animation-duration: 1.4s;
+  transform: scale(0.92);
+}
+
+.lungs-scene.is-inhaling .air-puff {
+  animation-duration: 2.2s;
+}
+
+.air-puff-1 {
+  top: 40px;
+  left: 16%;
+  width: 22px;
+  height: 22px;
+}
+
+.air-puff-2 {
+  top: 82px;
+  right: 18%;
+  width: 14px;
+  height: 14px;
+  animation-delay: 1.2s;
+}
+
+.air-puff-3 {
+  top: 142px;
+  left: 24%;
+  width: 12px;
+  height: 12px;
+  animation-delay: 2s;
+}
+
+.air-puff-4 {
+  top: 132px;
+  right: 28%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2.8s;
+}
+
+.lungs-character {
+  position: absolute;
+  left: 50%;
+  top: 34px;
+  width: min(340px, 90%);
+  transform: translateX(-50%);
+}
+
+.trachea-tube {
+  width: 44px;
+  height: 78px;
+  margin: 0 auto;
+  border-radius: 24px;
+  background: repeating-linear-gradient(180deg, #ffcf98 0 10px, #ffbc75 10px 16px);
+  box-shadow: inset 0 -8px 0 rgba(255, 255, 255, 0.3);
+}
+
+.lungs-body {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 34px 1fr;
+  align-items: start;
+  gap: 10px;
+  margin-top: -6px;
+  animation: breathePulse 4s ease-in-out infinite;
+  transform-origin: center top;
+}
+
+.lung {
+  position: relative;
+  height: 190px;
+  border: 4px solid #ff748c;
+  background: linear-gradient(180deg, #ffb1c2 0%, #ff7e99 100%);
+  box-shadow: inset -10px -12px 0 rgba(255, 255, 255, 0.18);
+}
+
+.lung-left {
+  border-radius: 52% 48% 44% 56% / 42% 42% 58% 58%;
+  transform: rotate(4deg);
+}
+
+.lung-right {
+  border-radius: 48% 52% 56% 44% / 42% 42% 58% 58%;
+  transform: rotate(-4deg);
+}
+
+.lung-shine {
+  position: absolute;
+  inset: 24px auto auto 22px;
+  width: 46px;
+  height: 82px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  transform: rotate(18deg);
+}
+
+.lung-center {
+  width: 100%;
+  height: 170px;
+  margin-top: 8px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffb76b 0%, #ff9950 100%);
+}
+
+.lungs-face {
+  position: absolute;
+  left: 50%;
+  top: 78px;
+  width: 96px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 18px;
+  transform: translateX(-50%);
+}
+
+.lung-eye {
+  width: 14px;
+  height: 18px;
+  border-radius: 999px;
+  background: #17344f;
+  animation: blinkEye 4s infinite;
+}
+
+.lung-smile {
+  width: 34px;
+  height: 18px;
+  border-bottom: 4px solid #17344f;
+  border-radius: 0 0 22px 22px;
+}
+
+.lung-arm {
+  position: absolute;
+  top: 122px;
+  width: 72px;
+  height: 16px;
+  border-radius: 999px;
+  background: #ff9fb3;
+}
+
+.lung-arm-left {
+  left: 18px;
+  transform: rotate(28deg);
+}
+
+.lung-arm-right {
+  right: 18px;
+  transform: rotate(-28deg);
+}
+
+.lungs-legs {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  margin-top: -6px;
+}
+
+.lungs-legs span {
+  width: 16px;
+  height: 74px;
+  border-radius: 999px;
+  background: #ffb57f;
+}
+
+.lungs-shadow {
+  width: 180px;
+  height: 26px;
+  margin: 16px auto 0;
+  border-radius: 999px;
+  background: rgba(23, 52, 79, 0.12);
+  filter: blur(2px);
+}
+
+.breath-chip {
+  position: absolute;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #015e94;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 18px rgba(17, 82, 127, 0.12);
+}
+
+.breath-chip-in {
+  top: 28px;
+  left: 20px;
+  animation: chipBob 3.8s ease-in-out infinite;
+}
+
+.breath-chip-out {
+  right: 20px;
+  bottom: 82px;
+  color: #a64f00;
+  animation: chipBob 3.8s ease-in-out infinite 1.9s;
+}
+
+.breathing-game-card {
+  margin-top: 18px;
+  border-radius: 20px;
+  padding: 18px;
+  background: linear-gradient(135deg, #fff9cf 0%, #eefbff 100%);
+  border: 2px dashed #b9ddff;
+}
+
+.breathing-game-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.breath-action-btn {
+  min-width: 150px;
+}
+
+.breath-action-btn.is-active {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 20px rgba(17, 82, 127, 0.16);
+}
+
+.breath-action-btn.is-wiggle {
+  animation: wiggleBtn 360ms ease-in-out;
+}
+
+.breathing-stars {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  font-size: 1.8rem;
+}
+
+.breath-star {
+  filter: grayscale(1);
+  opacity: 0.45;
+  transform: scale(0.9);
+  transition: transform 180ms ease, opacity 180ms ease, filter 180ms ease;
+}
+
+.breath-star.is-earned {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1.18);
+  animation: sparklePop 360ms ease;
+}
+
+.breathing-game-status {
+  margin-top: 14px;
+  font-weight: 800;
+  line-height: 1.7;
+}
+
+.course-list {
+  margin-top: 10px;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.course-missions {
+  display: grid;
+  gap: 10px;
+}
+
+.mission-card {
+  background: #f4fbff;
+  border: 2px solid #d5ecfa;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.mission-card h4 {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.1rem;
+}
+
+.course-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.picture-card {
+  background: linear-gradient(135deg, #fffdf3 0%, #f5fbff 100%);
+  border: 2px dashed #d7e8f7;
+  border-radius: 16px;
+  padding: 14px;
+  margin-top: 12px;
+}
+
+.picture-card p + p {
+  margin-top: 8px;
+}
+
+.games {
+  padding-top: 12px;
+}
+
+.game-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background: #e5f4ff;
+  color: #015e94;
+}
+
+.tab-btn.active {
+  background: var(--sky-600);
+  color: #fff;
+}
+
+.game-area {
+  margin-top: 12px;
+}
+
+.animal-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.animal-chip {
+  background: #f4faff;
+  border: 2px solid #addfff;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.animal-chip:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.sort-zones {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.zone {
+  border: 2px dashed #99caec;
+  border-radius: 12px;
+  background: #fbfdff;
+  padding: 12px;
+}
+
+.zone-list {
+  margin-top: 8px;
+  min-height: 40px;
+  font-weight: 700;
+}
+
+.inline-choice {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.inline-choice button {
+  border: 2px solid #99caec;
+  border-radius: 10px;
+  background: #fff;
+  padding: 8px 12px;
+  font-weight: 800;
+}
+
+.memory-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.memory-card {
+  border: 0;
+  border-radius: 12px;
+  min-height: 66px;
+  background: var(--sky-600);
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.memory-card.revealed,
+.memory-card.matched {
+  background: #fff;
+  border: 2px solid #9accee;
+  color: var(--ink);
+}
+
+.status {
+  margin-top: 12px;
+  font-weight: 800;
+}
+
+footer {
+  text-align: center;
+  padding: 18px 14px;
+  font-weight: 700;
+}
+
+html[dir='rtl'] body {
+  font-family: 'Nunito', sans-serif;
+}
+
+html[dir='rtl'] .site-header,
+html[dir='rtl'] .main-nav,
+html[dir='rtl'] .hero-actions,
+html[dir='rtl'] .game-tabs,
+html[dir='rtl'] .animal-bank,
+html[dir='rtl'] .inline-choice,
+html[dir='rtl'] .course-actions {
+  direction: rtl;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes bounceSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes bubblePop {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.04) translateY(-4px); }
+}
+
+@keyframes breathePulse {
+  0%, 100% { transform: scale(0.96); }
+  35% { transform: scale(1.04); }
+  60% { transform: scale(1.08); }
+}
+
+@keyframes blinkEye {
+  0%, 44%, 100% { transform: scaleY(1); }
+  46%, 50% { transform: scaleY(0.12); }
+}
+
+@keyframes floatPuff {
+  0% {
+    transform: translateY(0) scale(0.9);
+    opacity: 0;
+  }
+  20%, 70% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-46px) scale(1.16);
+    opacity: 0;
+  }
+}
+
+@keyframes chipBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes sparklePop {
+  0% { transform: scale(0.7) rotate(-8deg); }
+  60% { transform: scale(1.26) rotate(8deg); }
+  100% { transform: scale(1.18) rotate(0deg); }
+}
+
+@keyframes wiggleBtn {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marqueeMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (min-width: 780px) {
+  .site-header {
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    padding: 12px 24px;
+  }
+
+  .hero {
+    grid-template-columns: 420px 1fr;
+    align-items: center;
+    padding: 28px 24px 8px;
+  }
+
+  .greeting-bubble {
+    right: -22px;
+  }
+
+  .section-wrap {
+    padding: 20px 24px;
+  }
+
+  .welcome-marquee {
+    margin: 10px 24px 0;
+  }
+
+  .feature-grid,
+  .course-grid,
+  .resume-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .feature-card-story {
+    min-height: 260px;
+  }
+
+  .sort-zones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .course-missions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .breathing-feature-grid {
+    grid-template-columns: minmax(260px, 320px) 1fr;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 779px) {
+  .breathing-bubble {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .lungs-scene {
+    min-height: 320px;
+  }
+
+  .lungs-character {
+    width: min(300px, 92%);
+  }
+
+  .lung {
+    height: 170px;
+  }
+
+  .lungs-face {
+    top: 68px;
+  }
+
+  .breath-chip {
+    font-size: 0.92rem;
+    padding: 9px 12px;
+  }
+}

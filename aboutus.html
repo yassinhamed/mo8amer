@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | مغامرو المستقبل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .flip-card {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    .flip-card-inner {
+      min-height: 600px !important;
+    }
+
+    .flip-card .flip-card-front {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .flip-card .flip-card-image {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+    }
+
+    .card-name {
+      width: 100%;
+      height: 80px;
+      padding: 12px;
+      font-weight: bold;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f9f9f9;
+    }
+
+    .flip-card-back {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      padding: 20px;
+      text-align: center;
+      word-break: break-word;
+      white-space: normal;
+    }
+  </style>
+</head>
+<body data-title-key="title.about">
+  <header class="site-header">
+    <a class="logo-wrap" href="index.html">
+      <span class="logo-icon">🐾</span>
+      <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" data-i18n="nav.welcome">Welcome</a>
+      <a href="aboutus.html" data-i18n="nav.about">About Us</a>
+      <a href="cources/index.html" data-i18n="nav.courses">Courses</a>
+      <a href="games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select">
+      <span data-i18n="lang.label">Language</span>
+      <select id="lang-select" aria-label="Language selector">
+        <option value="en" data-i18n="lang.en">English</option>
+        <option value="fr" data-i18n="lang.fr">French</option>
+        <option value="ar" data-i18n="lang.ar">Arabic</option>
+      </select>
+    </label>
+  </header>
+
+  <main class="section-wrap">
+    <section class="page-head">
+      <p class="eyebrow">تعرف علينا</p>
+      <h1>من نحن ؟</h1>
+    </section>
+
+    <section class="flip-card-grid" aria-label="Animal cards">
+      <button class="flip-card" type="button" aria-pressed="false">
+        <span class="flip-card-inner">
+          <span class="flip-card-face flip-card-front">
+            <img src="assests/photo/chiraz.png" alt="Lion" class="flip-card-image" />
+            <span class="card-name">شراز تكتوك</span>
+          </span>
+          <span class="flip-card-face flip-card-back">أنا شراز تكتوك طالبة بالسنة الثالثة بالمعهد العالي للعلوم الانسانية بمدنين أؤمن بأن العملية التعليمية لم تعد تقتصر على الاساليب التقليدية بل أصبحت في حاجة ملحة إلى دمج التكنولوجيا الحديثة و الذكاء الإصطناعي من أجل تحسين جودة التعليم. و إنطلاقا من طموحي كمعلمة في المستقبل أسعى إلى تصميم بيئة تعليمية رقمية متكاملة تتمثل في إنشاء موقع إلكتروني تعليمي يضم دروسًا مبسطة و أنشطة تفاعلية موجهة للتلاميذ. كما أهداف إلى جعل التعليم أكثر إنفتاحا و إبتكارا حيث يصبح المتعلم محور العملية التعليمية و يجد الدعم المستمر داخل و خارج الفصل الدراسي عبر وسائل رقمية حديثة.</span>
+        </span>
+      </button>
+
+      <button class="flip-card rania-card" type="button" aria-pressed="false">
+        <span class="flip-card-inner">
+          <span class="flip-card-face flip-card-front">
+            <img src="assests/photo/raniaanime.png" alt="Rania" class="flip-card-image" />
+            <span class="card-name">رانيا صاروط</span>
+          </span>
+          <span class="flip-card-face flip-card-back">أنا رانيا صاروط طالبة بالسنة الثالثة بالمعهد العالي للعلوم الإنسانية بمدنين، أستعدّ بكل شغف لأصبح أستاذة تعليم ابتدائي. أطمح إلى بناء مسيرة تربوية قائمة على الإبداع والتجديد، وأحرص على تطوير مهاراتي باستمرار ومواكبة كل ما هو حديث في مجال التعليم، خاصة في توظيف التكنولوجيا والذكاء الاصطناعي لخدمة التعلّم. أؤمن بأن الطفل هو محور العملية التعليمية، لذلك أسعى إلى تصميم أنشطة تعليمية تفاعلية وممتعة تنمّي قدراته الفكرية والإبداعية. هذا الفضاء الرقمي هو انعكاس لطموحاتي وبداياتي في عالم التربية، أشارك من خلاله أفكاري وأعمالي، آمِلةً أن يكون مصدر إلهام وفائدة لكل من يزوره</span>
+        </span>
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <p data-i18n="footer.text">2026 مغامرو المستقبل Kids eLearning</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.querySelectorAll('.flip-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        const isFlipped = card.classList.toggle('is-flipped');
+        card.setAttribute('aria-pressed', String(isFlipped));
+      });
+    });
+  </script>
+</body>
+</html>

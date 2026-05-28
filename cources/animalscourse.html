@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>درس الحيوانات الأليفة والبرية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(180deg, #fff7b8 0%, #ffd6e7 45%, #cdefff 100%);
+    color: #17344f;
+    margin: 0;
+    min-height: 100vh;
+}
+
+
+.page {
+    width: min(1100px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 24px 0 40px;
+}
+
+.hero {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 28px;
+    box-shadow: 0 14px 34px rgba(17, 82, 127, 0.14);
+    padding: 28px;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: #eaf8ee;
+    color: #22884f;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.hero h1 {
+    color: #ff6b6b;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    max-width: 760px;
+    margin: 14px auto 0;
+}
+
+.emoji-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.emoji-row span {
+    background: #fff;
+    border-radius: 999px;
+    padding: 10px 16px;
+    box-shadow: 0 10px 24px rgba(17, 82, 127, 0.12);
+    font-size: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.card,
+.wide-card {
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 22px;
+    box-shadow: 0 12px 30px rgba(17, 82, 127, 0.14);
+    padding: 22px;
+}
+
+.card h2,
+.wide-card h2 {
+    margin-top: 0;
+    color: #17344f;
+    font-size: 1.6rem;
+}
+
+.pet-card {
+    border-top: 8px solid #47c98b;
+}
+
+.wild-card {
+    border-top: 8px solid #ff8c6a;
+}
+
+.wide-card {
+    margin-top: 22px;
+}
+
+.wide-card p,
+.card p {
+    line-height: 1.9;
+    font-size: 1.05rem;
+}
+
+ul {
+    margin: 14px 0 0;
+    padding-inline-start: 20px;
+    line-height: 2;
+}
+
+.mini-grid,
+.compare {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.mini-box {
+    border-radius: 18px;
+    padding: 16px;
+    background: #fffaf0;
+}
+
+.mini-box h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #ff6b6b;
+}
+
+.compare-item {
+    background: #ffffff;
+    border: 2px dashed #b9ddff;
+    border-radius: 18px;
+    padding: 16px;
+}
+
+.footer-note {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #4a4a7a;
+}
+
+@media (max-width: 720px) {}
+</style>
+</head>
+<body data-page="animalscourse">
+<header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+        <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+        <a href="index.html" data-i18n="nav.courses">Courses</a>
+        <a href="../games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select">
+        <span data-i18n="lang.label">اللغة</span>
+        <select id="lang-select" aria-label="Language selector">
+            <option value="en" data-i18n="lang.en">English</option>
+            <option value="fr" data-i18n="lang.fr">Francais</option>
+            <option value="ar" data-i18n="lang.ar">العربية</option>
+        </select>
+    </label>
+</header>
+
+<div class="page">
+    <section class="hero">
+        <div class="hero-badge" data-i18n="heroBadge">درس ممتع للأطفال</div>
+        <h1 data-i18n="heroTitle">درس الحيوانات الأليفة والحيوانات البرية</h1>
+        <p data-i18n="heroText">في هذا الدرس سنتعرّف إلى الفرق بين الحيوانات التي تعيش مع الإنسان والحيوانات التي تعيش في الطبيعة.</p>
+        <div class="emoji-row" aria-hidden="true">
+            <span>🐶</span>
+            <span>🐱</span>
+            <span>🐰</span>
+            <span>🦁</span>
+            <span>🐯</span>
+            <span>🐘</span>
+        </div>
+    </section>
+
+    <section class="grid">
+        <article class="card pet-card">
+            <h2 data-i18n="petTitle">ما هي الحيوانات الأليفة؟</h2>
+            <p data-i18n="petText">الحيوانات الأليفة هي الحيوانات التي يمكن أن تعيش مع الإنسان.</p>
+            <ul>
+                <li data-i18n="pet1">تعيش قريباً من الإنسان وتعتاد وجوده.</li>
+                <li data-i18n="pet2">تحتاج إلى الطعام والماء والمكان النظيف.</li>
+                <li data-i18n="pet3">يجب معاملتها بلطف وعدم إيذائها.</li>
+                <li data-i18n="pet4">من أمثلتها: الكلب، القط، الأرنب، السمكة، والطائر الأليف.</li>
+            </ul>
+        </article>
+
+        <article class="card wild-card">
+            <h2 data-i18n="wildTitle">ما هي الحيوانات البرية؟</h2>
+            <p data-i18n="wildText">الحيوانات البرية هي الحيوانات التي تعيش في الطبيعة.</p>
+            <ul>
+                <li data-i18n="wild1">تعيش في الطبيعة وليس في البيت.</li>
+                <li data-i18n="wild2">تبحث عن غذائها بنفسها.</li>
+                <li data-i18n="wild3">بعضها قوي أو سريع أو يحتاج إلى مساحات واسعة.</li>
+                <li data-i18n="wild4">من أمثلتها: الأسد، النمر، الفيل، الثعلب، والدب.</li>
+            </ul>
+        </article>
+    </section>
+
+    <section class="wide-card">
+        <h2 data-i18n="compareTitle">كيف نميّز بين الحيوان الأليف والحيوان البري؟</h2>
+        <div class="compare">
+            <div class="compare-item">
+                <strong data-i18n="compare1Title">مكان العيش</strong>
+                <p data-i18n="compare1Text">إذا كان الحيوان يعيش مع الإنسان فهو غالباً أليف.</p>
+            </div>
+            <div class="compare-item">
+                <strong data-i18n="compare2Title">طريقة الغذاء</strong>
+                <p data-i18n="compare2Text">الحيوان الأليف يعتمد غالباً على الإنسان في الطعام.</p>
+            </div>
+            <div class="compare-item">
+                <strong data-i18n="compare3Title">طريقة التعامل</strong>
+                <p data-i18n="compare3Text">يمكن رعاية الحيوان الأليف بحذر ولطف.</p>
+            </div>
+            <div class="compare-item">
+                <strong data-i18n="compare4Title">البيئة المناسبة</strong>
+                <p data-i18n="compare4Text">لكل حيوان بيئة مناسبة تساعده على العيش.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="wide-card">
+        <h2 data-i18n="rightTitle">كيف نتعامل مع الحيوانات بطريقة صحيحة؟</h2>
+        <div class="mini-grid">
+            <div class="mini-box">
+                <h3 data-i18n="right1Title">مع الحيوانات الأليفة</h3>
+                <p data-i18n="right1Text">نقدّم لها الطعام والماء ونحافظ على نظافتها.</p>
+            </div>
+            <div class="mini-box">
+                <h3 data-i18n="right2Title">مع الحيوانات البرية</h3>
+                <p data-i18n="right2Text">نحافظ على المسافة ولا نحاول لمسها.</p>
+            </div>
+            <div class="mini-box">
+                <h3 data-i18n="right3Title">قاعدة السلامة</h3>
+                <p data-i18n="right3Text">إذا لم نعرف الحيوان جيداً فلا نقترب منه.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="wide-card">
+        <h2 data-i18n="examplesTitle">أمثلة تساعدنا على الفهم</h2>
+        <ul>
+            <li data-i18n="ex1">الكلب: حيوان أليف يعيش مع الإنسان ويحتاج إلى الرعاية واللعب.</li>
+            <li data-i18n="ex2">القط: حيوان أليف يحب البيت والطعام والمكان الدافئ.</li>
+            <li data-i18n="ex3">الأرنب: حيوان أليف صغير يحتاج إلى العناية والغذاء المناسب.</li>
+            <li data-i18n="ex4">الأسد: حيوان بري يعيش في الطبيعة ولا يصلح للعيش في المنزل.</li>
+            <li data-i18n="ex5">النمر: حيوان بري قوي وسريع ويعتمد على نفسه في الطبيعة.</li>
+        </ul>
+    </section>
+
+    <p class="footer-note" data-i18n="footer">التعلّم يصبح ممتعاً عندما نراقب الحيوانات بلطف واهتمام.</p>
+</div>
+
+<script src="../standalone.js"></script>
+<script>
+standaloneI18n.apply();
+standaloneI18n.setup();
+</script>
+</body>
+</html>

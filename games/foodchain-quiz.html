@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>foodchain quiz</title>
+<link rel="stylesheet" href="lesson-games.css">
+</head>
+<body data-lesson="foodchain" data-game="quiz">
+<header class="site-header">
+  <a class="logo-wrap" href="../index.html">
+    <span class="logo-icon">🐾</span>
+    <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+  </a>
+
+  <nav class="main-nav">
+    <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+    <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+    <a href="../cources/index.html" data-i18n="nav.courses">Courses</a>
+    <a href="index.html" data-i18n="nav.games">Games</a>
+  </nav>
+
+  <label class="lang-switcher" for="lang-select">
+    <span data-i18n="lang.label">اللغة</span>
+    <select id="lang-select" aria-label="Language selector">
+      <option value="en" data-i18n="lang.en">English</option>
+      <option value="fr" data-i18n="lang.fr">Francais</option>
+      <option value="ar" data-i18n="lang.ar">العربية</option>
+    </select>
+  </label>
+</header>
+<div class="page" id="game-page"></div>
+<script src="lesson-games.js"></script>
+</body>
+</html>

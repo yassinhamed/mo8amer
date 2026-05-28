@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حماية البيئة ومقاومة التلوث</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+body { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, #fff7b8 0%, #ffd6e7 45%, #cdefff 100%); color: #17344f; margin: 0; min-height: 100vh; }
+.page { width: min(1100px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 40px; }
+.hero { background: rgba(255, 255, 255, 0.92); border-radius: 28px; box-shadow: 0 14px 34px rgba(17, 82, 127, 0.14); padding: 28px; text-align: center; }
+.hero-badge { display: inline-block; background: #eaf8ee; color: #22884f; border-radius: 999px; padding: 8px 14px; font-weight: bold; margin-bottom: 14px; }
+.hero h1 { color: #ff6b6b; font-size: clamp(2rem, 5vw, 3rem); margin: 0; }
+.hero p { font-size: 1.1rem; line-height: 1.9; max-width: 760px; margin: 14px auto 0; }
+.emoji-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.emoji-row span { background: #fff; border-radius: 999px; padding: 10px 16px; box-shadow: 0 10px 24px rgba(17, 82, 127, 0.12); font-size: 2rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 22px; }
+.summary-grid { grid-template-columns: 1fr; }
+.card, .wide-card { background: rgba(255, 255, 255, 0.94); border-radius: 22px; box-shadow: 0 12px 30px rgba(17, 82, 127, 0.14); padding: 22px; }
+.summary-card { display: flex; flex-direction: column; height: 100%; }
+.card h2, .wide-card h2 { margin-top: 0; color: #17344f; font-size: 1.6rem; }
+.air-card { border-top: 8px solid #47c98b; }
+.water-card { border-top: 8px solid #ff8c6a; }
+.soil-card { border-top: 8px solid #f2bf4b; }
+.protect-card { border-top: 8px solid #5a8dee; }
+.wide-card { margin-top: 22px; }
+.wide-card p, .card p { line-height: 1.9; font-size: 1.05rem; }
+ul { margin: 14px 0 0; padding-inline-start: 20px; line-height: 2; }
+.card-image-box { min-height: 150px; border: 2px dashed #b9ddff; border-radius: 18px; background: linear-gradient(180deg, rgba(244, 250, 255, 0.95), rgba(234, 247, 255, 0.9)); display: flex; align-items: center; justify-content: center; text-align: center; padding: 0; color: #5c7591; font-weight: 700; margin-bottom: 16px; overflow: hidden; }
+.card-image-box img { width: 100%; min-height: 150px; height: 100%; object-fit: cover; display: block; }
+.card-summary { margin: 0; color: #35516b; font-weight: 700; }
+.summary-list { margin-top: 12px; }
+.mini-grid, .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 16px; }
+.mini-box { border-radius: 18px; padding: 16px; background: #fffaf0; }
+.mini-box h3 { margin-top: 0; margin-bottom: 8px; color: #ff6b6b; }
+.compare-item { background: #ffffff; border: 2px dashed #b9ddff; border-radius: 18px; padding: 16px; }
+.video-card { margin-top: 22px; }
+.lesson-video { width: 100%; margin-top: 16px; border-radius: 18px; box-shadow: 0 14px 30px rgba(17, 82, 127, 0.16); background: #000; }
+.game-card { margin-top: 22px; background: linear-gradient(135deg, rgba(234, 255, 244, 0.94), rgba(214, 244, 255, 0.92)); border-top: 8px solid #47c98b; }
+.game-launch { display: inline-flex; align-items: center; justify-content: center; margin-top: 16px; padding: 14px 22px; border-radius: 999px; background: linear-gradient(180deg, #7ee081, #47c98b); color: #ffffff; font-weight: 900; text-decoration: none; box-shadow: 0 12px 24px rgba(71, 201, 139, 0.24); transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.game-launch:hover { transform: translateY(-2px); box-shadow: 0 16px 28px rgba(71, 201, 139, 0.28); }
+.footer-note { text-align: center; margin-top: 22px; font-size: 1.05rem; font-weight: bold; color: #4a4a7a; }
+.pollution-avatar-card { background: linear-gradient(135deg, rgba(255, 250, 240, 0.96), rgba(238, 248, 255, 0.94)); }
+.pollution-avatar-grid { display: grid; gap: 18px; align-items: center; }
+@media (min-width: 780px) { .pollution-avatar-grid { grid-template-columns: minmax(220px, 280px) 1fr; } }
+@media (min-width: 780px) { .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>
+</head>
+<body>
+<header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+        <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+        <a href="index.html" data-i18n="nav.courses">Courses</a>
+        <a href="../games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select"><span data-i18n="lang.label">اللغة</span><select id="lang-select" aria-label="Language selector"><option value="en" data-i18n="lang.en">English</option><option value="fr" data-i18n="lang.fr">Francais</option><option value="ar" data-i18n="lang.ar">العربية</option></select></label>
+</header>
+<div class="page">
+<section class="hero"><div class="hero-badge" data-i18n="heroBadge">درس مبسط للأطفال</div><h1 data-i18n="heroTitle">درس حماية البيئة ومقاومة التلوث</h1><p data-i18n="heroText">في هذا الدرس سنتعرّف إلى معنى التلوث وأنواعه المختلفة، وكيف يمكننا حماية البيئة من الأوساخ والدخان والنفايات.</p><div class="emoji-row" aria-hidden="true"><span>🌍</span><span>🚯</span><span>💧</span><span>🏭</span><span>♻️</span></div></section>
+<section class="grid summary-grid">
+  <article class="card summary-card air-card">
+    <div class="card-image-box"><img src="../assests/photo/whtsweather.jpeg" alt="صورة عن البيئة"></div>
+    <h2>ما هي البيئة؟</h2>
+    <p class="card-summary">ملخص سريع عن الوسط الذي نعيش فيه.</p>
+    <ul class="summary-list">
+      <li>البيئة تضم الإنسان والحيوان والنبات.</li>
+      <li>تشمل الماء والهواء والتربة.</li>
+      <li>نظافة البيئة تساعد على حياة صحية ومتوازنة.</li>
+    </ul>
+  </article>
+<article class="card summary-card protect-card">
+    <div class="card-image-box"><img src="../assests/photo/protect.jpeg" alt="صورة عن حماية البيئة"></div>
+    <h2>كيف نحمي البيئة؟</h2>
+    <p class="card-summary">خطوات بسيطة تصنع فرقاً كبيراً.</p>
+    <ul class="summary-list">
+      <li>نرمي النفايات في المكان المناسب.</li>
+      <li>نقلل البلاستيك ونعيد التدوير.</li>
+      <li>نزرع الأشجار ونحافظ على الهواء والماء.</li>
+    </ul>
+  </article>
+  <article class="card summary-card water-card">
+    <div class="card-image-box"><img src="../assests/photo/pollutionwtr.jpeg" alt="صورة عن تلوث الماء"></div>
+    <h2>تلوث الماء</h2>
+    <p class="card-summary">يحدث عندما تصل النفايات والمواد الضارة إلى الماء.</p>
+    <ul class="summary-list">
+      <li>رمي الفضلات في الأنهار والبحار يفسد الماء.</li>
+      <li>مياه المجاري والمواد الكيميائية من أخطر الأسباب.</li>
+      <li>الماء الملوث يضر الإنسان والكائنات الحية.</li>
+    </ul>
+  </article>
+
+  <article class="card summary-card soil-card">
+    <div class="card-image-box"><img src="../assests/photo/pollutionair.png" alt="صورة عن تلوث الهواء والتربة"></div>
+    <h2>تلوث الهواء والتربة</h2>
+    <p class="card-summary">نوعان يؤثران مباشرة في الصحة والزراعة.</p>
+    <ul class="summary-list">
+      <li>دخان السيارات والمصانع يلوث الهواء.</li>
+      <li>حرق النفايات يزيد الغازات الضارة.</li>
+      <li>البطاريات والمبيدات والبلاستيك تفسد التربة.</li>
+    </ul>
+  </article>
+
+  
+</section>
+<section class="wide-card pollution-avatar-card">
+  <div class="pollution-avatar-grid">
+    <div class="breathing-avatar-wrap">
+      <img class="breathing-avatar" src="../photo/mo8amer.jpg" alt="Mo8amer avatar">
+      <div class="breathing-bubble" id="pollution-avatar-bubble">مرحباً يا بطل! أنا جاهز لأسئلتك عن التلوث.</div>
+    </div>
+    <div class="course-avatar-qa" data-avatar-ask>
+      <div class="course-avatar-qa-copy">
+        <p class="hero-badge" id="pollution-avatar-title">اسأل مغامر</p>
+        <h2 id="pollution-avatar-ready">مغامر جاهز لسؤالك.</h2>
+        <p id="pollution-avatar-text">اكتب سؤالك وشاهد الصورة الرمزية وهي ترد وحدها.</p>
+      </div>
+      <form class="avatar-qa-form" id="pollution-avatar-form">
+        <input class="avatar-qa-input" id="pollution-avatar-input" type="text" placeholder="اكتب سؤالك هنا">
+        <button class="avatar-qa-button" id="pollution-avatar-button" type="submit">اسأل الآن</button>
+      </form>
+      <p class="avatar-qa-reply" id="pollution-avatar-reply" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+<section class="wide-card video-card"><h2 data-i18n="videoTitle">فيديو عن أبطال البيئة</h2><p data-i18n="videoText">شاهد هذا الفيديو لتتعرف أكثر إلى كيفية حماية البيئة وتقليل التلوث.</p><video class="lesson-video" controls preload="metadata"><source src="../assests/video/Heroes_of_the_Environment_with_captions.mp4" type="video/mp4"></video></section>
+
+<section class="wide-card game-card"><h2 data-i18n="gameTitle">لعبة جديدة: دورية التلوث</h2><p data-i18n="gameText">جرّب لعبة جديدة تماماً، واضغط فقط على الأشياء التي تلوث البيئة في كل مرحلة.</p><a class="game-launch" href="../games/pollution-patrol.html" data-i18n="gameButton">افتح اللعبة الجديدة</a></section>
+
+
+<section class="wide-card"><h2 data-i18n="examplesTitle">كيف نحمي البيئة؟</h2><div class="mini-grid"><div class="mini-box"><h3 data-i18n="example1Title">فكرة 1</h3><p data-i18n="example1Text">نرمي القمامة في السلة ونحافظ على نظافة المكان.</p></div><div class="mini-box"><h3 data-i18n="example2Title">فكرة 2</h3><p data-i18n="example2Text">نقلل من استعمال البلاستيك ونستعمل الأشياء أكثر من مرة.</p></div><div class="mini-box"><h3 data-i18n="example3Title">فكرة 3</h3><p data-i18n="example3Text">نزرع الأشجار ونحافظ على الماء والهواء النظيف.</p></div></div></section>
+<section class="wide-card"><h2 data-i18n="importanceTitle">ماذا نتذكر عن التلوث؟</h2><ul><li data-i18n="importance1">التلوث يضر البيئة والكائنات الحية.</li><li data-i18n="importance2">له أنواع مثل تلوث الهواء والماء والتربة.</li><li data-i18n="importance3">يمكننا تقليله بسلوكيات بسيطة وجيدة.</li><li data-i18n="importance4">حماية البيئة مسؤولية الجميع.</li></ul></section>
+<p class="footer-note" data-i18n="footer">عندما نحافظ على البيئة نعيش في مكان أنظف وأجمل وأكثر صحة.</p>
+</div>
+<script>
+const STORAGE_KEY='petWildLang'; const SUPPORTED_LANGS=['en','fr','ar']; const TRANSLATIONS={en:{brand:'Future Adventurers',navAbout:'About Us',title:'Pollution Lesson',navHome:'Welcome',navCourses:'Courses',navGames:'Games',langLabel:'Language',heroBadge:'Simple lesson for kids',heroTitle:'Pollution Lesson',heroText:'In this lesson we learn what pollution means, its different types, and how we can protect the environment from smoke, dirt, and waste.',airTitle:'What Is Pollution?',airText:'Pollution means harmful things in the environment, such as smoke, trash, or dirty water. It can harm people, animals, and plants.',air1:'Pollution can be in the air.',air2:'It can also be in water.',air3:'It can also be in soil or streets.',air4:'Pollution makes the environment less clean and less safe.',waterTitle:'What Causes Pollution?',waterText:'There are many causes of pollution, such as throwing trash in the wrong place, smoke from factories and cars, or dirtying rivers and seas.',water1:'Smoke pollutes the air.',water2:'Waste can pollute water.',water3:'Plastic harms animals and the sea.',water4:'Too much dirt makes places unhealthy.',kindsTitle:'Types of Pollution',kinds1Title:'Air pollution',kinds1Text:'It happens because of smoke and harmful gases.',kinds2Title:'Water pollution',kinds2Text:'It happens when water becomes dirty with waste or harmful materials.',kinds3Title:'Soil pollution',kinds3Text:'It happens when trash and harmful things are thrown on the ground.',kinds4Title:'Effect of pollution',kinds4Text:'It can cause sickness and harm plants, animals, and people.',gameTitle:'New Game: Pollution Patrol',gameText:'Try a brand-new game and tap only the things that pollute the environment in each round.',gameButton:'Open the new game',examplesTitle:'How Can We Protect the Environment?',example1Title:'Idea 1',example1Text:'Throw trash in the bin and keep places clean.',example2Title:'Idea 2',example2Text:'Use less plastic and reuse things when possible.',example3Title:'Idea 3',example3Text:'Plant trees and protect clean water and air.',importanceTitle:'What Do We Remember About Pollution?',importance1:'Pollution harms the environment and living things.',importance2:'It has types such as air, water, and soil pollution.',importance3:'We can reduce it with simple good actions.',importance4:'Protecting the environment is everyone s responsibility.',videoTitle:'Video About Environment Heroes',videoText:'Watch this video to learn more about protecting the environment and reducing pollution.',footer:'When we protect the environment, we live in a cleaner, healthier, and more beautiful place.'},fr:{brand:'Aventuriers du Futur',navAbout:'A propos',title:'Lecon sur la pollution',navHome:'Accueil',navCourses:'Cours',navGames:'Jeux',langLabel:'Langue',heroBadge:'Lecon simple pour enfants',heroTitle:'Lecon sur la pollution',heroText:'Dans cette lecon, nous apprenons ce que signifie la pollution, ses differents types et comment proteger l environnement de la fumee, des dechets et de la salete.',airTitle:'Qu est-ce que la pollution ?',airText:'La pollution signifie la presence de choses nuisibles dans l environnement, comme la fumee, les dechets ou l eau sale. Elle peut faire du mal aux humains, aux animaux et aux plantes.',air1:'La pollution peut etre dans l air.',air2:'Elle peut aussi etre dans l eau.',air3:'Elle peut aussi etre dans le sol ou dans les rues.',air4:'La pollution rend l environnement moins propre et moins sur.',waterTitle:'Quelles sont les causes de la pollution ?',waterText:'Il existe de nombreuses causes de pollution, comme jeter les dechets au mauvais endroit, la fumee des usines et des voitures, ou salir les rivieres et les mers.',water1:'La fumee pollue l air.',water2:'Les dechets peuvent polluer l eau.',water3:'Le plastique fait du mal aux animaux et a la mer.',water4:'Trop de salete rend les lieux malsains.',kindsTitle:'Les types de pollution',kinds1Title:'Pollution de l air',kinds1Text:'Elle arrive a cause de la fumee et des gaz nocifs.',kinds2Title:'Pollution de l eau',kinds2Text:'Elle arrive quand l eau devient sale a cause des dechets ou de matieres dangereuses.',kinds3Title:'Pollution du sol',kinds3Text:'Elle arrive quand on jette des dechets et des produits nocifs sur la terre.',kinds4Title:'Effet de la pollution',kinds4Text:'Elle peut causer des maladies et faire du mal aux plantes, aux animaux et aux humains.',gameTitle:'Nouveau jeu : Patrouille pollution',gameText:'Essaie un tout nouveau jeu et appuie seulement sur les choses qui polluent l environnement.',gameButton:'Ouvrir le nouveau jeu',examplesTitle:'Comment proteger l environnement ?',example1Title:'Idee 1',example1Text:'Jeter les dechets a la poubelle et garder les lieux propres.',example2Title:'Idee 2',example2Text:'Utiliser moins de plastique et reutiliser les objets quand c est possible.',example3Title:'Idee 3',example3Text:'Planter des arbres et proteger l air et l eau propres.',importanceTitle:'Que retenir sur la pollution ?',importance1:'La pollution fait du mal a l environnement et aux etres vivants.',importance2:'Elle a plusieurs types comme la pollution de l air, de l eau et du sol.',importance3:'Nous pouvons la reduire avec des gestes simples et bons.',importance4:'Proteger l environnement est la responsabilite de tous.',videoTitle:'Video sur les heros de l environnement',videoText:'Regarde cette video pour mieux comprendre comment proteger l environnement et reduire la pollution.',footer:'Quand nous protégeons l environnement, nous vivons dans un lieu plus propre, plus sain et plus beau.'},ar:{brand:'مغامرو المستقبل',navAbout:'من نحن',title:'درس التلوث',navHome:'الصفحة الرئيسية',navCourses:'الدروس',navGames:'الألعاب',langLabel:'اللغة',heroBadge:'درس مبسط للأطفال',heroTitle:'درس حماية البيئة ومقاومة التلوث',heroText:'في هذا الدرس سنتعرّف إلى معنى التلوث وأنواعه المختلفة، وكيف يمكننا حماية البيئة من الأوساخ والدخان والنفايات.',airTitle:'ما هو التلوث؟',airText:'التلوث هو وجود أشياء ضارة في البيئة مثل الدخان أو النفايات أو الماء المتسخ، وهذا قد يضر الإنسان والحيوان والنبات.',air1:'قد يكون التلوث في الهواء.',air2:'وقد يكون في الماء.',air3:'وقد يكون في التربة أو الشوارع.',air4:'التلوث يجعل البيئة أقل نظافة وأقل أماناً.',waterTitle:'ما أسباب التلوث؟',waterText:'توجد أسباب كثيرة للتلوث، مثل رمي القمامة في غير مكانها أو خروج الدخان من المصانع والسيارات أو تلويث الأنهار والبحار.',water1:'الدخان يلوث الهواء.',water2:'النفايات قد تلوث الماء.',water3:'البلاستيك يضر الحيوانات والبحر.',water4:'كثرة الأوساخ تجعل المكان غير صحي.',kindsTitle:'أنواع التلوث',kinds1Title:'تلوث الهواء',kinds1Text:'يحدث بسبب الدخان والغازات الضارة.',kinds2Title:'تلوث الماء',kinds2Text:'يحدث عندما يصبح الماء متسخاً بالنفايات أو المواد الضارة.',kinds3Title:'تلوث التربة',kinds3Text:'يحدث عندما تُرمى القمامة والمواد الضارة على الأرض.',kinds4Title:'تأثير التلوث',kinds4Text:'يمكن أن يسبب المرض ويضر النباتات والحيوانات والناس.',gameTitle:'لعبة جديدة: دورية التلوث',gameText:'جرّب لعبة جديدة تماماً، واضغط فقط على الأشياء التي تلوث البيئة في كل مرحلة.',gameButton:'افتح اللعبة الجديدة',examplesTitle:'كيف نحمي البيئة؟',example1Title:'فكرة 1',example1Text:'نرمي القمامة في السلة ونحافظ على نظافة المكان.',example2Title:'فكرة 2',example2Text:'نقلل من استعمال البلاستيك ونستعمل الأشياء أكثر من مرة.',example3Title:'فكرة 3',example3Text:'نزرع الأشجار ونحافظ على الماء والهواء النظيف.',importanceTitle:'ماذا نتذكر عن التلوث؟',importance1:'التلوث يضر البيئة والكائنات الحية.',importance2:'له أنواع مثل تلوث الهواء والماء والتربة.',importance3:'يمكننا تقليله بسلوكيات بسيطة وجيدة.',importance4:'حماية البيئة مسؤولية الجميع.',videoTitle:'فيديو عن أبطال البيئة',videoText:'شاهد هذا الفيديو لتتعرف أكثر إلى كيفية حماية البيئة وتقليل التلوث.',footer:'عندما نحافظ على البيئة نعيش في مكان أنظف وأجمل وأكثر صحة.'}}; const AVATAR_UI={en:{title:'Ask Mo8amer',ready:'Mo8amer is ready for your question.',text:'Write a question and watch the avatar answer by itself.',placeholder:'Ask Mo8amer here',button:'Ask now',bubble:'Hello superstar! I am ready for your pollution questions.'},fr:{title:'Demande a Mo8amer',ready:'Mo8amer est pret pour ta question.',text:'Ecris une question et regarde l avatar repondre tout seul.',placeholder:'Ecris ta question ici',button:'Demander',bubble:'Salut champion ! Je suis pret pour tes questions sur la pollution.'},ar:{title:'اسأل مغامر',ready:'مغامر جاهز لسؤالك.',text:'اكتب سؤالك وشاهد الصورة الرمزية وهي ترد وحدها.',placeholder:'اكتب سؤالك هنا',button:'اسأل الآن',bubble:'مرحباً يا بطل! أنا جاهز لأسئلتك عن التلوث.'}}; const POLLUTION_AVATAR_ANSWERS=['تلوث الهواء يحدث بسبب دخان السيارات، ودخان المصانع، وحرق النفايات. هذه المواد تجعل الهواء غير صحي للتنفس','نحافظ عليها بعدم رمي البطاريات أو المواد الكيميائية فيها، ونستعمل المبيدات بشكل قليل، ونزرع النباتات التي تحمي الأر','تلوث الهواء هو تغيّر في نقاء الهواء ليصبح ضارًا بصحة الإنسان والحيوان والنبات.']; function normalizeLanguage(v){return SUPPORTED_LANGS.includes(v)?v:null;} function getInitialLanguage(){const u=normalizeLanguage(new URLSearchParams(window.location.search).get('lang')); const s=normalizeLanguage(localStorage.getItem(STORAGE_KEY)); const selected=u||s||'ar'; localStorage.setItem(STORAGE_KEY,selected); return selected;} let currentLang=getInitialLanguage(); let pollutionAnswerIndex=0; function t(k){const aliases={'nav.welcome':'navHome','nav.about':'navAbout','nav.courses':'navCourses','nav.games':'navGames','lang.label':'langLabel'}; const resolvedKey=aliases[k]||k; return (TRANSLATIONS[currentLang]||TRANSLATIONS.en)[resolvedKey]||TRANSLATIONS.en[resolvedKey]||k;} function avatarText(k){return (AVATAR_UI[currentLang]||AVATAR_UI.en)[k]||AVATAR_UI.en[k]||k;} function syncLinks(){document.querySelectorAll('a[href]').forEach((a)=>{const raw=a.getAttribute('href'); if(!raw||raw.startsWith('#')) return; const url=new URL(raw,window.location.href); if(url.origin!==window.location.origin) return; if(!url.pathname.endsWith('.html')) return; url.searchParams.set('lang',currentLang); a.href=`${url.toString()}`;});} function applyTranslations(){document.querySelectorAll('[data-i18n]').forEach((n)=>{n.textContent=t(n.dataset.i18n);}); document.documentElement.lang=currentLang; document.documentElement.dir=currentLang==='ar'?'rtl':'ltr'; document.title=t('title'); const langSelect=document.getElementById('lang-select'); langSelect.value=currentLang; const optionLabels={en:{en:'English',fr:'French',ar:'Arabic'},fr:{en:'Anglais',fr:'Francais',ar:'Arabe'},ar:{en:'الإنجليزية',fr:'الفرنسية',ar:'العربية'}}; [...langSelect.options].forEach((option)=>{option.textContent=optionLabels[currentLang][option.value]||option.textContent;}); document.getElementById('pollution-avatar-title').textContent=avatarText('title'); document.getElementById('pollution-avatar-ready').textContent=avatarText('ready'); document.getElementById('pollution-avatar-text').textContent=avatarText('text'); document.getElementById('pollution-avatar-input').placeholder=avatarText('placeholder'); document.getElementById('pollution-avatar-button').textContent=avatarText('button'); if(!document.getElementById('pollution-avatar-reply').textContent){document.getElementById('pollution-avatar-bubble').textContent=avatarText('bubble');} syncLinks();} document.getElementById('pollution-avatar-form').addEventListener('submit',(e)=>{e.preventDefault(); const input=document.getElementById('pollution-avatar-input'); if(!input.value.trim()) return; const nextAnswer=POLLUTION_AVATAR_ANSWERS[pollutionAnswerIndex%POLLUTION_AVATAR_ANSWERS.length]; pollutionAnswerIndex+=1; document.getElementById('pollution-avatar-reply').textContent=nextAnswer; document.getElementById('pollution-avatar-bubble').textContent=nextAnswer; input.value='';}); document.getElementById('lang-select').addEventListener('change',(e)=>{const next=e.target.value; if(!SUPPORTED_LANGS.includes(next)) return; currentLang=next; localStorage.setItem(STORAGE_KEY,next); applyTranslations();}); applyTranslations();
+</script>
+</body>
+</html>

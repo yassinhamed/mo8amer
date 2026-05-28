@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pollution Patrol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lesson-games.css">
+<style>
+.patrol-stage {
+  display: grid;
+  gap: 18px;
+  min-height: 680px;
+}
+
+.patrol-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.patrol-card {
+  border: none;
+  border-radius: 26px;
+  padding: 18px 14px;
+  min-height: 170px;
+  background: linear-gradient(180deg, rgba(34, 117, 132, 0.96), rgba(24, 77, 100, 0.98));
+  border: 4px solid rgba(155, 236, 231, 0.6);
+  color: #f1fffc;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(17, 67, 87, 0.24);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.patrol-card:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px rgba(17, 67, 87, 0.28);
+}
+
+.patrol-card.is-hit {
+  background: linear-gradient(180deg, rgba(126, 219, 141, 0.98), rgba(49, 153, 91, 0.98));
+  border-color: rgba(230, 255, 224, 0.8);
+  color: #08371a;
+}
+
+.patrol-card.is-miss {
+  background: linear-gradient(180deg, rgba(252, 190, 91, 0.98), rgba(221, 123, 24, 0.98));
+  border-color: rgba(255, 238, 174, 0.82);
+  color: #5b2900;
+}
+
+.patrol-card:disabled {
+  cursor: default;
+}
+
+.patrol-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.patrol-label {
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.patrol-finish {
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.patrol-links {
+  display: grid;
+  gap: 12px;
+  width: min(100%, 420px);
+}
+
+.patrol-links a,
+.patrol-links button {
+  text-decoration: none;
+}
+
+@media (max-width: 780px) {
+  .patrol-stage {
+    min-height: 520px;
+  }
+
+  .patrol-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .patrol-card {
+    min-height: 150px;
+  }
+}
+</style>
+</head>
+<body data-lesson="pollution" data-game="patrol">
+<header class="site-header">
+  <a class="logo-wrap" href="../index.html">
+    <span class="logo-icon">🐾</span>
+    <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+  </a>
+
+  <nav class="main-nav">
+    <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+    <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+    <a href="../cources/index.html" data-i18n="nav.courses">Courses</a>
+    <a href="index.html" data-i18n="nav.games">Games</a>
+  </nav>
+
+  <label class="lang-switcher" for="lang-select">
+    <span data-i18n="lang.label">اللغة</span>
+    <select id="lang-select" aria-label="Language selector">
+      <option value="en" data-i18n="lang.en">English</option>
+      <option value="fr" data-i18n="lang.fr">Francais</option>
+      <option value="ar" data-i18n="lang.ar">العربية</option>
+    </select>
+  </label>
+</header>
+<div class="page" id="game-page"></div>
+<script>
+const STORAGE_KEY = 'petWildLang';
+const SUPPORTED_LANGS = ['en', 'fr', 'ar'];
+const TOTAL_ROUNDS = 3;
+
+const TRANSLATIONS = {
+  en: {
+    brand: 'Future Adventurers',
+    title: 'Pollution Patrol',
+    navHome: 'Welcome',
+    navAbout: 'About Us',
+    navCourses: 'Courses',
+    navGames: 'Games',
+    langLabel: 'Language',
+    langEn: 'English',
+    langFr: 'French',
+    langAr: 'Arabic',
+    portalBadge: 'New Pollution Game',
+    portalTitle: 'Pollution Patrol Is Ready!',
+    portalText: 'Tap only the things that pollute the Earth and leave the helpful actions alone.',
+    start: 'Start Patrol!',
+    round: 'Round',
+    score: 'Stars',
+    prompt: 'Tap only the bad pollution cards.',
+    sideTitle: 'Mission',
+    sideText: 'Find the harmful pollution actions in each round.',
+    good: 'Great job!',
+    tryAgain: 'That one helps Earth. Leave it.',
+    finishTitle: 'You protected the Earth!',
+    finishText: 'You finished all patrol rounds.',
+    playAgain: 'Play Again',
+    exitFullscreen: 'Back to Small',
+    fullscreen: 'Play Big!',
+    backLesson: 'Back to Lesson'
+  },
+  fr: {
+    brand: 'Aventuriers du Futur',
+    title: 'Patrouille Pollution',
+    navHome: 'Accueil',
+    navAbout: 'A propos',
+    navCourses: 'Cours',
+    navGames: 'Jeux',
+    langLabel: 'Langue',
+    langEn: 'Anglais',
+    langFr: 'Francais',
+    langAr: 'Arabe',
+    portalBadge: 'Nouveau jeu pollution',
+    portalTitle: 'La patrouille pollution est prete !',
+    portalText: 'Appuie seulement sur les choses qui polluent la Terre et laisse les bonnes actions tranquilles.',
+    start: 'Commencer la patrouille !',
+    round: 'Manche',
+    score: 'Etoiles',
+    prompt: 'Appuie seulement sur les cartes qui polluent.',
+    sideTitle: 'Mission',
+    sideText: 'Trouve les actions de pollution dans chaque manche.',
+    good: 'Bravo !',
+    tryAgain: 'Cette action aide la Terre. Laisse-la.',
+    finishTitle: 'Tu as protege la Terre !',
+    finishText: 'Tu as termine toutes les manches.',
+    playAgain: 'Rejouer',
+    exitFullscreen: 'Retour petit',
+    fullscreen: 'Jouer en grand !',
+    backLesson: 'Retour au cours'
+  },
+  ar: {
+    brand: 'مغامرو المستقبل',
+    title: 'دورية التلوث',
+    navHome: 'الصفحة الرئيسية',
+    navAbout: 'من نحن',
+    navCourses: 'الدروس',
+    navGames: 'الألعاب',
+    langLabel: 'اللغة',
+    langEn: 'الإنجليزية',
+    langFr: 'الفرنسية',
+    langAr: 'العربية',
+    portalBadge: 'لعبة تلوث جديدة',
+    portalTitle: 'دورية التلوث جاهزة!',
+    portalText: 'اضغط فقط على الأشياء التي تلوث الأرض واترك الأعمال المفيدة للبيئة.',
+    start: 'ابدأ الدورية!',
+    round: 'المرحلة',
+    score: 'النجوم',
+    prompt: 'اضغط فقط على بطاقات التلوث الضارة.',
+    sideTitle: 'المهمة',
+    sideText: 'ابحث عن الأعمال التي تلوث البيئة في كل مرحلة.',
+    good: 'رائع!',
+    tryAgain: 'هذا العمل يفيد الأرض، اتركه.',
+    finishTitle: 'لقد حميت الأرض!',
+    finishText: 'أنهيت جميع مراحل الدورية.',
+    playAgain: 'العب من جديد',
+    exitFullscreen: 'نرجعها صغيرة',
+    fullscreen: 'يلا نكبر اللعبة!',
+    backLesson: 'العودة إلى الدرس'
+  }
+};
+
+const ROUND_CARDS = {
+  en: [
+    [
+      { icon: '🏭', label: 'Factory smoke', bad: true },
+      { icon: '🚯', label: 'Litter on the road', bad: true },
+      { icon: '💧', label: 'Dirty river water', bad: true },
+      { icon: '♻️', label: 'Recycling', bad: false },
+      { icon: '🌳', label: 'Planting trees', bad: false },
+      { icon: '🗑️', label: 'Trash in the bin', bad: false }
+    ],
+    [
+      { icon: '🔥', label: 'Burning plastic', bad: true },
+      { icon: '🚗', label: 'Too much car smoke', bad: true },
+      { icon: '🛢️', label: 'Oil in water', bad: true },
+      { icon: '🌱', label: 'Cleaning a park', bad: false },
+      { icon: '🚲', label: 'Riding a bike', bad: false },
+      { icon: '🫧', label: 'Saving clean water', bad: false }
+    ],
+    [
+      { icon: '🧴', label: 'Plastic in the sea', bad: true },
+      { icon: '🗑️', label: 'Overflowing trash', bad: true },
+      { icon: '☁️', label: 'Black smoke cloud', bad: true },
+      { icon: '🌍', label: 'Protecting Earth', bad: false },
+      { icon: '🥤', label: 'Reusable bottle', bad: false },
+      { icon: '🧹', label: 'Cleaning the street', bad: false }
+    ]
+  ],
+  fr: [
+    [
+      { icon: '🏭', label: 'Fumee d usine', bad: true },
+      { icon: '🚯', label: 'Dechets dans la rue', bad: true },
+      { icon: '💧', label: 'Riviere sale', bad: true },
+      { icon: '♻️', label: 'Recyclage', bad: false },
+      { icon: '🌳', label: 'Planter des arbres', bad: false },
+      { icon: '🗑️', label: 'Mettre a la poubelle', bad: false }
+    ],
+    [
+      { icon: '🔥', label: 'Bruler du plastique', bad: true },
+      { icon: '🚗', label: 'Trop de fumee de voiture', bad: true },
+      { icon: '🛢️', label: 'Huile dans l eau', bad: true },
+      { icon: '🌱', label: 'Nettoyer un parc', bad: false },
+      { icon: '🚲', label: 'Faire du velo', bad: false },
+      { icon: '🫧', label: 'Proteger l eau propre', bad: false }
+    ],
+    [
+      { icon: '🧴', label: 'Plastique dans la mer', bad: true },
+      { icon: '🗑️', label: 'Poubelle debordante', bad: true },
+      { icon: '☁️', label: 'Nuage de fumee noire', bad: true },
+      { icon: '🌍', label: 'Proteger la Terre', bad: false },
+      { icon: '🥤', label: 'Bouteille reutilisable', bad: false },
+      { icon: '🧹', label: 'Nettoyer la rue', bad: false }
+    ]
+  ],
+  ar: [
+    [
+      { icon: '🏭', label: 'دخان المصنع', bad: true },
+      { icon: '🚯', label: 'قمامة في الطريق', bad: true },
+      { icon: '💧', label: 'ماء نهر متسخ', bad: true },
+      { icon: '♻️', label: 'إعادة التدوير', bad: false },
+      { icon: '🌳', label: 'زرع الأشجار', bad: false },
+      { icon: '🗑️', label: 'وضع القمامة في السلة', bad: false }
+    ],
+    [
+      { icon: '🔥', label: 'حرق البلاستيك', bad: true },
+      { icon: '🚗', label: 'دخان سيارات كثير', bad: true },
+      { icon: '🛢️', label: 'زيت في الماء', bad: true },
+      { icon: '🌱', label: 'تنظيف الحديقة', bad: false },
+      { icon: '🚲', label: 'ركوب الدراجة', bad: false },
+      { icon: '🫧', label: 'حماية الماء النظيف', bad: false }
+    ],
+    [
+      { icon: '🧴', label: 'بلاستيك في البحر', bad: true },
+      { icon: '🗑️', label: 'قمامة متراكمة', bad: true },
+      { icon: '☁️', label: 'سحابة دخان سوداء', bad: true },
+      { icon: '🌍', label: 'حماية الأرض', bad: false },
+      { icon: '🥤', label: 'قارورة قابلة للاستعمال', bad: false },
+      { icon: '🧹', label: 'تنظيف الشارع', bad: false }
+    ]
+  ]
+};
+
+let currentLang = getInitialLanguage();
+let roundIndex = 0;
+let score = 0;
+let foundBadCards = 0;
+let fullscreenHandler = null;
+
+function normalizeLanguage(value) {
+  return SUPPORTED_LANGS.includes(value) ? value : null;
+}
+
+function getInitialLanguage() {
+  const fromUrl = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+  const fromStorage = normalizeLanguage(localStorage.getItem(STORAGE_KEY));
+  const selected = fromUrl || fromStorage || 'ar';
+  localStorage.setItem(STORAGE_KEY, selected);
+  return selected;
+}
+
+function ui(key) {
+  const aliases = {
+    'nav.welcome': 'navHome',
+    'nav.about': 'navAbout',
+    'nav.courses': 'navCourses',
+    'nav.games': 'navGames',
+    'lang.label': 'langLabel',
+    'lang.en': 'langEn',
+    'lang.fr': 'langFr',
+    'lang.ar': 'langAr'
+  };
+  const resolvedKey = aliases[key] || key;
+  return (TRANSLATIONS[currentLang] || TRANSLATIONS.en)[resolvedKey] || TRANSLATIONS.en[resolvedKey] || key;
+}
+
+function shuffled(list) {
+  const clone = [...list];
+  for (let index = clone.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [clone[index], clone[swapIndex]] = [clone[swapIndex], clone[index]];
+  }
+  return clone;
+}
+
+function syncLinks() {
+  document.querySelectorAll('a[href]').forEach((anchor) => {
+    const rawHref = anchor.getAttribute('href');
+    if (!rawHref || rawHref.startsWith('#')) return;
+    const url = new URL(rawHref, window.location.href);
+    if (url.origin !== window.location.origin) return;
+    if (!url.pathname.endsWith('.html')) return;
+    url.searchParams.set('lang', currentLang);
+    anchor.href = url.toString();
+  });
+}
+
+function applyChromeTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach((node) => {
+    node.textContent = ui(node.dataset.i18n);
+  });
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  document.title = ui('title');
+  const langSelect = document.getElementById('lang-select');
+  langSelect.value = currentLang;
+  syncLinks();
+}
+
+function updateFullscreenButton() {
+  const shell = document.querySelector('.motion-game-shell');
+  const button = document.getElementById('fullscreen-toggle');
+  if (!shell || !button) return;
+  const active = document.fullscreenElement === shell;
+  shell.classList.toggle('is-fullscreen', active);
+  button.textContent = active ? ui('exitFullscreen') : ui('fullscreen');
+}
+
+function setupFullscreen() {
+  const button = document.getElementById('fullscreen-toggle');
+  const shell = document.querySelector('.motion-game-shell');
+  if (!button || !shell) return;
+  if (fullscreenHandler) {
+    document.removeEventListener('fullscreenchange', fullscreenHandler);
+  }
+  fullscreenHandler = updateFullscreenButton;
+  document.addEventListener('fullscreenchange', fullscreenHandler);
+  button.addEventListener('click', async () => {
+    if (document.fullscreenElement === shell) {
+      await document.exitFullscreen();
+    } else {
+      await shell.requestFullscreen();
+    }
+  });
+  updateFullscreenButton();
+}
+
+async function enterFullscreen() {
+  const shell = document.querySelector('.motion-game-shell');
+  if (!shell) return;
+  try {
+    await shell.requestFullscreen();
+  } catch (error) {
+    shell.classList.remove('is-fullscreen');
+  }
+}
+
+function setStatus(message, success) {
+  const status = document.getElementById('status');
+  if (!status) return;
+  status.textContent = message;
+  status.className = `status motion-status${success ? ' success' : ''}`;
+}
+
+function renderPortal() {
+  const page = document.getElementById('game-page');
+  page.innerHTML = `
+    <div class="motion-portal-card">
+      <div class="motion-portal-glow" aria-hidden="true"></div>
+      <div class="motion-portal-badge">${ui('portalBadge')}</div>
+      <h2>${ui('portalTitle')}</h2>
+      <p>${ui('portalText')}</p>
+      <button class="motion-portal-button" id="start-patrol" type="button">${ui('start')}</button>
+    </div>
+  `;
+  document.getElementById('start-patrol').addEventListener('click', async () => {
+    roundIndex = 0;
+    score = 0;
+    renderRound();
+    await enterFullscreen();
+  });
+}
+
+function renderFinish() {
+  const page = document.getElementById('game-page');
+  page.innerHTML = `
+    <div class="motion-game-shell question-box">
+      <div class="motion-hud">
+        <div class="motion-hud-pill">
+          <span class="motion-hud-icon" aria-hidden="true">🌍</span>
+          <span>${TOTAL_ROUNDS}</span>
+        </div>
+        <div class="motion-hud-title">${ui('title')}</div>
+        <div class="motion-hud-pill">
+          <span class="motion-hud-icon" aria-hidden="true">⭐</span>
+          <span>${score}</span>
+        </div>
+      </div>
+      <section class="motion-center-stage patrol-stage patrol-finish">
+        <div class="motion-celebration is-visible">${ui('good')}</div>
+        <div class="motion-prompt">${ui('finishTitle')}</div>
+        <div class="status motion-status success">${ui('finishText')}</div>
+        <div class="patrol-links">
+          <button class="action-btn" id="play-again" type="button">${ui('playAgain')}</button>
+          <button class="action-btn motion-fullscreen-btn" id="fullscreen-toggle" type="button">${ui('fullscreen')}</button>
+          <a class="action-btn" href="../cources/pollutioncourse.html?lang=${currentLang}">${ui('backLesson')}</a>
+        </div>
+      </section>
+    </div>
+  `;
+  const audio = new Audio('../assests/voice/clapping.wav');
+  audio.play();
+  document.getElementById('play-again').addEventListener('click', async () => {
+    roundIndex = 0;
+    score = 0;
+    renderRound();
+    await enterFullscreen();
+  });
+  setupFullscreen();
+}
+
+function renderRound() {
+  const cards = shuffled(ROUND_CARDS[currentLang][roundIndex]);
+  foundBadCards = 0;
+  const totalBadCards = cards.filter((card) => card.bad).length;
+  const page = document.getElementById('game-page');
+
+  page.innerHTML = `
+    <div class="motion-game-shell question-box">
+      <div class="motion-hud">
+        <div class="motion-hud-pill">
+          <span class="motion-hud-icon" aria-hidden="true">🕒</span>
+          <span>${roundIndex + 1}/${TOTAL_ROUNDS}</span>
+        </div>
+        <div class="motion-hud-title">${ui('title')}</div>
+        <div class="motion-hud-pill">
+          <span class="motion-hud-icon" aria-hidden="true">⭐</span>
+          <span id="score-value">${score}</span>
+        </div>
+      </div>
+      <section class="motion-stage-layout">
+        <aside class="motion-panel">
+          <h2>🌍 ${ui('sideTitle')}</h2>
+          <p class="motion-panel-copy">${ui('sideText')}</p>
+          <div class="motion-quiz-progress">${ui('round')} ${roundIndex + 1}</div>
+        </aside>
+        <section class="motion-center-stage patrol-stage">
+          <div class="motion-celebration" id="celebration">${ui('good')}</div>
+          <div class="motion-prompt">${ui('prompt')}</div>
+          <div class="status motion-status" id="status"></div>
+          <div class="patrol-grid">
+            ${cards.map((card, index) => `
+              <button class="patrol-card" type="button" data-index="${index}" data-bad="${card.bad}">
+                <span class="patrol-icon" aria-hidden="true">${card.icon}</span>
+                <span class="patrol-label">${card.label}</span>
+              </button>
+            `).join('')}
+          </div>
+          <div class="motion-actions">
+            <button class="action-btn motion-fullscreen-btn" id="fullscreen-toggle" type="button">${ui('fullscreen')}</button>
+          </div>
+        </section>
+      </section>
+    </div>
+  `;
+
+  setupFullscreen();
+
+  document.querySelectorAll('.patrol-card').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (button.disabled) return;
+      const isBad = button.dataset.bad === 'true';
+      if (isBad) {
+        button.disabled = true;
+        button.classList.add('is-hit');
+        foundBadCards += 1;
+        score += 1;
+        document.getElementById('score-value').textContent = score;
+        setStatus(ui('good'), true);
+        const celebration = document.getElementById('celebration');
+        celebration.classList.add('is-visible');
+        window.setTimeout(() => celebration.classList.remove('is-visible'), 800);
+        if (foundBadCards === totalBadCards) {
+          window.setTimeout(async () => {
+            const wasFullscreen = !!document.fullscreenElement;
+            if (wasFullscreen) await document.exitFullscreen();
+            roundIndex += 1;
+            if (roundIndex < TOTAL_ROUNDS) {
+              renderRound();
+              if (wasFullscreen) await enterFullscreen();
+            } else {
+              renderFinish();
+              if (wasFullscreen) await enterFullscreen();
+            }
+          }, 700);
+        }
+      } else {
+        button.classList.add('is-miss');
+        setStatus(ui('tryAgain'), false);
+        window.setTimeout(() => button.classList.remove('is-miss'), 700);
+      }
+    });
+  });
+}
+
+document.getElementById('lang-select').addEventListener('change', (event) => {
+  const next = event.target.value;
+  if (!SUPPORTED_LANGS.includes(next)) return;
+  currentLang = next;
+  localStorage.setItem(STORAGE_KEY, next);
+  applyChromeTranslations();
+  renderPortal();
+});
+
+applyChromeTranslations();
+renderPortal();
+</script>
+</body>
+</html>

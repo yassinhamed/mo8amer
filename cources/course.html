@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course | مغامرو المستقبل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(180deg, #fff7b8 0%, #ffd6e7 45%, #cdefff 100%);
+      color: #17344f;
+      min-height: 100vh;
+    }
+
+    .course-page-wrap {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 40px;
+    }
+
+    .hero {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 28px;
+      box-shadow: 0 14px 34px rgba(17, 82, 127, 0.14);
+      padding: 28px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #eaf8ee;
+      color: #22884f;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      color: #ff6b6b;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      max-width: 780px;
+      margin: 14px auto 0;
+    }
+
+    .emoji-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .emoji-row span {
+      background: #fff;
+      border-radius: 999px;
+      padding: 10px 16px;
+      box-shadow: 0 10px 24px rgba(17, 82, 127, 0.12);
+      font-size: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .card,
+    .wide-card {
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 22px;
+      box-shadow: 0 12px 30px rgba(17, 82, 127, 0.14);
+      padding: 22px;
+    }
+
+    .card h2,
+    .wide-card h2 {
+      margin-top: 0;
+      color: #17344f;
+      font-size: 1.6rem;
+    }
+
+    .wide-card {
+      margin-top: 22px;
+    }
+
+    .wide-card p,
+    .card p,
+    li {
+      line-height: 1.9;
+      font-size: 1.05rem;
+    }
+
+    .define-card { border-top: 8px solid #47c98b; }
+    .inhale-card { border-top: 8px solid #ff8c6a; }
+    .exhale-card { border-top: 8px solid #5a8dee; }
+    .organs-card { border-top: 8px solid #f2bf4b; }
+    .effort-card { border-top: 8px solid #9b7bff; }
+
+    .card-image-box {
+      min-height: 160px;
+      border: 2px dashed #b9ddff;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(244, 250, 255, 0.95), rgba(234, 247, 255, 0.9));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .card-image-box img {
+      width: 100%;
+      min-height: 160px;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-summary {
+      margin: 0;
+      color: #35516b;
+      font-weight: 700;
+    }
+
+    .summary-list {
+      margin-top: 12px;
+      padding-inline-start: 20px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .mini-box {
+      border-radius: 18px;
+      padding: 16px;
+      background: #fffaf0;
+    }
+
+    .mini-box h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: #ff6b6b;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: #4a4a7a;
+    }
+  </style>
+</head>
+<body data-title-key="title.coursePage">
+  <header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+      <span class="logo-icon">🐾</span>
+      <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="../index.html" data-i18n="nav.welcome">Welcome</a>
+      <a href="../aboutus.html" data-i18n="nav.about">About Us</a>
+      <a href="index.html" data-i18n="nav.courses">Courses</a>
+      <a href="../games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select">
+      <span data-i18n="lang.label">Language</span>
+      <select id="lang-select" aria-label="Language selector">
+        <option value="en" data-i18n="lang.en">English</option>
+        <option value="fr" data-i18n="lang.fr">French</option>
+        <option value="ar" data-i18n="lang.ar">Arabic</option>
+      </select>
+    </label>
+  </header>
+
+  <main class="section-wrap course-page-wrap">
+    <section id="course-detail" class="course-detail" aria-live="polite">
+      <section class="hero" dir="rtl" lang="ar">
+        <div class="hero-badge">درس مبسط للأطفال</div>
+        <h1>التنفس</h1>
+        <p>
+          التنفس من أهم العمليات الحيوية في جسم الإنسان، فهو يساعدنا على إدخال الأوكسجين
+          وإخراج ثاني أكسيد الكربون. ومن دون تنفس لا يستطيع الإنسان البقاء على قيد الحياة
+          إلا دقائق قليلة.
+        </p>
+        <div class="emoji-row" aria-hidden="true">
+          <span>🫁</span>
+          <span>💨</span>
+          <span>👃</span>
+          <span>🏃</span>
+          <span>😴</span>
+        </div>
+      </section>
+
+      <section class="grid" dir="rtl" lang="ar">
+        <article class="card define-card">
+          <div class="card-image-box"><img src="../assests/photo/whtsweather.jpeg" alt="صورة توضيحية للتنفس"></div>
+          <h2>تعريف التنفس</h2>
+          <p class="card-summary">التنفس عملية حيوية يحتاجها جسم الإنسان باستمرار.</p>
+          <ul class="summary-list">
+            <li>تعمل عملية التنفس على إدخال الأوكسجين إلى الجسم.</li>
+            <li>تساعد على إخراج ثاني أكسيد الكربون إلى الخارج.</li>
+            <li>يمكن للإنسان أن يبقى أيامًا دون طعام أو ماء، لكنه لا يبقى أكثر من خمس دقائق دون تنفس.</li>
+          </ul>
+        </article>
+
+        <article class="card inhale-card">
+          <div class="card-image-box"><img src="../assests/photo/protect.jpeg" alt="صورة عن الشهيق"></div>
+          <h2>الشهيق</h2>
+          <p class="card-summary">الشهيق هو دخول الهواء إلى الرئتين.</p>
+          <ul class="summary-list">
+            <li>يدخل الهواء محملًا بالأوكسجين عبر الأنف إلى الرئتين.</li>
+            <li>يكبر حجم الرئتين أثناء الشهيق.</li>
+            <li>يرتفع القفص الصدري عندما يدخل الهواء إلى الداخل.</li>
+          </ul>
+        </article>
+
+        <article class="card exhale-card">
+          <div class="card-image-box"><img src="../assests/photo/pollutionwtr.jpeg" alt="صورة عن الزفير"></div>
+          <h2>الزفير</h2>
+          <p class="card-summary">الزفير هو خروج الهواء من الرئتين.</p>
+          <ul class="summary-list">
+            <li>يخرج الهواء المحمل بثاني أكسيد الكربون عبر الأنف والفم.</li>
+            <li>يصغر حجم الرئتين أثناء الزفير.</li>
+            <li>ينخفض القفص الصدري عندما يخرج الهواء إلى الخارج.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="wide-card organs-card" dir="rtl" lang="ar">
+        <h2>وظائف أعضاء الجهاز التنفسي</h2>
+        <div class="mini-grid">
+          <div class="mini-box">
+            <h3>الأنف</h3>
+            <p>يرطب الهواء الداخل إلى الرئتين ويساعد على تنقيته.</p>
+          </div>
+          <div class="mini-box">
+            <h3>الحنجرة</h3>
+            <p>تعد بوابة الجهاز التنفسي، وتمنع مرور الطعام إلى القصبة الهوائية.</p>
+          </div>
+          <div class="mini-box">
+            <h3>القصبة الهوائية</h3>
+            <p>تمرر الهواء من الخارج إلى الرئتين وبالعكس.</p>
+          </div>
+          <div class="mini-box">
+            <h3>الرئتان</h3>
+            <p>الرئة اليمنى والرئة اليسرى كيسان إسفنجيان يتم فيهما التبادل الغازي.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wide-card effort-card" dir="rtl" lang="ar">
+        <h2>نسق التنفس مرتبط بالمجهود البدني</h2>
+        <p>لا يكون التنفس بنفس السرعة طوال الوقت، بل يتغير حسب النشاط الذي يقوم به الإنسان.</p>
+        <div class="mini-grid">
+          <div class="mini-box">
+            <h3>تنفس سريع</h3>
+            <ul class="summary-list">
+              <li>الجري</li>
+              <li>لعب الكرة</li>
+              <li>حمل الأثقال</li>
+              <li>المشي لمسافة طويلة</li>
+            </ul>
+          </div>
+          <div class="mini-box">
+            <h3>تنفس بطيء</h3>
+            <ul class="summary-list">
+              <li>الجلوس</li>
+              <li>الوقوف</li>
+              <li>فتح الباب</li>
+              <li>الكتابة</li>
+            </ul>
+          </div>
+        </div>
+        <p>تصبح عملية التنفس بطيئة جدًا أثناء النوم.</p>
+      </section>
+
+      <section class="wide-card" dir="rtl" lang="ar">
+        <h2>خلاصة الدرس</h2>
+        <p>
+          يتكون التنفس من طورين هما الشهيق والزفير، وتساعد أعضاء الجهاز التنفسي مثل الأنف
+          والحنجرة والقصبة الهوائية والرئتين على إتمام هذه العملية. كما أن سرعة التنفس
+          تتغير بحسب مقدار المجهود البدني الذي يقوم به الإنسان.
+        </p>
+      </section>
+
+      <p class="footer-note" dir="rtl" lang="ar">التنفس المنتظم ضروري للحياة، ويزداد أو يبطؤ حسب نشاط الجسم.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p data-i18n="footer.text">2026 مغامرو المستقبل Kids eLearning</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

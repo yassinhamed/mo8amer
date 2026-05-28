@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مغامرو المستقبل Kids eLearning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-title-key="title.home">
+  <header class="site-header">
+    <a class="logo-wrap" href="index.html">
+      <span class="logo-icon">🐾</span>
+      <span class="logo-text" data-i18n="brand">مغامرو المستقبل</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" data-i18n="nav.welcome">Welcome</a>
+      <a href="aboutus.html" data-i18n="nav.about">About Us</a>
+      <a href="cources/index.html" data-i18n="nav.courses">Courses</a>
+      <a href="games/index.html" data-i18n="nav.games">Games</a>
+    </nav>
+
+    <label class="lang-switcher" for="lang-select">
+      <span data-i18n="lang.label">Language</span>
+      <select id="lang-select" aria-label="Language selector">
+        <option value="en" data-i18n="lang.en">English</option>
+        <option value="fr" data-i18n="lang.fr">French</option>
+        <option value="ar" data-i18n="lang.ar">Arabic</option>
+      </select>
+    </label>
+  </header>
+
+  <main>
+    <section class="hero hero-welcome">
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" src="photo/mo8amer.jpg" alt="Mo8amer website avatar" />
+        <div class="greeting-bubble" data-i18n="home.greeting">Hi kids! Welcome to our happy learning world with Mo8amer!</div>
+      </div>
+      <div class="hero-card">
+        <p class="eyebrow" data-i18n="home.eyebrow">eLearning for Kids</p>
+        <h1 data-i18n="home.title">Welcome to a Fun Animal Learning Adventure</h1>
+        <p data-i18n="home.subtitle">Learn the difference between pets and wild animals with colorful lessons and simple games.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="cources/index.html" data-i18n="home.ctaLearn">Start Courses</a>
+          <a class="btn ghost" href="games/index.html" data-i18n="home.ctaPlay">Play Games</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="welcome-marquee" aria-label="Welcome message">
+      <div class="welcome-marquee-track">
+        <span data-i18n="home.marquee1">Welcome Friends</span>
+        <span data-i18n="home.marquee2">Learn with Mo8amer</span>
+        <span data-i18n="home.marquee3">Play, Smile, Discover</span>
+        <span data-i18n="home.marquee4">Math, Science, Games</span>
+        <span data-i18n="home.marquee1">Welcome Friends</span>
+        <span data-i18n="home.marquee2">Learn with Mo8amer</span>
+        <span data-i18n="home.marquee3">Play, Smile, Discover</span>
+        <span data-i18n="home.marquee4">Math, Science, Games</span>
+      </div>
+    </section>
+
+    <section class="feature-grid section-wrap">
+      <article class="feature-card feature-card-story feature-card-animals">
+        <h2 data-i18n="home.videoLearningTitle">Learn Through Videos</h2>
+        <p data-i18n="home.videoLearningText">Watch engaging videos to learn about animals, available in English, French, and Arabic.</p>
+      </article>
+
+      <article class="feature-card feature-card-story feature-card-courses">
+        <h2 data-i18n="home.feature2Title">Follow Easy Courses</h2>
+        <p data-i18n="home.feature2Text">Small lessons with simple words make learning easy for young students.</p>
+      </article>
+
+      <article class="feature-card feature-card-story feature-card-games">
+        <h2 data-i18n="home.feature3Title">Play and Practice</h2>
+        <p data-i18n="home.feature3Text">Interactive games help children remember the difference between pets and wild animals.</p>
+      </article>
+    </section>
+  </main>
+
+  <div class="welcome-popup" id="welcome-popup" aria-hidden="true">
+    <div class="welcome-popup-card">
+      <button class="welcome-popup-close" id="welcome-popup-close" aria-label="Close popup">×</button>
+      <p class="eyebrow" data-i18n="home.popupEyebrow">Welcome!</p>
+      <h2 data-i18n="home.popupTitle">This website has many courses and many games</h2>
+      <p data-i18n="home.popupText">Explore lessons, reviews, and fun activities in Arabic, French, or English.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="cources/index.html" data-i18n="home.ctaLearn">Start Courses</a>
+        <a class="btn ghost" href="games/index.html" data-i18n="home.ctaPlay">Play Games</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p data-i18n="footer.text">2026 مغامرو المستقبل Kids eLearning</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
